@@ -1,9 +1,12 @@
 /node_modules
-/public
 /public/build
+/public/css
+/public/fonts
 /public/hot
+/public/img
+/public/js
 /public/storage
-/storage
+/public/mix-manifest.json
 /storage/*.key
 /vendor
 .DS_Store
