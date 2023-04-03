@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance\A;
+<?php
+
+namespace App\Steps\Horseinsurance\A;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
@@ -17,7 +19,7 @@ class A4 extends StepAbstract
     {
 
         // Fetch session data
-        $name = $this->get_data($this->name.'.namn');
+        $name = $this->get_data($this->name . '.namn');
         $horse_usage = $this->get_data('hastforsakring-a-1.horse_usage');
 
         return view('steps.horseinsurance.a.a4', [
@@ -39,7 +41,7 @@ class A4 extends StepAbstract
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -54,14 +56,19 @@ class A4 extends StepAbstract
 
         // Fetch session data
         $horse_usage = $this->get_data('hastforsakring-a-1.horse_usage');
-        if($horse_usage == 2){
+        if ($horse_usage == 2) {
             $next_step = 'hastforsakring-a-ff-forsakring';
+        } elseif ($horse_usage == 8) {
+            $this->store_data([
+                'breed' => 'Islandshäst',
+            ], 'hastforsakring-a-5');
+
+            $next_step = 'hastforsakring-a-7';
         }
 
         return response()->json([
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
 }

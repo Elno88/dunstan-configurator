@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance;
+<?php
+
+namespace App\Steps\Horseinsurance;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\Focus\FocusApi;
@@ -34,10 +36,10 @@ class Resultat extends StepAbstract
         $forsakringar = [];
         $forsakring_ver = $this->get_data('resultat.veterinarvardsforsakring');
         $forsakring_liv = $this->get_data('resultat.livforsakring');
-        if(isset($forsakring_ver) && !empty($forsakring_ver)){
+        if (isset($forsakring_ver) && !empty($forsakring_ver)) {
             $forsakringar[] = $forsakring_ver;
         }
-        if(isset($forsakring_liv) && !empty($forsakring_liv)){
+        if (isset($forsakring_liv) && !empty($forsakring_liv)) {
             $forsakringar[] = $forsakring_liv;
         }
 
@@ -82,29 +84,30 @@ class Resultat extends StepAbstract
         // Set available data depending on horse_usage
         $horse_usage = $data['horse_usage'];
 
-        switch($horse_usage){
-            // Föl och unghäst
-            // Ridhäst
+        switch ($horse_usage) {
+                // Föl och unghäst
+                // Ridhäst
             case 6:
             case 7:
+            case 8:
             case 1:
                 // available
                 $available = [
-                    'veterinarvardsforsakring' => [8,6,4],
+                    'veterinarvardsforsakring' => [8, 6, 4],
                     'veterinarvardsbelopp' => [50000, 100000, 150000],
                     'livforsakring' => [
-                        'all' => [14,17,13,12],
-                        8 => [14,17,13,12],
-                        6 => [14,17,13,12],
-                        4 => [14,17,13,12]
+                        'all' => [14, 17, 13, 12],
+                        8 => [14, 17, 13, 12],
+                        6 => [14, 17, 13, 12],
+                        4 => [14, 17, 13, 12]
                     ],
                     'livvarde' => [15000, 105000],
                     'livvarde_increment' => 5000,
                 ];
 
                 break;
-            // Foster & Föl
-            /* old foster och föl
+                // Foster & Föl
+                /* old foster och föl
             case 2:
                 $available = [
                     'veterinarvardsforsakring' => [20],
@@ -118,7 +121,7 @@ class Resultat extends StepAbstract
                 ];
                 break;
             */
-            // Nya foster 0 föl
+                // Nya foster 0 föl
             case 2:
                 $available = [
                     'veterinarvardsforsakring' => [38],
@@ -132,7 +135,7 @@ class Resultat extends StepAbstract
                     'safestart' => 0
                 ];
                 break;
-            // Breeding
+                // Breeding
             case 3:
                 $available = [
                     'veterinarvardsforsakring' => [7],
@@ -145,16 +148,16 @@ class Resultat extends StepAbstract
                     'livvarde_increment' => 5000,
                 ];
                 break;
-            // Galopp & Trav
+                // Galopp & Trav
             case 4:
             case 5:
                 $available = [
-                    'veterinarvardsforsakring' => [8,6],
+                    'veterinarvardsforsakring' => [8, 6],
                     'veterinarvardsbelopp' => [50000, 100000, 150000],
                     'livforsakring' => [
-                        'all' => [14,17,13],
-                        8 => [14,17,13],
-                        6 => [14,17,13],
+                        'all' => [14, 17, 13],
+                        8 => [14, 17, 13],
+                        6 => [14, 17, 13],
                     ],
                     'livvarde' => [15000, 105000],
                     'livvarde_increment' => 5000,
@@ -171,12 +174,12 @@ class Resultat extends StepAbstract
             'safestart' => 0
         ];
         $defaults['veterinarvardsbelopp'] = $available['veterinarvardsbelopp'][0] ?? null;
-        if(isset($available['livforsakring'][$defaults['veterinarvardsforsakring']])){
+        if (isset($available['livforsakring'][$defaults['veterinarvardsforsakring']])) {
             $defaults['livforsakring'] = last($available['livforsakring'][$defaults['veterinarvardsforsakring']]);
         } else {
             $defaults['livforsakring'] = null;
         }
-        if(empty($defaults['livforsakring'])){
+        if (empty($defaults['livforsakring'])) {
             $defaults['livforsakring'] = null;
         }
 
@@ -187,30 +190,30 @@ class Resultat extends StepAbstract
             $defaults['livvarde'] = 1000;
         }*/
         // Nya Foster o föl
-        if($defaults['veterinarvardsforsakring'] == 38){
+        if ($defaults['veterinarvardsforsakring'] == 38) {
             $defaults['sjalvrisk_options'] = [25];
             $defaults['livvarde'] = 1000;
         }
 
         // If we have compare from insurley set default veterinarvardsbelopp
         $compare_insurance = $data['compare_insurance'] ?? null;
-        if(isset($compare_insurance['veterinaryCareAmount']) && !empty($compare_insurance['veterinaryCareAmount'])){
+        if (isset($compare_insurance['veterinaryCareAmount']) && !empty($compare_insurance['veterinaryCareAmount'])) {
             $veterinary_care_amount = (int) $compare_insurance['veterinaryCareAmount'];
-            if(isset($available['veterinarvardsbelopp']) && !empty($available['veterinarvardsbelopp'])){
+            if (isset($available['veterinarvardsbelopp']) && !empty($available['veterinarvardsbelopp'])) {
                 // Loop all
-                foreach($available['veterinarvardsbelopp'] as $key => $belopp){
+                foreach ($available['veterinarvardsbelopp'] as $key => $belopp) {
                     // Under
-                    if(!isset($available['veterinarvardsbelopp'][$key-1]) && $veterinary_care_amount <= $belopp){
+                    if (!isset($available['veterinarvardsbelopp'][$key - 1]) && $veterinary_care_amount <= $belopp) {
                         $defaults['veterinarvardsbelopp'] = $belopp;
                         break;
                     }
                     // Above
-                    if(!isset($available['veterinarvardsbelopp'][$key+1]) && $veterinary_care_amount >= $belopp){
+                    if (!isset($available['veterinarvardsbelopp'][$key + 1]) && $veterinary_care_amount >= $belopp) {
                         $defaults['veterinarvardsbelopp'] = $belopp;
                         break;
                     }
                     // Between
-                    if($veterinary_care_amount >= $belopp-25000 && $veterinary_care_amount < $belopp+25000){
+                    if ($veterinary_care_amount >= $belopp - 25000 && $veterinary_care_amount < $belopp + 25000) {
                         $defaults['veterinarvardsbelopp'] = $belopp;
                         break;
                     }
@@ -235,40 +238,40 @@ class Resultat extends StepAbstract
         */
 
         // Keep selected values if they still exists
-        if(isset($input['veterinarvardsbelopp']) && !empty($input['veterinarvardsbelopp'])){
-            if(in_array($input['veterinarvardsbelopp'], $available['veterinarvardsbelopp'])){
+        if (isset($input['veterinarvardsbelopp']) && !empty($input['veterinarvardsbelopp'])) {
+            if (in_array($input['veterinarvardsbelopp'], $available['veterinarvardsbelopp'])) {
                 $defaults['veterinarvardsbelopp'] = $input['veterinarvardsbelopp'];
             }
         }
-        if(isset($input['livforsakring']) && !empty($input['livforsakring'])){
-            if(isset($available['livforsakring'][$defaults['veterinarvardsforsakring']]) && in_array($input['livforsakring'], $available['livforsakring'][$defaults['veterinarvardsforsakring']])){
+        if (isset($input['livforsakring']) && !empty($input['livforsakring'])) {
+            if (isset($available['livforsakring'][$defaults['veterinarvardsforsakring']]) && in_array($input['livforsakring'], $available['livforsakring'][$defaults['veterinarvardsforsakring']])) {
                 $defaults['livforsakring'] = $input['livforsakring'];
             }
         }
-        if(isset($input['livvarde']) && !empty($input['livvarde'])){
-            if(!empty($available['livvarde'])){
+        if (isset($input['livvarde']) && !empty($input['livvarde'])) {
+            if (!empty($available['livvarde'])) {
                 $defaults['livvarde'] = $input['livvarde'];
             }
         }
-        if(isset($input['sjalvrisk']) && !empty($input['sjalvrisk'])){
-            if(isset($defaults['sjalvrisk_options']) && in_array($input['sjalvrisk'], $defaults['sjalvrisk_options'])){
+        if (isset($input['sjalvrisk']) && !empty($input['sjalvrisk'])) {
+            if (isset($defaults['sjalvrisk_options']) && in_array($input['sjalvrisk'], $defaults['sjalvrisk_options'])) {
                 $defaults['sjalvrisk'] = $input['sjalvrisk'];
             }
         }
-        if(isset($input['safestart']) && !empty($input['safestart'])){
-            if(isset($available['safestart']) && !empty($available['safestart'])){
+        if (isset($input['safestart']) && !empty($input['safestart'])) {
+            if (isset($available['safestart']) && !empty($available['safestart'])) {
                 $defaults['safestart'] = $input['safestart'];
             }
         }
-        if(isset($input['startdatum']) && !empty($input['startdatum'])){
+        if (isset($input['startdatum']) && !empty($input['startdatum'])) {
             $defaults['startdatum'] = $input['startdatum'];
         }
-        if(isset($input['swbmedlem']) && !empty($input['swbmedlem'])){
+        if (isset($input['swbmedlem']) && !empty($input['swbmedlem'])) {
             $defaults['swbmedlem'] = $input['swbmedlem'];
         }
 
         // if Katastrof, remove självrisk and belopp
-        if($defaults['veterinarvardsforsakring'] == 14){
+        if ($defaults['veterinarvardsforsakring'] == 14) {
             $defaults['sjalvrisk'] = null;
             $defaults['sjalvrisk_options'] = null;
             $defaults['veterinarvardsbelopp'] = null;
@@ -327,17 +330,17 @@ class Resultat extends StepAbstract
         ];
 
         // foster o föl 40 days, other 90 days
-        if(isset($horse_usage) && $horse_usage == 2){
-            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:'.today()->format('Y-m-d').'|before:'.today()->addDays(40)->format('Y-m-d');
+        if (isset($horse_usage) && $horse_usage == 2) {
+            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:' . today()->format('Y-m-d') . '|before:' . today()->addDays(40)->format('Y-m-d');
             $validation_messages['startdatum.before'] = 'Startdatumet får inte vara längre än 40 dagar fram.';
         } else {
-            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:'.today()->format('Y-m-d').'|before:'.today()->addDays(90)->format('Y-m-d');
+            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:' . today()->format('Y-m-d') . '|before:' . today()->addDays(90)->format('Y-m-d');
             $validation_messages['startdatum.before'] = 'Startdatumet får inte vara längre än 90 dagar fram.';
         }
 
         $validator = Validator::make($input, $rules, $validation_messages);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -348,7 +351,7 @@ class Resultat extends StepAbstract
         // Get moment
         $focusapi = new FocusApi();
         // get nya foster and föl moment produkt 26
-        if($data['horse_usage'] == 2){
+        if ($data['horse_usage'] == 2) {
             $focus_moments = collect($focusapi->get_moment(26));
         } else {
             // get moment
@@ -356,23 +359,22 @@ class Resultat extends StepAbstract
         }
 
         // Om kryssruta för safestart är satt, nyttja dem istället.
-        if(
+        if (
             (isset($input['veterinarvardsforsakring']) && $input['veterinarvardsforsakring'] == 38) &&
             (isset($input['livforsakring']) && $input['livforsakring'] == 38) &&
             $input['safestart'] == 1
-        )
-        {
+        ) {
             $input['veterinarvardsforsakring'] = 40;
             $input['livforsakring'] = 41;
         }
 
         // Get labels
         $input['veterinarvardsforsakring_label'] = '';
-        if(isset($input['veterinarvardsforsakring']) && !empty($input['veterinarvardsforsakring'])){
+        if (isset($input['veterinarvardsforsakring']) && !empty($input['veterinarvardsforsakring'])) {
             $input['veterinarvardsforsakring_label'] = $focus_moments->where('id', $input['veterinarvardsforsakring'])->first()['namn'] ?? '';
         }
         $input['livforsakring_label'] = '';
-        if(isset($input['livforsakring']) && !empty($input['livforsakring'])){
+        if (isset($input['livforsakring']) && !empty($input['livforsakring'])) {
             $input['livforsakring_label'] = $focus_moments->where('id', $input['livforsakring'])->first()['namn'] ?? '';
         }
 
@@ -382,7 +384,7 @@ class Resultat extends StepAbstract
         $next_step = 'halsodeklaration';
 
         // temp fix, to be removed
-        if($horse_usage == 2){
+        if ($horse_usage == 2) {
             $next_step = 'sammanfattning';
             //$next_step = 'foster-o-fol';
         }
@@ -392,7 +394,6 @@ class Resultat extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
 
     public function get_price($defaults = null)
@@ -401,7 +402,7 @@ class Resultat extends StepAbstract
         $focusapi = new FocusApi();
         $data = $focusapi->get_shared_focus_data();
 
-        if(!empty($defaults)){
+        if (!empty($defaults)) {
             $data['veterinarvardsforsakring'] = $defaults['veterinarvardsforsakring'];
             $data['veterinarvardsbelopp'] = $defaults['veterinarvardsbelopp'];
             $data['livforsakring'] = $defaults['livforsakring'];
@@ -412,16 +413,15 @@ class Resultat extends StepAbstract
             $data['swbmedlem'] = $defaults['swbmedlem'] ?? 'Nej';
 
             $forsakring_enabled = [];
-            if(!empty($data['veterinarvardsforsakring'])){
+            if (!empty($data['veterinarvardsforsakring'])) {
                 $forsakring_enabled['vet'] = $data['veterinarvardsforsakring'];
             }
-            if(!empty($data['livforsakring'])){
+            if (!empty($data['livforsakring'])) {
                 $forsakring_enabled['liv'] = $data['livforsakring'];
             }
             // Default data to above if not a request
             $data['forsakring_enabled'] = request()->get('forsakring_enabled', $forsakring_enabled);
-
-        } elseif(request()->ajax()){
+        } elseif (request()->ajax()) {
             $data['veterinarvardsforsakring'] = request()->get('veterinarvardsforsakring');
             $data['veterinarvardsbelopp'] = request()->get('veterinarvardsbelopp');
             $data['livforsakring'] = request()->get('livforsakring');
@@ -433,7 +433,7 @@ class Resultat extends StepAbstract
         }
 
         // get nya foster and föl moment produkt 26
-        if($data['horse_usage'] == 2){
+        if ($data['horse_usage'] == 2) {
             $focus_moments = collect($focusapi->get_moment(26));
         } else {
             // get moment
@@ -441,36 +441,35 @@ class Resultat extends StepAbstract
         }
 
         // Om kryssruta för safestart är satt, nyttja dem istället.
-        if(
+        if (
             (isset($data['veterinarvardsforsakring']) && $data['veterinarvardsforsakring'] == 38) &&
             (isset($data['livforsakring']) && $data['livforsakring'] == 38) &&
             $data['safestart'] == 1
-        )
-        {
+        ) {
             $data['veterinarvardsforsakring'] = 40;
             $data['livforsakring'] = 41;
         }
 
         // Sätt labels baserat från focus
-        if(isset($data['veterinarvardsforsakring']) && !empty($data['veterinarvardsforsakring'])){
+        if (isset($data['veterinarvardsforsakring']) && !empty($data['veterinarvardsforsakring'])) {
             $data['veterinarvardsforsakring_label'] = $focus_moments->where('id', $data['veterinarvardsforsakring'])->first()['namn'] ?? '';
         }
-        if(isset($data['livforsakring']) && !empty($data['livforsakring'])){
+        if (isset($data['livforsakring']) && !empty($data['livforsakring'])) {
             $data['livforsakring_label'] = $focus_moments->where('id', $data['livforsakring'])->first()['namn'] ?? '';
         }
 
         $moments = [];
-        if(
+        if (
             !empty($data['veterinarvardsforsakring']) &&
             array_key_exists('vet', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['veterinarvardsforsakring'];
         }
-        if(
+        if (
             !empty($data['livforsakring']) &&
             $data['veterinarvardsforsakring'] != $data['livforsakring'] &&
             array_key_exists('liv', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['livforsakring'];
         }
 
@@ -486,11 +485,11 @@ class Resultat extends StepAbstract
         try {
             $termin = 1;
             // Foster och föl 12 månader
-            if(isset($data['horse_usage']) && $data['horse_usage'] == 2){
+            if (isset($data['horse_usage']) && $data['horse_usage'] == 2) {
                 $termin = 12;
             }
             //pre($focusapi->get_moment(26));
-            $focus_price_response = $focusapi->get_pris(implode(',',$moments), $focus_fields, $data['civic_number'], $termin, null, $data['startdatum']);
+            $focus_price_response = $focusapi->get_pris(implode(',', $moments), $focus_fields, $data['civic_number'], $termin, null, $data['startdatum']);
 
             // Default variables for price
             $total_utpris = 0;
@@ -500,27 +499,26 @@ class Resultat extends StepAbstract
             $points = 0;
 
             // Monthly nad yearly
-            if(isset($focus_price_response['utpris_per_termin'])){
+            if (isset($focus_price_response['utpris_per_termin'])) {
                 $total_utpris = $focus_price_response['utpris_per_termin'];
                 $total_total_utpris = $focus_price_response['utpris'];
             } else {
-                foreach($focus_price_response as $utpris){
-                    if(isset($utpris['utpris_per_termin'])){
+                foreach ($focus_price_response as $utpris) {
+                    if (isset($utpris['utpris_per_termin'])) {
                         $total_utpris += $utpris['utpris_per_termin'];
                         $total_total_utpris += $utpris['utpris'];
                     }
                 }
             }
 
-            $total_utpris_formated = number_format($total_utpris,0,',',' ').' kr/'.(($termin == 1) ? 'mån' : 'år');
-            $total_total_formated_utpris = number_format($total_total_utpris,0,',',' ');
+            $total_utpris_formated = number_format($total_utpris, 0, ',', ' ') . ' kr/' . (($termin == 1) ? 'mån' : 'år');
+            $total_total_formated_utpris = number_format($total_total_utpris, 0, ',', ' ');
 
-            if($total_total_utpris > 5000){
+            if ($total_total_utpris > 5000) {
                 $points = 400;
             } else {
                 $points = 200;
             }
-
         } catch (FocusApiException $e) {
             report($e);
             //throw $e;
@@ -669,7 +667,5 @@ class Resultat extends StepAbstract
         ];
 
         return $insurances;
-
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance\A;
+<?php
+
+namespace App\Steps\Horseinsurance\A;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
@@ -21,7 +23,8 @@ class A1 extends StepAbstract
             5 => 'Trav & Galopp',
             3 => 'Avel',
             6 => 'Föl & Unghäst',
-            2 => 'Foster'
+            2 => 'Foster',
+            8 => 'Islandshäst'
         ];
     }
 
@@ -29,7 +32,7 @@ class A1 extends StepAbstract
     {
 
         // Fetch session data
-        $selected_horse_usage = $this->get_data($this->name.'.horse_usage');
+        $selected_horse_usage = $this->get_data($this->name . '.horse_usage');
 
         return view('steps.horseinsurance.a.a1', [
             'horse_usage' => $this->horse_usage,
@@ -50,7 +53,7 @@ class A1 extends StepAbstract
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -58,7 +61,7 @@ class A1 extends StepAbstract
             return response()->json($response);
         }
 
-        if(isset($this->horse_usage[$input['horse_usage']])){
+        if (isset($this->horse_usage[$input['horse_usage']])) {
             $input['horse_usage_label'] = $this->horse_usage[$input['horse_usage']];
         }
 
@@ -68,7 +71,7 @@ class A1 extends StepAbstract
         $next_step = 'hastforsakring-a-2';
 
         // Change step if föl
-        if($input['horse_usage'] == 2){
+        if ($input['horse_usage'] == 2) {
 
             // Store data for steps we skip
             $steps_data = [
@@ -82,7 +85,7 @@ class A1 extends StepAbstract
                 ],
             ];
 
-            foreach($steps_data as $step => $step_data){
+            foreach ($steps_data as $step => $step_data) {
                 $this->store_data($step_data, $step);
             }
 
@@ -93,7 +96,5 @@ class A1 extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
-
 }
