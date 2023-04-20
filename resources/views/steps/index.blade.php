@@ -28,7 +28,7 @@
             <input id="gard-select" type="radio" class="btn-select" name="forsakring" value="gardsforsakring">
             <label class="bubble-contents" for="gard-select">
             	<div class="stroke-left">
-                	<h2>Gårds&shy;försäkring</h2>
+                	<h2>Hästgårds&shy;försäkring</h2>
                 	<p>Få en offert.</p>
             	</div>
             </label>
