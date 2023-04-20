@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance;
+<?php
+
+namespace App\Steps\Horseinsurance;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\Focus\FocusApi;
@@ -37,10 +39,10 @@ class Sammanfattning extends StepAbstract
         $forsakringar = [];
         $forsakring_ver = $this->get_data('resultat.veterinarvardsforsakring');
         $forsakring_liv = $this->get_data('resultat.livforsakring');
-        if(isset($forsakring_ver) && !empty($forsakring_ver)){
+        if (isset($forsakring_ver) && !empty($forsakring_ver)) {
             $forsakringar[] = $forsakring_ver;
         }
-        if(isset($forsakring_liv) && !empty($forsakring_liv)){
+        if (isset($forsakring_liv) && !empty($forsakring_liv)) {
             $forsakringar[] = $forsakring_liv;
         }
 
@@ -96,21 +98,21 @@ class Sammanfattning extends StepAbstract
             'startdatum.before' => 'Startdatumet får inte vara längre än 90 dagar fram.'
         ];
 
-        if(isset($horse_usage) && $horse_usage == 2){
-            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:'.today()->format('Y-m-d').'|before:'.today()->addDays(40)->format('Y-m-d');
+        if (isset($horse_usage) && $horse_usage == 2) {
+            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:' . today()->format('Y-m-d') . '|before:' . today()->addDays(40)->format('Y-m-d');
             $validation_messages['startdatum.before'] = 'Startdatumet får inte vara längre än 40 dagar fram.';
         } else {
-            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:'.today()->format('Y-m-d').'|before:'.today()->addDays(90)->format('Y-m-d');
+            $rules['startdatum'] = 'required|date:Y-m-d|after_or_equal:' . today()->format('Y-m-d') . '|before:' . today()->addDays(90)->format('Y-m-d');
             $validation_messages['startdatum.before'] = 'Startdatumet får inte vara längre än 90 dagar fram.';
         }
 
-        if($horse_usage == 2){
+        if ($horse_usage == 2) {
             $rules['betalningsmetod'] = 'required|in:faktura';
             //unset($rules['chip_number']);
         }
 
         // ung o ridhäst, remove chip_number as requirement
-        if($horse_usage == 6){
+        if ($horse_usage == 6) {
             unset($rules['chip_number']);
         }
 
@@ -122,14 +124,14 @@ class Sammanfattning extends StepAbstract
             // Validera telefonnummer
             try {
                 $input['telefon'] = PhoneNumber::make($input['telefon'], 'SE')->formatE164();
-            } catch(\Exception $e){
+            } catch (\Exception $e) {
                 $validator->errors()->add('telefon', 'Du måste ange korrekt format på telefonnumret');
             }
 
-            if(isset($input['betalningsmetod']) && $input['betalningsmetod'] == 'autogiro'){
+            if (isset($input['betalningsmetod']) && $input['betalningsmetod'] == 'autogiro') {
                 try {
                     $focus_autogiro_response = $focusapi->valid_autogiro_account($input['autogiro_clearing'], $input['autogiro_account']);
-                    if(!isset($focus_autogiro_response['data']) || $focus_autogiro_response['data'] != 1){
+                    if (!isset($focus_autogiro_response['data']) || $focus_autogiro_response['data'] != 1) {
                         $validator->errors()->add('autogiro_clearing', 'Det verkar som att du angivit ett felaktigt clearing- eller kontonummer.');
                         $validator->errors()->add('autogiro_account', 'Det verkar som att du angivit ett felaktigt clearing- eller kontonummer.');
                         $validator->errors()->add('autogiro_error', 'Det verkar som att du angivit ett felaktigt clearing- eller kontonummer.');
@@ -142,7 +144,7 @@ class Sammanfattning extends StepAbstract
             }
         });
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -169,17 +171,17 @@ class Sammanfattning extends StepAbstract
         $focus_moments = collect($focusapi->get_moment(22));
 
         $veterinarvardsforsakring = '';
-        if(
+        if (
             (isset($focus_data['veterinarvardsforsakring']) && !empty($focus_data['veterinarvardsforsakring'])) &&
             in_array($focus_data['veterinarvardsforsakring'], $focus_data['forsakring_enabled'])
-        ){
+        ) {
             $veterinarvardsforsakring = $focus_moments->where('id', $focus_data['veterinarvardsforsakring'])->first()['namn'] ?? '';
         }
         $livforsakring = '';
-        if(
+        if (
             (isset($focus_data['livforsakring']) && !empty($focus_data['livforsakring'])) &&
             in_array($focus_data['livforsakring'], $focus_data['forsakring_enabled'])
-        ){
+        ) {
             $livforsakring = $focus_moments->where('id', $focus_data['livforsakring'])->first()['namn'] ?? '';
         }
 
@@ -202,7 +204,7 @@ class Sammanfattning extends StepAbstract
                 'chipnummer' => $focus_data['chip_number'] ?? null,
             ],
             'kund' => [
-                'namn' => ($focus_address['fornamn'] ?? '').' '.($focus_address['efternamn'] ?? ''),
+                'namn' => ($focus_address['fornamn'] ?? '') . ' ' . ($focus_address['efternamn'] ?? ''),
                 'personnummer' => $focus_address['persnr'] ?? '',
                 'adress_gata' => $focus_address['adress'] ?? '',
                 'adress_postnummer' => $focus_address['postnr'] ?? '',
@@ -222,7 +224,7 @@ class Sammanfattning extends StepAbstract
 
         // Check validation during signing as well
         $validation = $this->validateStep(request())->getData('true');
-        if(!isset($validation['status']) || $validation['status'] !== 1){
+        if (!isset($validation['status']) || $validation['status'] !== 1) {
             return $validation;
         }
 
@@ -243,11 +245,10 @@ class Sammanfattning extends StepAbstract
                 'status'    => 1,
                 'orderRef'  => $data['orderRef']
             ];
-
         } catch (FocusApiException $e) {
             report($e);
             $error_text = 'Ett okänt fel har inträffat';
-            if($e->getCode() == 400){
+            if ($e->getCode() == 400) {
                 $error_json = json_decode($e->getMessage(), true);
                 $error_text = $error_json['message'] ?? $error_text;
             }
@@ -270,15 +271,15 @@ class Sammanfattning extends StepAbstract
         $force_retries              = request()->get('force_retries', $conf_bankid_force_retries);
         $focusapi                   = new FocusApi();
 
-        if($force_retries != $conf_bankid_force_retries) {
+        if ($force_retries != $conf_bankid_force_retries) {
             $attempt = $conf_bankid_force_retries - $force_retries;
 
-            $this->log_data('Retrying to get BankID status, attempt '.$attempt.'.', [
+            $this->log_data('Retrying to get BankID status, attempt ' . $attempt . '.', [
                 'orderRef' => $orderRef
             ], 'warning');
         }
 
-        if(session()->has('bankid.'.$orderRef) && session()->get('bankid.'.$orderRef) == 'COMPLETE') {
+        if (session()->has('bankid.' . $orderRef) && session()->get('bankid.' . $orderRef) == 'COMPLETE') {
             $response = [
                 'status'    => 1,
                 'next_step' => 'tack'
@@ -295,11 +296,10 @@ class Sammanfattning extends StepAbstract
             // start bankid status check
             $data           = $focusapi->bankid_login_check($orderRef);
             $bankid_status  = $data['status'];
-
         } catch (FocusApiException $e) {
             report($e);
             $error_text = 'Ett okänt fel har inträffat';
-            if($e->getCode() == 400){
+            if ($e->getCode() == 400) {
                 $error_json = json_decode($e->getMessage(), true);
                 $error_text = $error_json['message'] ?? $error_text;
             }
@@ -318,7 +318,7 @@ class Sammanfattning extends StepAbstract
             'USER_SIGN'
         ];
 
-        if(in_array($bankid_status, $pending_statuses)) {
+        if (in_array($bankid_status, $pending_statuses)) {
             $response = [
                 'status'    => 2,
                 'message'   => 'Polling bankid status..'
@@ -328,7 +328,7 @@ class Sammanfattning extends StepAbstract
         }
 
         // Send to focus
-        if($bankid_status == 'COMPLETE') {
+        if ($bankid_status == 'COMPLETE') {
             $focus_data = $focusapi->get_shared_focus_data();
 
             try {
@@ -349,7 +349,6 @@ class Sammanfattning extends StepAbstract
                     'status'    => 1,
                     'next_step' => 'tack'
                 ];
-
             } catch (FocusApiException $e) {
                 report($e);
 
@@ -391,10 +390,10 @@ class Sammanfattning extends StepAbstract
 
         // Update or create customer with details
         $customer_data = [];
-        if(isset($data['email']) && !empty($data['email'])){
+        if (isset($data['email']) && !empty($data['email'])) {
             $customer_data['email'] = $data['email'];
         }
-        if(isset($data['telefon']) && !empty($data['telefon'])){
+        if (isset($data['telefon']) && !empty($data['telefon'])) {
             $customer_data['mobil'] = $data['telefon'];
             $customer_data['telefon'] = $data['telefon'];
         }
@@ -415,7 +414,7 @@ class Sammanfattning extends StepAbstract
             'data' => $customer_data
         ]);
 
-        if($create_customer){
+        if ($create_customer) {
             // create customer
             $focus_customer = $focusapi->create_customer($data['civic_number'], $customer_data);
         } else {
@@ -427,7 +426,7 @@ class Sammanfattning extends StepAbstract
         $customer_id = $focus_customer['id'];
 
         // Om betalning är autogiro, registrera autogiro här
-        if(isset($data['betalningsmetod']) && $data['betalningsmetod'] == 'autogiro'){
+        if (isset($data['betalningsmetod']) && $data['betalningsmetod'] == 'autogiro') {
             $payment_clearing_number = $data['autogiro_clearing'];
             $payment_account_number = $data['autogiro_account'];
             try {
@@ -442,7 +441,6 @@ class Sammanfattning extends StepAbstract
                         'account_number' => $payment_account_number ?? null
                     ]
                 ]);
-
             } catch (FocusApiException $e) {
                 report($e);
 
@@ -455,7 +453,6 @@ class Sammanfattning extends StepAbstract
                         'account_number' => $payment_account_number ?? null
                     ]
                 ], 'error');
-
             }
         }
 
@@ -463,7 +460,7 @@ class Sammanfattning extends StepAbstract
         $focus_questions_svarande_id = null;
         // temp fix, to be removed
         $horse_usage = $data['horse_usage'];
-        if($horse_usage != 2) { // remove
+        if ($horse_usage != 2) { // remove
             if (isset($data['document_type']) && !empty($data['document_type'])) {
                 try {
                     $focus_questions_response = $focusapi->save_questions($customer_id, $data['questions'], $data['document_type'], 0);
@@ -476,7 +473,6 @@ class Sammanfattning extends StepAbstract
                         'document_type' => $data['document_type'] ?? null,
                         'data' => $data['questions'] ?? null
                     ]);
-
                 } catch (FocusApiException $e) {
                     report($e);
                     $focus_questions_svarande_id = null;
@@ -495,21 +491,21 @@ class Sammanfattning extends StepAbstract
         // Fakturastatus,
         $invoice_status = null;
         // Check if risk, born = import, except yes means born in sweden
-        if(isset($data['born_risk']) && $data['born_risk'] == 1){
+        if (isset($data['born_risk']) && $data['born_risk'] == 1) {
             $invoice_status = 'Risk';
         }
 
         // Lägg till notering om foster & föl
         $notes = null;
-        if(isset($data['horse_usage']) && $data['horse_usage'] == 2) {
+        if (isset($data['horse_usage']) && $data['horse_usage'] == 2) {
             $notes .= 'Beräknat datum för föling: ';
-            if(isset($data['folningdatum']) && !empty($data['folningdatum'])){
+            if (isset($data['folningdatum']) && !empty($data['folningdatum'])) {
                 $notes .= $data['folningdatum'];
             } else {
                 $notes .= 'Saknar datum';
             }
             $notes .= ', Stoets namn: ';
-            if(isset($data['namn']) && !empty($data['namn'])){
+            if (isset($data['namn']) && !empty($data['namn'])) {
                 $notes .= $data['namn'];
             } else {
                 $notes .= 'Saknar namn';
@@ -517,23 +513,23 @@ class Sammanfattning extends StepAbstract
         }
 
         // Lägg till notering om uppsägning
-        if(!empty($data['uppsagning'])) {
-            $notes .= 'Kunden har begärt hjälp med att säga upp befintlig försäkring för hästen "'.$data['namn'].'".';
+        if (!empty($data['uppsagning'])) {
+            $notes .= 'Kunden har begärt hjälp med att säga upp befintlig försäkring för hästen "' . $data['namn'] . '".';
         }
 
         // Anslut försäkring
         $moments = [];
-        if(
+        if (
             !empty($data['veterinarvardsforsakring']) &&
             array_key_exists('vet', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['veterinarvardsforsakring'];
         }
-        if(
+        if (
             !empty($data['livforsakring']) &&
             $data['veterinarvardsforsakring'] != $data['livforsakring'] &&
             array_key_exists('liv', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['livforsakring'];
         }
 
@@ -567,7 +563,7 @@ class Sammanfattning extends StepAbstract
         );
 
         // Add notering to customer
-        if(isset($notes) && !empty($notes)){
+        if (isset($notes) && !empty($notes)) {
             try {
                 $focus_notering_response = $focusapi->add_note_to_customer($customer_id, $notes);
 
@@ -577,7 +573,6 @@ class Sammanfattning extends StepAbstract
                     'customer_id' => $customer_id ?? null,
                     'data' => $notes ?? null
                 ]);
-
             } catch (FocusApiException $e) {
                 report($e);
 
@@ -586,7 +581,7 @@ class Sammanfattning extends StepAbstract
                     'session_id' => $data['session_id'] ?? null,
                     'customer_id' => $customer_id ?? null,
                     'data' => $notes ?? null
-                ],'error');
+                ], 'error');
             }
         }
 
@@ -602,18 +597,17 @@ class Sammanfattning extends StepAbstract
 
         try {
 
-            if(isset($focus_moments_response['utpris'])){
+            if (isset($focus_moments_response['utpris'])) {
                 $total_utpris += $focus_moments_response['utpris'];
                 $products[$focus_moments_response['momentId']] = ['total' => $focus_moments_response['utpris']];
             } else {
-                foreach($focus_moments_response as $moment){
-                    if(isset($moment['utpris'])){
+                foreach ($focus_moments_response as $moment) {
+                    if (isset($moment['utpris'])) {
                         $total_utpris += $moment['utpris'];
                         $products[$moment['momentId']] = ['total' => $moment['utpris']];
                     }
                 }
             }
-
         } catch (FocusApiException $e) {
             report($e);
 
@@ -626,7 +620,7 @@ class Sammanfattning extends StepAbstract
 
         // under 5000kr = 200p, över 5000kr = 400p
         try {
-            if($total_utpris > 5000){
+            if ($total_utpris > 5000) {
                 $points = 400;
                 $focus_points_response = $focusapi->add_points($customer_id, $points, $data['namn']);
             } else {
@@ -640,7 +634,6 @@ class Sammanfattning extends StepAbstract
                 'customer_id' => $customer_id ?? null,
                 'data' => $points ?? null
             ]);
-
         } catch (FocusApiException $e) {
             report($e);
 
@@ -653,12 +646,12 @@ class Sammanfattning extends StepAbstract
 
 
         // Create woocommerce users
-        if(isset($data['email']) && !empty($data['email'])){
+        if (isset($data['email']) && !empty($data['email'])) {
 
-            if(config('services.woocommerce.create_user')) {
+            if (config('services.woocommerce.create_user')) {
                 $woocommerceapi = new WoocommerceApi();
 
-                $nickname = $data['civic_number'].'-'.$customer_id;
+                $nickname = $data['civic_number'] . '-' . $customer_id;
 
                 try {
                     $woo_user_response = $woocommerceapi->create_user(
@@ -674,7 +667,6 @@ class Sammanfattning extends StepAbstract
                         'email' => $data['email'] ?? null,
                         'nickname' => $nickname ?? null
                     ]);
-
                 } catch (WoocommerceApiException $e) {
                     // Silent error?
                     report($e);
@@ -693,24 +685,24 @@ class Sammanfattning extends StepAbstract
             try {
 
                 $mailchimp_tags = ['LEADfranKonfig', 'LeadWebHastNY'];
-                if(isset($data['step_insurance']) && $data['step_insurance'] == 'hastforsakring-b-1'){
+                if (isset($data['step_insurance']) && $data['step_insurance'] == 'hastforsakring-b-1') {
                     $mailchimp_tags = ['LEADfranKonfig', 'LeadWebHastJAMFOR'];
                 }
 
                 // Meta data
                 $meta = [];
-                if(isset($focus_customer['fornamn']) && !empty($focus_customer['fornamn'])){
+                if (isset($focus_customer['fornamn']) && !empty($focus_customer['fornamn'])) {
                     $meta['FNAME'] = $focus_customer['fornamn'];
                 }
-                if(isset($focus_customer['efternamn']) && !empty($focus_customer['efternamn'])){
+                if (isset($focus_customer['efternamn']) && !empty($focus_customer['efternamn'])) {
                     $meta['LNAME'] = $focus_customer['efternamn'];
                 }
                 // hästens namn
-                if(isset($data['namn']) && !empty($data['namn'])){
+                if (isset($data['namn']) && !empty($data['namn'])) {
                     $meta['MMERGE9'] = $data['namn'];
                 }
                 // Hästens födelsedata
-                if(isset($data['fodelsedatum']) && !empty($data['fodelsedatum'])){
+                if (isset($data['fodelsedatum']) && !empty($data['fodelsedatum'])) {
                     try {
                         $meta['MMERGE11'] = \Carbon\Carbon::parse($data['fodelsedatum'])->format('d/m/Y');
                     } catch (\Exception $e) {
@@ -730,17 +722,16 @@ class Sammanfattning extends StepAbstract
                 $mailchimpapi = new MailchimpApi;
                 $mailchimpapi->subscribe_member($data['email'], $meta);
                 $mailchimpapi->member_assign_tags($data['email'], $mailchimp_tags);
-            } catch (\Exception $e){
+            } catch (\Exception $e) {
                 report($e);
             }
-
         }
 
         // Send mail
         try {
 
             $send_email_to = null;
-            if(config('services.focus.live')){
+            if (config('services.focus.live')) {
                 $send_email_to = config('services.dunstan.email_live');
             } else {
                 $send_email_to = config('services.dunstan.email_test');
@@ -755,16 +746,6 @@ class Sammanfattning extends StepAbstract
                     'efternamn' => $focus_customer['efternamn'] ?? '',
                 ]
             ));
-
-            // Customer
-            if(isset($data['email']) && !empty($data['email'])){
-                Mail::to($data['email'])->send(new BookingConfirmMail(
-                    'Välkommen till Dunstan!', [
-                        'horse_usage' => $data['horse_usage']
-                    ]
-                ));
-            }
-
         } catch (\Exception $e) {
             // Silent error if mail fails
             report($e);
@@ -782,32 +763,32 @@ class Sammanfattning extends StepAbstract
         $focusapi = new FocusApi();
         $data = $focusapi->get_shared_focus_data();
 
-        if($data['horse_usage'] == 2){
+        if ($data['horse_usage'] == 2) {
             $focus_moments = collect($focusapi->get_moment(26));
         } else {
             // get moment
             $focus_moments = collect($focusapi->get_moment(22));
         }
 
-        if(isset($data['veterinarvardsforsakring']) && !empty($data['veterinarvardsforsakring'])){
+        if (isset($data['veterinarvardsforsakring']) && !empty($data['veterinarvardsforsakring'])) {
             $data['veterinarvardsforsakring_label'] = $focus_moments->where('id', $data['veterinarvardsforsakring'])->first()['namn'] ?? '';
         }
-        if(isset($data['livforsakring']) && !empty($data['livforsakring'])){
+        if (isset($data['livforsakring']) && !empty($data['livforsakring'])) {
             $data['livforsakring_label'] = $focus_moments->where('id', $data['livforsakring'])->first()['namn'] ?? '';
         }
 
         $moments = [];
-        if(
+        if (
             !empty($data['veterinarvardsforsakring']) &&
             array_key_exists('vet', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['veterinarvardsforsakring'];
         }
-        if(
+        if (
             !empty($data['livforsakring']) &&
             $data['veterinarvardsforsakring'] != $data['livforsakring'] &&
             array_key_exists('liv', $data['forsakring_enabled'])
-        ){
+        ) {
             $moments[] =  $data['livforsakring'];
         }
 
@@ -816,10 +797,10 @@ class Sammanfattning extends StepAbstract
         try {
             $termin = 1;
             // Foster och föl 12 månader
-            if(isset($data['horse_usage']) && $data['horse_usage'] == 2){
+            if (isset($data['horse_usage']) && $data['horse_usage'] == 2) {
                 $termin = 12;
             }
-            $focus_price_response = $focusapi->get_pris(implode(',',$moments), $focus_fields, $data['civic_number'], $termin);
+            $focus_price_response = $focusapi->get_pris(implode(',', $moments), $focus_fields, $data['civic_number'], $termin);
 
             $total_utpris = 0;
             $total_utpris_formated = 0;
@@ -828,27 +809,26 @@ class Sammanfattning extends StepAbstract
             $points = 0;
 
             // Monthly nad yearly
-            if(isset($focus_price_response['utpris_per_termin'])){
+            if (isset($focus_price_response['utpris_per_termin'])) {
                 $total_utpris = $focus_price_response['utpris_per_termin'];
                 $total_total_utpris = $focus_price_response['utpris'];
             } else {
-                foreach($focus_price_response as $utpris){
-                    if(isset($utpris['utpris_per_termin'])){
+                foreach ($focus_price_response as $utpris) {
+                    if (isset($utpris['utpris_per_termin'])) {
                         $total_utpris += $utpris['utpris_per_termin'];
                         $total_total_utpris += $utpris['utpris'];
                     }
                 }
             }
 
-            $total_utpris_formated = number_format($total_utpris,0,',',' ').' kr/'.(($termin == 1) ? 'mån' : 'år');
-            $total_total_formated_utpris = number_format($total_total_utpris,0,',',' ');
+            $total_utpris_formated = number_format($total_utpris, 0, ',', ' ') . ' kr/' . (($termin == 1) ? 'mån' : 'år');
+            $total_total_formated_utpris = number_format($total_total_utpris, 0, ',', ' ');
 
-            if($total_total_utpris > 5000){
+            if ($total_total_utpris > 5000) {
                 $points = 400;
             } else {
                 $points = 200;
             }
-
         } catch (FocusApiException $e) {
             report($e);
             $total_utpris_formated = '-';
@@ -873,12 +853,10 @@ class Sammanfattning extends StepAbstract
             'utpris_formaterad' => $total_utpris_formated,
             'points' => $points
         ];
-
     }
 
     private function log_data($message, $data = [], $type = 'info')
     {
         Log::channel('dunstan')->{$type}($message, ['data' => $data]);
     }
-
 }

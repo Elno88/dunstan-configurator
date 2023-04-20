@@ -93,6 +93,12 @@ input[type="email"], input[type="number"], input[type="tel"], input[type="text"]
 	font-size: inherit;
 }
 
+@media only screen and (max-width: 640px) {
+    .hidden-mobile {
+        display: none;
+    }
+}
+
 .navigation {
 	display: block;
 	width: 100%;
@@ -1331,7 +1337,7 @@ body #app-footer button:hover {
 .input-radio ul,
 ul.bubble-select {
 	padding: 0;
-	max-width: 480px;
+	max-width: 640px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -1357,6 +1363,18 @@ ul.bubble-select li label {
 	color: #333;
 	width: 140px;
 	box-shadow: 2px 2px 8px rgba(0,0,0,.15);
+}
+
+@media only screen and (max-width: 640px) {
+    .input-radio ul li,
+    ul.bubble-select li {
+        width: 100%;
+    }
+
+    .input-radio ul li label,
+    ul.bubble-select li label {
+        width: 100%;
+    }
 }
 
 ul.bubble-select.bubble-select-type-b {
