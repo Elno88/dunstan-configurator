@@ -1086,10 +1086,10 @@ class FocusApi
                 $new_state = 'Blekinge';
                 break;
             case 'Dalarna':
-                $new_state = 'Dalarnas';
+                $new_state = 'Dalarna';
                 break;
             case 'Gävleborg':
-                $new_state = 'Gävleborgs';
+                $new_state = 'Gävleborg';
                 break;
             case 'Gotland':
                 $new_state = 'Gotland';
@@ -1098,23 +1098,23 @@ class FocusApi
                 $new_state = 'Halland';
                 break;
             case 'Jönköping':
-                $new_state = 'Jönköpings';
+                $new_state = 'Jönköping';
                 break;
             case 'Kalmar':
             case 'Kronoberg':
                 $new_state = 'Kalmar och Kronoberg';
                 break;
             case 'Norrbotten':
-                $new_state = 'Norrbottens';
+                $new_state = 'Norrbotten';
                 break;
             case 'Östergötland':
-                $new_state = 'Östergötlands';
+                $new_state = 'Östergötland';
                 break;
             case 'Skåne':
                 $new_state = 'Skåne';
                 break;
             case 'Södermanland':
-                $new_state = 'Södermanlands';
+                $new_state = 'Södermanland';
                 break;
             case 'Stockholm':
                 $new_state = 'Stockholm';
@@ -1126,7 +1126,7 @@ class FocusApi
                 $new_state = 'Värmland';
                 break;
             case 'Västerbotten':
-                $new_state = 'Västerbottens';
+                $new_state = 'Västerbotten';
                 break;
             case 'Västernorrland':
             case 'Jämtland':
