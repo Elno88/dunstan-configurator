@@ -739,7 +739,7 @@
 
 					<div class="swb-medlem-options">
 
-						<h4>Är du medlem i Swedish Warmblood Association (SWB)?</h4>
+						<h4>Är din häst registrerad i Swedish Warmblood Association (SWB)?</h4>
 
 						<ul>
 							<li>
@@ -754,7 +754,7 @@
 							</li>
 							<li>
 								<input id="swbmedlem-1b" type="radio" name="swbmedlem" value="Ja - Unghäst">
-								<label for="swbmedlem-1b">Ja - Unghäst</label>
+								<label for="swbmedlem-1b">Ja, och min häst är 3 år eller yngre.</label>
 								<div class="check"></div>
 							</li>
 						</ul>
