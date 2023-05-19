@@ -1,11 +1,10 @@
 <div class="frame">
     <div class="frame-contents">
-
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
-
-
                 <iframe
+                    id="insurely-data-aggregation"
+                    title="insurely-data-aggregation"
                     src="{{ $insurley_iframe_url ?? '' }}"
                     frameborder="0"
                     sandbox="allow-scripts
@@ -15,29 +14,15 @@
                     allow-popups-to-escape-sandbox
                     allow-top-navigation"
                 ></iframe>
-
                 <div class="insurley-results-wrapper"></div>
-
             </div>
         </div>
-
         {{-- button his hidden, it's still needed for the javascript trigger trigger --}}
         <button style="display: none;" type="button" class="btn1 btn-next">Nästa</button>
-
     </div>
 </div>
-
 <script>
-    function setupClient() {
-        setClientParams({
-            // example input
-            hideResultsView: true
-        });
-    }
-
-    // Event listener for insurley
     window.addEventListener('message', ({data}) => {
-
         // Empty the wrapper
         if (data.name === 'PAGE_VIEW' && data.value === "SELECT_COMPANIES") {
             $('.insurley-results-wrapper').html('');
@@ -73,7 +58,15 @@
             }
         }
     });
-
 </script>
 
-<script type="text/javascript" src="https://dc.insurely.se/v2/assets/js/dc-bootstrap.js" onload="setupClient()"></script>
+<script type="text/javascript" src="https://blocks.insurely.com/assets/bootstrap.js" onload="setupClient()"></script>
+
+<script async>
+    window.insurely = {
+        config: {
+            customerId: '{{ $customerId ?? null }}',
+            configName: '{{ $configName ?? null }}',
+        },
+    };
+</script>

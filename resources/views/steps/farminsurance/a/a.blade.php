@@ -19,12 +19,14 @@
         </div>
     -->
 
-        <div class="bubble bubble-type-b input-radio left">
+      	<div class="bubble bubble-type-b input-radio left">
             <input id="gard-b" type="radio" class="btn-select" name="gardsforsakring" value="gardsforsakring-b-1">
             <label class="bubble-contents" for="gard-b">
                 <div class="stroke-left">
-                    <h3>Jämför din nuvarande hästgårdsförsäkring</h3>
-                    <p>Se en prisjämförelse och få en anpassad offert.</p>
+
+                    <h3>Jämför din hästgårdsförsäkring</h3>
+                    <p>Se prisjämförelse och få en anpassad offert.</p>
+
                 </div>
             </label>
         </div>
@@ -33,12 +35,13 @@
             <input id="gard-a" type="radio" class="btn-select" name="gardsforsakring" value="gardsforsakring-a-1">
             <label class="bubble-contents" for="gard-a">
                 <div class="stroke-left">
+
                     <h3>Teckna ny hästgårdsförsäkring</h3>
-                    <p>Prata med en rådgivare och få en detaljerad offert, anpassad för din gård.</p>
+                    <p>Prata med våra rådgivare och få en detaljerad offert.</p>
+
                 </div>
             </label>
         </div>
 
     </div>
 </div>
-

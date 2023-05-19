@@ -18,16 +18,17 @@ class B1 extends StepAbstract
 
     public function view(Request $request)
     {
-
-        // Fetch session data
         if (config('services.insurley.live')) {
             $client_id = config('services.insurley.client_id_live');
         } else {
             $client_id = config('services.insurley.client_id_test');
         }
-        $insurley_iframe_url = config('services.insurley.url') . '?clientId=' . $client_id;
+
+        $insurley_iframe_url = config('services.insurley.url');
 
         return view('steps.horseinsurance.b.b1', [
+            'customerId'          => $client_id,
+            'configName'          => 'dunstan-switcher-horse',
             'insurley_iframe_url' => $insurley_iframe_url
         ]);
     }
