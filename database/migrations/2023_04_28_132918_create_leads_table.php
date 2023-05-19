@@ -19,6 +19,9 @@ class CreateLeadsTable extends Migration
             $table->string('external_id')->index();
             $table->string('ssn')->nullable()->index();
             $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('city')->nullable();
             $table->string('animal_name')->nullable();
             $table->string('animal_breed')->nullable();
             $table->string('animal_gender')->nullable();
