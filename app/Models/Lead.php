@@ -4,17 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use KFoobar\Uuid\Traits\HasUuid;
 
-class Contacts extends Model
+class Lead extends Model
 {
     use HasFactory;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'contacts';
+    use HasUuid;
 
     /**
      * The attributes that aren't mass assignable.
@@ -28,5 +23,11 @@ class Contacts extends Model
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = [
+        'data'         => 'json',
+        'animal_birth' => 'date',
+        'started_at'   => 'datetime',
+        'renewal_at'   => 'datetime',
+        'exported_at'  => 'datetime',
+    ];
 }
