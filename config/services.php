@@ -52,7 +52,7 @@ return [
         'email_live' => env('DUNSTAN_EMAIL_LIVE', 'support@dunstan.se'),
     ],
     'insurley' => [
-        'url'                   => env('INSURLEY_URL', 'https://dc.insurely.se/v2/'),
+        'url'                   => env('INSURLEY_URL', 'https://blocks.insurely.com/'),
         'live'                  => env('INSURLEY_LIVE', false),
         'client_id_live'        => env('INSURLEY_CLIENT_ID_LIVE', null),
         'client_id_gard_live'   => env('INSURLEY_CLIENT_ID_GARD_LIVE', null),

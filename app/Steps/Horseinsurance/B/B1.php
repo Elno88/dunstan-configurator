@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance\B;
+<?php
+
+namespace App\Steps\Horseinsurance\B;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
@@ -17,17 +19,18 @@ class B1 extends StepAbstract
 
     public function view(Request $request)
     {
-
-        // Fetch session data
-        if(config('services.insurley.live')){
+        if (config('services.insurley.live')) {
             $client_id = config('services.insurley.client_id_live');
         } else {
             $client_id = config('services.insurley.client_id_test');
         }
-        $insurley_iframe_url = config('services.insurley.url').'?clientId='.$client_id;
+
+        $insurley_iframe_url = config('services.insurley.url');
 
         return view('steps.horseinsurance.b.b1', [
-           'insurley_iframe_url' => $insurley_iframe_url
+            'customerId'          => $client_id,
+            'configName'          => 'dunstan-switcher-horse',
+            'insurley_iframe_url' => $insurley_iframe_url
         ]);
     }
 
@@ -45,7 +48,7 @@ class B1 extends StepAbstract
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -53,7 +56,7 @@ class B1 extends StepAbstract
             return response()->json($response);
         }
 
-        if(isset($input['insurances'][0]['insuranceCompany'])){
+        if (isset($input['insurances'][0]['insuranceCompany'])) {
             $input['insurance_company_name'] = $input['insurances'][0]['insuranceCompany'];
         }
 
@@ -69,7 +72,5 @@ class B1 extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
-
 }
