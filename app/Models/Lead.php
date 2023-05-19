@@ -30,4 +30,15 @@ class Lead extends Model
         'renewal_at'   => 'datetime',
         'exported_at'  => 'datetime',
     ];
+
+    /**
+     * Scope a query to only include not exported leads.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return void
+     */
+    public function scopeNotExported($query)
+    {
+        $query->whereNull('exported_at');
+    }
 }
