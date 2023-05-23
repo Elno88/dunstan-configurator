@@ -1086,47 +1086,47 @@ class FocusApi
                 $new_state = 'Blekinge';
                 break;
             case 'Dalarna':
-                $new_state = 'Dalarna';
+                $new_state = 'Dalarnas';
                 break;
             case 'Gävleborg':
-                $new_state = 'Gävleborg';
+                $new_state = 'Gävleborgs';
                 break;
             case 'Gotland':
-                $new_state = 'Gotland';
+                $new_state = 'Gotlands';
                 break;
             case 'Halland':
-                $new_state = 'Halland';
+                $new_state = 'Hallands';
                 break;
             case 'Jönköping':
-                $new_state = 'Jönköping';
+                $new_state = 'Jönköpings';
                 break;
             case 'Kalmar':
-            case 'Kronoberg':
+            case 'Kronobergs':
                 $new_state = 'Kalmar och Kronoberg';
                 break;
             case 'Norrbotten':
-                $new_state = 'Norrbotten';
+                $new_state = 'Norrbottens';
                 break;
             case 'Östergötland':
-                $new_state = 'Östergötland';
+                $new_state = 'Östergötlands';
                 break;
             case 'Skåne':
                 $new_state = 'Skåne';
                 break;
             case 'Södermanland':
-                $new_state = 'Södermanland';
+                $new_state = 'Södermanlands';
                 break;
             case 'Stockholm':
-                $new_state = 'Stockholm';
+                $new_state = 'Stockholms';
                 break;
             case 'Uppsala':
                 $new_state = 'Uppsala';
                 break;
             case 'Värmland':
-                $new_state = 'Värmland';
+                $new_state = 'Värmlands';
                 break;
             case 'Västerbotten':
-                $new_state = 'Västerbotten';
+                $new_state = 'Västerbottens';
                 break;
             case 'Västernorrland':
             case 'Jämtland':
@@ -1137,7 +1137,7 @@ class FocusApi
                 $new_state = 'Västmanlands och Örebro län';
                 break;
             case 'Västra Götaland':
-                $new_state = 'Västra Götaland';
+                $new_state = 'Västra Götalands';
                 break;
             default:
                 $new_state = null;
