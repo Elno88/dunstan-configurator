@@ -898,6 +898,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 	text-align: left;
 }
 
+.stable-options,
 .swb-medlem-options,
 .uppsagning-options {
 	background: var(--color-green-3);
@@ -907,6 +908,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 	margin: 20px auto 0;
 }
 
+.frame-resultat .stable-options h4,
 .frame-resultat .swb-medlem-options h4,
 .frame-resultat .uppsagning-options h4 {
 	font-size: 12px;
@@ -916,6 +918,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 
 .safestart-info ul,
 .safestart-livvarde-options ul,
+.stable-options ul,
 .uppsagning-options ul,
 .swb-medlem-options ul {
 	list-style-type: none;
@@ -923,6 +926,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 	font-size: 14px;
 }
 
+.stable-options ul,
 .uppsagning-options ul,
 .swb-medlem-options ul {
 	margin: 10px 0 0;
@@ -934,6 +938,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 	margin-right: 25px;
 }
 
+.stable-options ul li,
 .uppsagning-options ul li,
 .swb-medlem-options ul li {
 	position: relative;
@@ -949,6 +954,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 }
 
 .safestart-livvarde-options ul li input[type=radio],
+.stable-options ul li input[type=radio],
 .uppsagning-options ul li input[type=radio],
 .swb-medlem-options ul li input[type=radio]{
 	position: absolute;
@@ -956,6 +962,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 }
 
 .safestart-livvarde-options ul li label,
+.stable-options ul li label,
 .uppsagning-options ul li label,
 .swb-medlem-options ul li label {
 	padding-left: 30px;
@@ -968,6 +975,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 }
 
 .safestart-livvarde-options ul li .check,
+.stable-options ul li .check,
 .uppsagning-options ul li .check,
 .swb-medlem-options ul li .check {
 	-webkit-transition: all 0.25s linear;
@@ -984,6 +992,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 }
 
 .safestart-livvarde-options ul li .check::before,
+.stable-options ul li .check::before,
 .uppsagning-options ul li .check::before,
 .swb-medlem-options ul li .check::before{
 	-webkit-transition: background 0.25s linear;
@@ -999,6 +1008,7 @@ body.sammanfattning #resultat-widget .resultat-widget-body {
 }
 
 .safestart-livvarde-options input[type=radio]:checked ~ .check::before,
+.stable-options input[type=radio]:checked ~ .check::before,
 .uppsagning-options input[type=radio]:checked ~ .check::before,
 .swb-medlem-options input[type=radio]:checked ~ .check::before {
 	background: var(--color-yellow);
@@ -2238,7 +2248,22 @@ ul.resultat-slide-select.options-4 li:nth-child(4).selected ~ .marker {
 .range-slider.ui-slider .ui-slider-pip-70000,
 .range-slider.ui-slider .ui-slider-pip-80000,
 .range-slider.ui-slider .ui-slider-pip-90000,
-.range-slider.ui-slider .ui-slider-pip-100000 {
+.range-slider.ui-slider .ui-slider-pip-100000,
+.range-slider.ui-slider .ui-slider-pip-110000,
+.range-slider.ui-slider .ui-slider-pip-120000,
+.range-slider.ui-slider .ui-slider-pip-130000,
+.range-slider.ui-slider .ui-slider-pip-140000,
+.range-slider.ui-slider .ui-slider-pip-150000,
+.range-slider.ui-slider .ui-slider-pip-160000,
+.range-slider.ui-slider .ui-slider-pip-170000,
+.range-slider.ui-slider .ui-slider-pip-180000,
+.range-slider.ui-slider .ui-slider-pip-190000,
+.range-slider.ui-slider .ui-slider-pip-200000,
+.range-slider.ui-slider .ui-slider-pip-210000,
+.range-slider.ui-slider .ui-slider-pip-220000,
+.range-slider.ui-slider .ui-slider-pip-230000,
+.range-slider.ui-slider .ui-slider-pip-240000,
+.range-slider.ui-slider .ui-slider-pip-240000 {
 	display: block;
 }
 

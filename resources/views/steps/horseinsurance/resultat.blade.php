@@ -720,27 +720,32 @@
 	        @if((isset($defaults['livforsakring']) && $defaults['livforsakring'] == 38) || (isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == 38))
 				</div>
 			@endif
-
 	            <div class="frame-resultat-template">
 	                {!! $resultat_template ?? '' !!}
 	            </div>
-
 	            <br/>
-
 	            <div class="resultat-bottom-wrapper">
-
 		            <div class="startdatum-wrapper">
-
 						<h3>Välj startdatum</h3>
-
 						<input id="" class="datepicker" type="text" value="{{ $startdatum ?? '' }}" placeholder="åååå-mm-dd" name="startdatum">
-
 					</div>
-
+                    <div class="stable-options">
+                        <h4>Är din häst uppstallad på egen gård?</h4>
+                        <ul>
+                            <li>
+                                <input id="stable-0" type="radio" name="stable" value="Ja" checked>
+                                <label for="stable-0">Ja</label>
+                                <div class="check"></div>
+                            </li>
+                            <li>
+                                <input id="stable-1a" type="radio" name="stable" value="Nej">
+                                <label for="stable-1a">Nej</label>
+                                <div class="check"></div>
+                            </li>
+                        </ul>
+                    </div>
 					<div class="swb-medlem-options">
-
 						<h4>Är din häst registrerad i Swedish Warmblood Association (SWB)?</h4>
-
 						<ul>
 							<li>
 								<input id="swbmedlem-0" type="radio" name="swbmedlem" value="Nej" checked>
@@ -758,8 +763,7 @@
 								<div class="check"></div>
 							</li>
 						</ul>
-						
-					</div>
+				    </div>
 
 					@if((isset($defaults['livforsakring']) && $defaults['livforsakring'] == 38) || (isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == 38))
 						<div style="display: none;">
