@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Farminsurance\B;
+<?php
+
+namespace App\Steps\Farminsurance\B;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
@@ -17,19 +19,19 @@ class B2 extends StepAbstract
 
     public function view(Request $request)
     {
-
-        // Fetch session data
-        if(config('services.insurley.live')){
+        if (config('services.insurley.live')) {
             $client_id = config('services.insurley.client_id_gard_live');
         } else {
             $client_id = config('services.insurley.client_id_test');
         }
-        $insurley_iframe_url = config('services.insurley.url').'?clientId='.$client_id;
+
+        $insurley_iframe_url = config('services.insurley.url');
 
         return view('steps.farminsurance.b.b2', [
-           'insurley_iframe_url' => $insurley_iframe_url
+            'customerId'          => $client_id,
+            'configName'          => 'dunstan-switcher',
+            'insurley_iframe_url' => $insurley_iframe_url,
         ]);
-
     }
 
     public function validateStep(Request $request)
@@ -49,7 +51,7 @@ class B2 extends StepAbstract
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -59,15 +61,15 @@ class B2 extends StepAbstract
 
         // Pick only the insurances we are interested in from insurley
         $insurances = [];
-        if(!empty($input['insurely'])){
+        if (!empty($input['insurely'])) {
 
             // Only pick insurances that are of interest
             $insurley_insurances = json_decode($input['insurely'], true);
 
-            if(!empty($insurley_insurances)){
-                foreach($insurley_insurances as $insurance){
+            if (!empty($insurley_insurances)) {
+                foreach ($insurley_insurances as $insurance) {
 
-                    if(
+                    if (
                         isset($insurance['insurance']['insuranceSubType']) &&
                         in_array($insurance['insurance']['insuranceSubType'], [
                             'condoInsurance',
@@ -75,20 +77,20 @@ class B2 extends StepAbstract
                             'farmInsurance',
                             'villaInsurance'
                         ])
-                    ){
+                    ) {
 
                         // If we already have this insurance, skip
-                        if(isset($insurances[$insurance['insurance']['insuranceSubType']])){
+                        if (isset($insurances[$insurance['insurance']['insuranceSubType']])) {
                             continue;
                         }
 
                         $insurances[$insurance['insurance']['insuranceSubType']] = $insurance;
 
-                        if(empty($input['civic_number']) && isset($insurance['personalInformation']['PERSONAL_NUMBER'])){
+                        if (empty($input['civic_number']) && isset($insurance['personalInformation']['PERSONAL_NUMBER'])) {
                             $input['civic_number'] = $insurance['personalInformation']['PERSONAL_NUMBER'];
                         }
 
-                        if(empty($input['insurance_company_name']) && isset($insurance['insurance']['insuranceCompany'])){
+                        if (empty($input['insurance_company_name']) && isset($insurance['insurance']['insuranceCompany'])) {
                             $input['insurance_company_name'] = $insurance['insurance']['insuranceCompany'];
                         }
                     }
@@ -98,19 +100,18 @@ class B2 extends StepAbstract
         $input['insurances'] = $insurances;
 
         // if not empty, store pdf data, reset firtsstep just in case
-        if(!empty($input['insurances'])){
+        if (!empty($input['insurances'])) {
 
             // Just in case
             $steps_data['gardsforsakring'] = [
                 'gardsforsakring' => 'gardsforsakring-b-1'
             ];
 
-            foreach($steps_data as $step => $step_data){
+            foreach ($steps_data as $step => $step_data) {
                 $this->store_data($step_data, $step);
             }
 
             $input['pdf_data'] = $this->generate_pdf($input);
-
         }
 
         // Store data
@@ -122,7 +123,6 @@ class B2 extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
 
     public function generate_pdf($data)
@@ -131,5 +131,4 @@ class B2 extends StepAbstract
         $pdf_file = PDF::loadView('pdf.gardsforsakring', $data)->output();
         return base64_encode($pdf_file);
     }
-
 }
