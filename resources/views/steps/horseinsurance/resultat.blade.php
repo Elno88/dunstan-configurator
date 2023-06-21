@@ -733,13 +733,13 @@
                         <h4>Är din häst uppstallad på egen gård?</h4>
                         <ul>
                             <li>
-                                <input id="stable-0" type="radio" name="stable" value="Ja" checked>
-                                <label for="stable-0">Ja</label>
+                                <input id="stable-1a" type="radio" name="stable" value="Nej" checked>
+                                <label for="stable-1a">Nej</label>
                                 <div class="check"></div>
                             </li>
                             <li>
-                                <input id="stable-1a" type="radio" name="stable" value="Nej">
-                                <label for="stable-1a">Nej</label>
+                                <input id="stable-0" type="radio" name="stable" value="Ja">
+                                <label for="stable-0">Ja</label>
                                 <div class="check"></div>
                             </li>
                         </ul>
