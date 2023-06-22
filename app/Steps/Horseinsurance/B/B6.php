@@ -1,4 +1,6 @@
-<?php namespace App\Steps\Horseinsurance\B;
+<?php
+
+namespace App\Steps\Horseinsurance\B;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
@@ -21,11 +23,26 @@ class B6 extends StepAbstract
     {
 
         // Fetch session data
-        $name = $this->get_data($this->name.'.namn');
+        $name = $this->get_data($this->name . '.namn');
+        $farg = $this->get_data($this->name . '.farg');
+
         $horse_usage = $this->get_data('hastforsakring-b-3.horse_usage');
 
+        $colors = [
+            'Brun',
+            'Fux',
+            'Skimmel',
+            'Svart',
+            'Black',
+            'Skäck',
+            'Isabell',
+            'Tigrerad',
+        ];
+
         return view('steps.horseinsurance.a.a4', [
-            'name' => $name,
+            'farg'        => $farg,
+            'colors'      => $colors,
+            'name'        => $name,
             'horse_usage' => $horse_usage
         ]);
     }
@@ -34,16 +51,18 @@ class B6 extends StepAbstract
     {
 
         $input = [
-            'namn' => $request->get('namn')
+            'namn' => $request->get('namn'),
+            'farg' => $request->get('farg'),
         ];
 
         $rules = [
-            'namn'        => 'required'
+            'namn' => 'required',
+            'farg' => 'required',
         ];
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -60,6 +79,5 @@ class B6 extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
-
     }
 }
