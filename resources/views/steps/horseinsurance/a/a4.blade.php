@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="bubble bubble-type-d center">
-            <div class="bubble-contents">
-                <select class="bubble-select" name="farg">
+            <div class="bubble-contents" style="padding:12px;">
+                <select class="bubble-select" name="farg" style="font-size:20px;">
                     <option disabled selected>Välj färg</option>
                     @foreach ($colors as $color)
                         @if ($farg === $color)
