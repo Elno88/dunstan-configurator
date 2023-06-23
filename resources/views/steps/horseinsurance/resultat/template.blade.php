@@ -70,7 +70,7 @@
 <input type="hidden" name="livvarde" value="{{ $defaults['livvarde'] ?? 0 }}" />
 
 <div class="livvarde-error">
-    <p>För att teckna en livförsäkring med ett livvärde över 100 000 kr, vänligen kontakta vårt servicecenter på <a href="tel:0101798400">010-179 84 00</a> eller <a href="mailto:info@dunstan.se">info@dunstan.se</a>, så hjälper våra försäkringsrådgivare dig.</p>
+    <p>För att teckna en livförsäkring med ett livvärde över <span class="livvarde-max"></span> kr, vänligen kontakta vårt servicecenter på <a href="tel:0101798400">010-179 84 00</a> eller <a href="mailto:info@dunstan.se">info@dunstan.se</a>, så hjälper våra försäkringsrådgivare dig.</p>
 </div>
 
 @if((isset($defaults['livforsakring']) && $defaults['livforsakring'] == 38) || (isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == 38))
@@ -132,9 +132,7 @@
 </div>
 
 <script type="text/javascript">
-
     $(document).ready(function(){
-
         $('.resultat-slide-select li')
             .on('mousedown', function() {
                 $(this).siblings().removeClass('selected');
@@ -149,6 +147,17 @@
             let value = $(this).val();
             $('.resultat-select-caption[data-type=liv]').removeClass('active');
             $('.resultat-select-caption[data-type=liv][data-content=vvl-'+value+']').addClass('active');
+
+            if (value == 12) {
+                $('.range-slider').slider('option', 'max', 105000);
+                $('.range-slider').slider('value', {{ $available['livvarde'][0] }});
+            } else {
+                $('.range-slider').slider('option', 'max', {{ $available['livvarde'][1] + 5000 }});
+                $('.range-slider').slider('value', {{ $available['livvarde'][0] }});
+            }
+
+            $('.livvarde-error').removeClass('active');
+            $('.resultat-next').prop('disabled', false);
         });
 
         $('.safestart-select').on('click', function(){
@@ -167,8 +176,19 @@
             @endif
             value: parseInt({{ $defaults['livvarde'] ?? $available['livvarde'][0] }}),
             min: parseInt({{ $available['livvarde'][0] }}),
-            max: parseInt({{ $available['livvarde'][1] }}),
+            max: parseInt(105000),
             step: parseInt({{ $available['livvarde_increment'] ?? 5000 }}),
+            change: function(event, ui) {
+                $('.range-label').text(formatNumber(ui.value,' '));
+                $('input[name=livvarde]').val(ui.value);
+                if (ui.value >= 5000 ){
+                    //$('.safestart-livvarde-options').slideDown(200);
+                    //$('.safestart-info-extra').slideDown(200);
+                } else {
+                    //$('.safestart-livvarde-options').slideUp(200);
+                    //$('.safestart-info-extra').slideUp(200);
+                }
+            },
             slide: function(event, ui) {
                 $('.range-label').text(formatNumber(ui.value,' '));
                 $('input[name=livvarde]').val(ui.value);
@@ -181,10 +201,13 @@
                 }
             },
             stop: function(e, ui) {
-                let max_value = 100000;
+                let product = $('input[name=livforsakring]:checked').val();
+
+                let max_value = (product == 12) ? 100000 : parseInt({{ $available['livvarde'][1] }});
                 var rest = (ui.value - 5000);
 
                 if(ui.value > max_value){
+                    $('.livvarde-max').text(max_value);
                     $('.livvarde-error').addClass('active');
                     $('.liv-split').text('');
                     $('.resultat-next').prop('disabled', true);
