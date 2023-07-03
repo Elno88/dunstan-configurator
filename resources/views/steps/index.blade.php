@@ -5,7 +5,7 @@
             <h1>Få ett prisförslag</h1>
         </div>
 
-        <div class="bubble bubble-type-b input-radio left"">
+        <div class="bubble bubble-type-b input-radio left">
             <input id="hast-select" type="radio" class="btn-select" name="forsakring" value="hastforsakring">
             <label class="bubble-contents" for="hast-select">
             	<div class="stroke-left">
@@ -34,5 +34,6 @@
                 </div>
             </label>
         </div>
+        
     </div>
 </div>

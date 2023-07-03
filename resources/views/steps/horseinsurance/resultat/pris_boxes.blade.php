@@ -60,4 +60,24 @@
     </div>
     @endif
 
+
+    @if((isset($data['trailerforsakring']) && !empty($data['trailerforsakring']) && !isset($disabled_checkboxes)) || isset($disabled_checkboxes) && in_array($data['trailerforsakring'], $data['forsakring_enabled']))
+    <div class="body-price body-price-liv @if(isset($data['forsakring_enabled']) && array_key_exists('liv', $data['forsakring_enabled'])) selected @endif">
+
+        <p class="resultat-widget-list-label">Försäkring:</p>
+        <h4 class="resultat-widget-list-value first">{{ $data['trailerforsakring_label'] ?? 'Hästtrailer' }}</h4>
+
+
+        <p class="resultat-widget-list-label">Säkerhetsanordningar:</p>
+        <h4 class="resultat-widget-list-value"></h4>
+
+        <p class="resultat-widget-list-label">Försäkringsform:</p>
+        <h4 class="resultat-widget-list-value"></h4>
+
+        <p class="resultat-widget-list-label">Förmånsnivå:</p>
+        <h4 class="resultat-widget-list-value"></h4>
+        
+    </div>
+    @endif
+
 </div>
