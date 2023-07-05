@@ -3,9 +3,9 @@
 
         <div class="bubble bubble-type-a left">
             <div class="bubble-contents">
-              <i class="bubble-help btn-sidebar" data-content="trailerforsakring-a-1">?</i>
-                <p><strong>Välkommen!</strong><br/>
-                Börja med att ange trailerns registrerings&shy;nummer i rutan nedan så hämtar vi uppgifter om den.</p>
+              <i class="bubble-help btn-sidebar" data-content="trailerforsakring-a-2">?</i>
+                <p><strong>Hittade vi rätt!</strong><br/>
+                Titta så att uppgifterna stämmer innan du går vidare.</p>
             </div>
         </div>
 
@@ -13,13 +13,13 @@
             <div class="bubble-contents">
 
                 <div class="regnr-input-wrapper">
-                    <input id="regnr-input" type="text" name="namn" value="" placeholder="ABC-123">
+                    <input id="regnr-input" type="text" name="namn" value="ABC-123" placeholder="ABC-123">
                 </div>
 
             </div>
         </div>
 
-        <div id="regnr-data" class="bubble bubble-type-d center" style="display:none;">
+        <div id="regnr-data" class="bubble bubble-type-d center">
             <div class="bubble-contents regnr-content">
 
               <h4>Dunstan trailer title</h4>
