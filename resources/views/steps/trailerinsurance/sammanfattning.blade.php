@@ -2,7 +2,7 @@
     <div class="frame-contents">
         <div class="frame-resultat-header">
             <p id="resultat-forsakring-type">Trailerförsäkring</p>
-            <h2 id="resultat-horse-name"><!-- Fabrikat och modell här --></h2>
+            <h2 id="resultat-horse-name">{{ $vehicle['make'] ?? null }} {{ $vehicle['model'] ?? null }}</h2>
         </div>
         <div class="frame-resultat">
             <div class="sammanfattning">
@@ -11,27 +11,27 @@
                     <table class="table-resultat">
                         <tr>
                             <th>Registreringsnummer</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['regnr'] ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Fabrikat</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['make'] ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Fordonsslag</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['model'] ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Årsmodell</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['year'] ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Totalvikt</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['total_weight'] ?? 0 }} kg</td>
                         </tr>
                         <tr>
                             <th>Tjänstevikt</th>
-                            <td>XXX</td>
+                            <td>{{ $vehicle['service_weight'] ?? 0 }} kg</td>
                         </tr>
                     </table>
                 </div>
@@ -40,21 +40,21 @@
                     <table class="table-resultat">
                         <tr>
                             <th>Försäkringsform</th>
-                            <td>XXX</td>
+                            <td>{{ $options['form'] ?? 'Grund' }}</td>
                         </tr>
                         <tr>
                             <th>Säkerhetsanordningar</th>
-                            <td>XXX</td>
+                            <td>{{ $options['safety'] ?? 'Normal' }}</td>
                         </tr>
                         <tr>
                             <th>Förmånsnivå</th>
-                            <td>XXX</td>
+                            <td>{{ $options['benefit'] ?? 'Nej' }}</td>
                         </tr>
                         <tr>
                             <th>Startdatum</th>
                             <td>
                                 <div class="editinplace">
-                                    <input type="text" class="edit" value="{{ $data['sammanfattning']['startdatum'] ?? '' }}" name="startdatum" placeholder="0000-00-00">
+                                    <input type="text" class="edit" value="{{ $options['date'] ?? null }}" name="startdatum" placeholder="0000-00-00">
                                 </div>
                             </td>
                         </tr>
@@ -65,24 +65,24 @@
                     <table class="table-resultat">
                         <tr>
                             <th>Namn</th>
-                            <td>{{ $data['kund']['namn'] ?? '-' }}</td>
+                            <td>{{ $customer['kund']['namn'] ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Personnr.</th>
-                            <td>{{ $data['kund']['personnummer'] ?? '-' }}</td>
+                            <td>{{ $customer['kund']['persnr'] ?? $ssn ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>Adress</th>
                             <td>
-                                {{ $data['kund']['adress_gata'] ?? '-' }}<br/>
-                                {{ $data['kund']['adress_postnummer'] ?? '-' }} {{ $data['kund']['adress_ort'] ?? '-' }}
+                                {{ $customer['kund']['adress'] ?? '-' }}<br/>
+                                {{ $customer['kund']['postnr'] ?? '-' }} {{ $customer['kund']['ort'] ?? '-' }}
                             </td>
                         </tr>
                         <tr>
                             <th>E-post</th>
                             <td>
                                 <div class="editinplace">
-                                    <input type="text" class="edit" value="{{ $data['kund']['email'] ?? '' }}" name="email" placeholder="Ange din epost">
+                                    <input type="text" class="edit" value="{{ $customer['kund']['email'] ?? '' }}" name="email" placeholder="Ange din epost">
                                 </div>
                             </td>
                         </tr>
@@ -90,7 +90,7 @@
                             <th>Telefon</th>
                             <td>
                                 <div class="editinplace">
-                                    <input type="tel" class="edit" value="{{ $data['kund']['telefon'] ?? '' }}" name="telefon" placeholder="Ange ditt mobilnummer">
+                                    <input type="tel" class="edit" value="{{ $customer['kund']['telefon'] ?? '' }}" name="telefon" placeholder="Ange ditt mobilnummer">
                                 </div>
                             </td>
                         </tr>
@@ -116,10 +116,10 @@
                     </tr>
                     <tr class="autogiro-wrapper" style="display:none;">
                         <td>
-                            <input type="text" value="{{ $data['autogiro']['clearing'] ?? '' }}" name="autogiro_clearing" placeholder="Clearing *">
+                            <input type="text" value="{{ $customer['betalsatt']['autogiro_clearingnr'] ?? '' }}" name="autogiro_clearing" placeholder="Clearing *">
                         </td>
                         <td>
-                            <input type="text" value="{{ $data['autogiro']['account'] ?? '' }}" name="autogiro_account" placeholder="Kontonummer *">
+                            <input type="text" value="{{ $customer['betalsatt']['autogiro_kontonr'] ?? '' }}" name="autogiro_account" placeholder="Kontonummer *">
                         </td>
                     </tr>
                     <tr class="autogiro-wrapper" style="display:none;">
@@ -161,15 +161,14 @@
 </div>
 
 <div id="resultat-price-mobile">
-    Ditt pris <span class="resultat-price"><span class="price">{{ $price['utpris_formaterad'] ?? '' }}</span></span>
+    Ditt pris <span class="resultat-price"><span class="price"></span> kr/mån</span>
 </div>
-
 <div id="resultat-widget" class="price-wrapper">
-    {!! $price['html'] ?? '' !!}
+    {!! $html ?? '' !!}
 </div>
 
-@include('steps.trailerinsurance.footer-resultat')
-@include('steps.horseinsurance.resultat.popup')
+@include('steps.trailerinsurance.resultat.footer')
+@include('steps.trailerinsurance.resultat.scripts')
 
 <div class="popup-overlay">
     <div id="popup-bankid" class="popup">
@@ -190,10 +189,21 @@
         <br/>
     </div>
 </div>
-
-@include('steps.horseinsurance.resultat.pris_scripts')
-
 <script type="text/javascript">
+    function updatePrice()
+    {
+        let data = {
+            'form': '{{ $form }}',
+            'safety': '{{ $safety }}',
+            'date': '{{ $date }}'
+        };
+
+        $.post('/step/trailerforsakring-resultat/price', data, function (data) {
+            $('#resultat-widget').html(data.html);
+            $('#resultat-price-mobile .price').html(data.price);
+        }, 'json');
+    }
+
     function bankid_popup_open() {
         $('#popup-bankid').find('.popup-header').css('display', 'block');
         $('#popup-bankid').find('.bankid-error').css('display', 'none');
@@ -217,7 +227,7 @@
 
         $.ajax({
             type: 'post',
-            url: '/step/sammanfattning',
+            url: '/step/trailerforsakring-sammanfattning',
             cache: false,
             dataType: 'json',
             data: data,
@@ -399,7 +409,15 @@
     }
 
     $(document).ready(function () {
+        updatePrice();
+
         $('select').selectric();
+
+        $('.popup-close-x').on('click', function() {
+            $(this).parent().fadeOut(300);
+            $('.popup-overlay').fadeOut(500);
+            $('body').removeClass('popup-open');
+        });
 
         $('input[name=betalningsmetod]').on('change', function () {
             let value = $(this).val();
