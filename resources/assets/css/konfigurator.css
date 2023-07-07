@@ -47,6 +47,7 @@ body.sidebar-open {
 }
 
 body.resultat,
+body.trailerforsakring-resultat,
 body.halsodeklaration,
 body.sammanfattning {
 	height: auto;
@@ -1032,8 +1033,9 @@ body #app-footer {
 	z-index: 9;
 }
 
-body.resultat #app-footer ,
-body.halsodeklaration #app-footer ,
+body.resultat #app-footer,
+body.trailerforsakring-resultat #app-footer,
+body.halsodeklaration #app-footer,
 body.sammanfattning #app-footer {
 	display: none;
 }
