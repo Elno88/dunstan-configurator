@@ -131,7 +131,7 @@ class Resultat extends StepAbstract
                 659 => Str::title($request->get('form', 'grund')), // Försäkringsform
                 663 => null, // Självrisk
                 671 => null, // Ägare
-                670 => 'Västmanlands', // Län
+                670 => $state ?? 'Skåne', // Län
             ];
         }
 
