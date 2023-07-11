@@ -34,7 +34,7 @@ class Resultat extends StepAbstract
             'safety'  => $options['safety'] ?? 'Normal',
             'form'    => $options['form'] ?? 'Grund',
             'benefit' => $options['benefit'] ?? null,
-            'date'    => $options['date'] ?? null,
+            'date'    => $options['date'] ?? date('Y-m-d'),
             'vehicle' => $vehicle ?? null,
         ]);
     }
@@ -96,9 +96,9 @@ class Resultat extends StepAbstract
         $this->store_data([
             'safety'   => $request->get('safety', 'Normal'),
             'form'     => $request->get('form', 'Grund'),
-            'benefint' => $this->getBenefitLevel(),
+            'benefit'  => $this->getBenefitLevel(),
             'date'     => $request->get('startdatum', null),
-            'state'    => $state ?? 'Skåne',
+            'state'    => $state ?? 'Okänt',
         ], 'options');
 
         if (config('services.focus.live')) {
@@ -115,7 +115,7 @@ class Resultat extends StepAbstract
                 640 => Str::title($request->get('form', 'grund')), // Försäkringsform
                 641 => null, // Självrisk
                 643 => null, // Ägare
-                642 => $state ?? 'Skåne', // Län
+                642 => $state ?? 'Okänt', // Län
             ];
         } else {
             $fields = [
@@ -131,7 +131,7 @@ class Resultat extends StepAbstract
                 659 => Str::title($request->get('form', 'grund')), // Försäkringsform
                 663 => null, // Självrisk
                 671 => null, // Ägare
-                670 => $state ?? 'Skåne', // Län
+                670 => $state ?? 'Okänt', // Län
             ];
         }
 
@@ -174,7 +174,7 @@ class Resultat extends StepAbstract
             return 'Nej';
         }
 
-        if ($insurances->contains(26) && ($insurances->contains(22) || $insurances->contains(23))) {
+        if (($insurances->contains(26) && ($insurances->contains(22)) || $insurances->contains(23))) {
             return 'Gårds- och hästförsäkring i Dunstan';
         } elseif ($insurances->contains(26)) {
             return 'Gårdsförsäkring i Dunstan';

@@ -19,7 +19,6 @@
                     <p class="resultat-price">{{ number_format($price, 0, '.', ' ') }} kr/mån</p>
                 </div>
             </header>
-
         </div>
     </div>
 </div>

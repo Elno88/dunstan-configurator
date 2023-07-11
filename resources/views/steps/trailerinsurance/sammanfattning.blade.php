@@ -65,7 +65,7 @@
                     <table class="table-resultat">
                         <tr>
                             <th>Namn</th>
-                            <td>{{ $customer['kund']['namn'] ?? '-' }}</td>
+                            <td>{{ $customer['kund']['fornamn'] ?? '-' }} {{ $customer['kund']['efternamn'] }}</td>
                         </tr>
                         <tr>
                             <th>Personnr.</th>
@@ -237,7 +237,7 @@
                 $button.html('<i class="fa fa-spinner fa-spin"></i> ' + buttonOriginalText);
             },
             success: function (data) {
-                if (data.status == 1) {
+                if (data.status === 1) {
                     // Open bankid popup
                     bankid_popup_open();
                     bankid_sign($button, buttonOriginalText);
@@ -313,7 +313,7 @@
     function bankid_status(orderRef, $button, buttonOriginalText, force_retries) {
         $.ajax({
             type: 'post',
-            url: '/step/sammanfattning/bankid_status',
+            url: '/step/trailerforsakring-sammanfattning/bankid_status',
             cache: false,
             headers: {
                 'cache-control': 'no-cache'
@@ -371,7 +371,7 @@
 
         $.ajax({
             type: 'post',
-            url: '/step/sammanfattning/bankid_sign',
+            url: '/step/trailerforsakring-sammanfattning/bankid_sign',
             cache: false,
             headers: {
                 'cache-control': 'no-cache'
@@ -379,7 +379,7 @@
             dataType: 'json',
             data: data,
             success: function (data) {
-                if (data.status == 1) {
+                if (data.status === 1) {
                     if (data.orderRef) {
                         let force_retries = parseInt('{{ config('services.focus.bankid_status_force_retries') }}');
                         bankid_status(data.orderRef, $button, buttonOriginalText, force_retries);

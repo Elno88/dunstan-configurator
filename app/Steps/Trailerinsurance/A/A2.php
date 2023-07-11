@@ -56,7 +56,15 @@ class A2 extends StepAbstract
         try {
             $customer = (new FocusApi)->get_customer($ssn);
         } catch (FocusApiException $e) {
-            $customer = null;
+            try {
+                $new_customer = (new FocusApi())->get_address($ssn);
+                $customer['kund'] = $new_customer;
+                $customer['kund']['namn'] = $new_customer['fornamn'] ?? '';
+                $customer['kund']['typ'] = 'person';
+
+            } catch (FocusApiException $e) {
+                $customer = null;
+            }
         }
 
         $this->store_data($ssn, 'ssn');

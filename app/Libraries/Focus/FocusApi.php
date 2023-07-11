@@ -2,15 +2,15 @@
 
 namespace App\Libraries\Focus;
 
+use App\Libraries\Papilite\PapiliteApi;
+use App\Libraries\Papilite\PapiliteApiException;
+use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Cache;
-use GuzzleHttp\Client;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-
-use App\Libraries\Focus\FocusApiException;
 
 class FocusApi
 {
@@ -33,8 +33,8 @@ class FocusApi
     /*
      * API URIs
      */
-    const TEST_SERVER   = 'https://test-dunstan.jaycom.se/';
-    const LIVE_SERVER   = 'https://dunstan.jaycom.se/';
+    const TEST_SERVER = 'https://test-dunstan.jaycom.se/';
+    const LIVE_SERVER = 'https://dunstan.jaycom.se/';
 
     /*
      * Construct client
@@ -47,11 +47,11 @@ class FocusApi
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
 
         $this->client = new Client([
-            'base_uri'      => $this->base_uri,
-            'headers'       => [
-                'Accept'        => 'application/json'
+            'base_uri' => $this->base_uri,
+            'headers' => [
+                'Accept' => 'application/json'
             ],
-            'http_errors'   => false
+            'http_errors' => false
         ]);
 
         // Get jwt and cache
@@ -206,7 +206,7 @@ class FocusApi
             'do' => 'dunstan.poang.spara',
             'kund' => $customer_id,
             'poang' => $points,
-            'notering' => 'Webbteckning: ' . $horse_name,
+            'notering' => 'Webbteckning: '.$horse_name,
         ];
 
         $response = $this->client->get('', [
@@ -378,8 +378,14 @@ class FocusApi
         return $data ?? [];
     }
 
-    public function get_pris($moment_ids, array $fields, $civic_number, int $paymentterm_months, $pricelist = null, $start_date = null)
-    {
+    public function get_pris(
+        $moment_ids,
+        array $fields,
+        $civic_number,
+        int $paymentterm_months,
+        $pricelist = null,
+        $start_date = null
+    ) {
 
         $query = [
             'rest' => 1,
@@ -402,13 +408,13 @@ class FocusApi
             $query['anslutsdatum'] = $start_date;
         }
 
-        //pre($query);
+        // pre($query);
 
         $response = $this->client->get('', [
             'query' => $query
         ]);
 
-        //pre((string) $response->getBody());
+        // pre((string) $response->getBody());
 
         if (!in_array($response->getStatusCode(), [200])) {
             $this->handleError($response);
@@ -423,16 +429,16 @@ class FocusApi
      * @throws \App\Libraries\Focus\FocusApiException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function bankid_sign($civic_number, $show_text = '', $hidden_text  = '', $async = 0)
+    public function bankid_sign($civic_number, $show_text = '', $hidden_text = '', $async = 0)
     {
         $query = [
-            'rest'          => 1,
-            'jwt'           => $this->jwt,
-            'do'            => 'forsakring.api.bankidSignera',
-            'persnr'        => $civic_number,
-            'synligText'    => $show_text,
-            'doldText'      => $hidden_text,
-            'async'         => $async
+            'rest' => 1,
+            'jwt' => $this->jwt,
+            'do' => 'forsakring.api.bankidSignera',
+            'persnr' => $civic_number,
+            'synligText' => $show_text,
+            'doldText' => $hidden_text,
+            'async' => $async
         ];
 
         $response = $this->client->get('', [
@@ -659,57 +665,57 @@ class FocusApi
         ) {
             $data = [
                 // Session id
-                'session_id'                => $session_data['session_id'] ?? null,
-                'step_insurance'            => 'hastforsakring-a-1',
+                'session_id' => $session_data['session_id'] ?? null,
+                'step_insurance' => 'hastforsakring-a-1',
 
-                'horse_usage'               => $session_data['data']['hastforsakring-a-1']['horse_usage'] ?? null,
-                'horse_usage_label'         => $session_data['data']['hastforsakring-a-1']['horse_usage_label'] ?? null,
-                'fodelsedatum'              => $session_data['data']['hastforsakring-a-2']['fodelsedatum'] ?? null,
-                'age'                       => $session_data['data']['hastforsakring-a-2']['age'] ?? null,
-                'gender'                       => $session_data['data']['hastforsakring-a-3']['gender'] ?? '',
-                'namn'                         => $session_data['data']['hastforsakring-a-4']['namn'] ?? '',
-                'breed'                        => $session_data['data']['hastforsakring-a-5']['breed'] ?? null,
-                'folningdatum'                 => $session_data['data']['hastforsakring-a-6']['folningdatum'] ?? '',
-                'born'                         => $session_data['data']['hastforsakring-a-8']['born'] ?? '',
-                'born_risk'                    => $session_data['data']['hastforsakring-a-8']['risk'] ?? null,
-                'civic_number'                 => $session_data['data']['hastforsakring-a-9']['civic_number'] ?? null,
-                'state'                        => $session_data['data']['hastforsakring-a-9']['state'] ?? 'Skåne',
+                'horse_usage' => $session_data['data']['hastforsakring-a-1']['horse_usage'] ?? null,
+                'horse_usage_label' => $session_data['data']['hastforsakring-a-1']['horse_usage_label'] ?? null,
+                'fodelsedatum' => $session_data['data']['hastforsakring-a-2']['fodelsedatum'] ?? null,
+                'age' => $session_data['data']['hastforsakring-a-2']['age'] ?? null,
+                'gender' => $session_data['data']['hastforsakring-a-3']['gender'] ?? '',
+                'namn' => $session_data['data']['hastforsakring-a-4']['namn'] ?? '',
+                'breed' => $session_data['data']['hastforsakring-a-5']['breed'] ?? null,
+                'folningdatum' => $session_data['data']['hastforsakring-a-6']['folningdatum'] ?? '',
+                'born' => $session_data['data']['hastforsakring-a-8']['born'] ?? '',
+                'born_risk' => $session_data['data']['hastforsakring-a-8']['risk'] ?? null,
+                'civic_number' => $session_data['data']['hastforsakring-a-9']['civic_number'] ?? null,
+                'state' => $session_data['data']['hastforsakring-a-9']['state'] ?? 'Okänt',
 
                 // Nya fält för foster o föl (DFF)
-                'stallion_name'             => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_name'] ?? null,
-                'seminstation'              => $session_data['data']['hastforsakring-a-ff-betackning']['seminstation'] ?? null,
-                'stallion_covering_type'    => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_covering_type'] ?? null,
-                'insurance_type'            => $session_data['data']['hastforsakring-a-ff-forsakring']['insurance_type'] ?? null,
+                'stallion_name' => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_name'] ?? null,
+                'seminstation' => $session_data['data']['hastforsakring-a-ff-betackning']['seminstation'] ?? null,
+                'stallion_covering_type' => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_covering_type'] ?? null,
+                'insurance_type' => $session_data['data']['hastforsakring-a-ff-forsakring']['insurance_type'] ?? null,
 
                 // Resultat
-                'veterinarvardsforsakring'  => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
-                'veterinarvardsforsakring_label'  => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
-                'veterinarvardsbelopp'      => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
-                'livforsakring'             => $session_data['data']['resultat']['livforsakring'] ?? null,
-                'livforsakring_label'       => $session_data['data']['resultat']['livforsakring_label'] ?? null,
-                'livvarde'                  => $session_data['data']['resultat']['livvarde'] ?? null,
-                'sjalvrisk'                 => $session_data['data']['resultat']['sjalvrisk'] ?? null,
-                'forsakring_enabled'        => $session_data['data']['resultat']['forsakring_enabled'] ?? null,
-                'safestart'                 => $session_data['data']['resultat']['safestart'] ?? null,
-                'uppsagning'                => $session_data['data']['resultat']['uppsagning'] ?? null,
-                'swbmedlem'                 => $session_data['data']['resultat']['swbmedlem'] ?? null,
+                'veterinarvardsforsakring' => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
+                'veterinarvardsforsakring_label' => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
+                'veterinarvardsbelopp' => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
+                'livforsakring' => $session_data['data']['resultat']['livforsakring'] ?? null,
+                'livforsakring_label' => $session_data['data']['resultat']['livforsakring_label'] ?? null,
+                'livvarde' => $session_data['data']['resultat']['livvarde'] ?? null,
+                'sjalvrisk' => $session_data['data']['resultat']['sjalvrisk'] ?? null,
+                'forsakring_enabled' => $session_data['data']['resultat']['forsakring_enabled'] ?? null,
+                'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
+                'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
+                'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
 
                 // Hälsodeklaration
-                'questions'                 => $session_data['data']['halsodeklaration']['questions'] ?? [],
-                'document_type'             => $session_data['data']['halsodeklaration']['document_type'] ?? null,
+                'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
+                'document_type' => $session_data['data']['halsodeklaration']['document_type'] ?? null,
 
                 // Sammanfattning
-                'startdatum'                => $session_data['data']['sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
-                'email'                     => $session_data['data']['sammanfattning']['email'] ?? $session_data['data']['hastforsakring-a-10']['email'] ?? null,
-                'telefon'                   => $session_data['data']['sammanfattning']['telefon'] ?? $session_data['data']['hastforsakring-a-10']['telefon'] ?? '',
-                'betalningsmetod'           => $session_data['data']['sammanfattning']['betalningsmetod'] ?? 'faktura',
-                'betalningstermin'          => $session_data['data']['sammanfattning']['betalningstermin'] ?? 12,
-                'autogiro_clearing'         => $session_data['data']['sammanfattning']['autogiro_clearing'] ?? null,
-                'autogiro_account'          => $session_data['data']['sammanfattning']['autogiro_account'] ?? null,
-                'chip_number'               => $session_data['data']['sammanfattning']['chip_number'] ?? $session_data['data']['hastforsakring-a-7']['chip_number'] ?? '',
+                'startdatum' => $session_data['data']['sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
+                'email' => $session_data['data']['sammanfattning']['email'] ?? $session_data['data']['hastforsakring-a-10']['email'] ?? null,
+                'telefon' => $session_data['data']['sammanfattning']['telefon'] ?? $session_data['data']['hastforsakring-a-10']['telefon'] ?? '',
+                'betalningsmetod' => $session_data['data']['sammanfattning']['betalningsmetod'] ?? 'faktura',
+                'betalningstermin' => $session_data['data']['sammanfattning']['betalningstermin'] ?? 12,
+                'autogiro_clearing' => $session_data['data']['sammanfattning']['autogiro_clearing'] ?? null,
+                'autogiro_account' => $session_data['data']['sammanfattning']['autogiro_account'] ?? null,
+                'chip_number' => $session_data['data']['sammanfattning']['chip_number'] ?? $session_data['data']['hastforsakring-a-7']['chip_number'] ?? '',
 
                 // Tack
-                'completed_products'        => $session_data['data']['tack']['products'] ?? [],
+                'completed_products' => $session_data['data']['tack']['products'] ?? [],
             ];
         } elseif (
             isset($session_data['data']['hastforsakring']['hastforsakring']) &&
@@ -718,57 +724,57 @@ class FocusApi
             // hästförsäkring b linjen
             $data = [
                 // Session id
-                'session_id'                => $session_data['session_id'] ?? null,
-                'step_insurance'            => 'hastforsakring-b-1',
+                'session_id' => $session_data['session_id'] ?? null,
+                'step_insurance' => 'hastforsakring-b-1',
 
-                'horse_usage'               => $session_data['data']['hastforsakring-b-3']['horse_usage'] ?? null,
-                'horse_usage_label'         => $session_data['data']['hastforsakring-b-3']['horse_usage_label'] ?? null,
-                'fodelsedatum'              => $session_data['data']['hastforsakring-b-4']['fodelsedatum'] ?? null,
-                'age'                       => $session_data['data']['hastforsakring-b-4']['age'] ?? null,
-                'gender'                       => $session_data['data']['hastforsakring-b-5']['gender'] ?? '',
-                'namn'                         => $session_data['data']['hastforsakring-b-6']['namn'] ?? '',
-                'breed'                         => $session_data['data']['hastforsakring-b-7']['breed'] ?? null,
-                'folningdatum'                  => $session_data['data']['hastforsakring-b-8']['folningdatum'] ?? '',
-                'born'                      => $session_data['data']['hastforsakring-b-10']['born'] ?? '',
-                'born_risk'                    => $session_data['data']['hastforsakring-b-10']['risk'] ?? null,
-                'civic_number'                 => $session_data['data']['hastforsakring-b-11']['civic_number'] ?? null,
-                'state'                        => $session_data['data']['hastforsakring-b-11']['state'] ?? 'Skåne',
+                'horse_usage' => $session_data['data']['hastforsakring-b-3']['horse_usage'] ?? null,
+                'horse_usage_label' => $session_data['data']['hastforsakring-b-3']['horse_usage_label'] ?? null,
+                'fodelsedatum' => $session_data['data']['hastforsakring-b-4']['fodelsedatum'] ?? null,
+                'age' => $session_data['data']['hastforsakring-b-4']['age'] ?? null,
+                'gender' => $session_data['data']['hastforsakring-b-5']['gender'] ?? '',
+                'namn' => $session_data['data']['hastforsakring-b-6']['namn'] ?? '',
+                'breed' => $session_data['data']['hastforsakring-b-7']['breed'] ?? null,
+                'folningdatum' => $session_data['data']['hastforsakring-b-8']['folningdatum'] ?? '',
+                'born' => $session_data['data']['hastforsakring-b-10']['born'] ?? '',
+                'born_risk' => $session_data['data']['hastforsakring-b-10']['risk'] ?? null,
+                'civic_number' => $session_data['data']['hastforsakring-b-11']['civic_number'] ?? null,
+                'state' => $session_data['data']['hastforsakring-b-11']['state'] ?? 'Okänt',
 
                 // Nya fält för foster o föl (DFF)
-                'stallion_name'             => $session_data['data']['hastforsakring-b-ff-betackning']['stallion_name'] ?? null,
-                'seminstation'              => $session_data['data']['hastforsakring-b-ff-betackning']['seminstation'] ?? null,
-                'stallion_covering_type'    => $session_data['data']['hastforsakring-b-ff-betackning']['stallion_covering_type'] ?? null,
-                'insurance_type'            => $session_data['data']['hastforsakring-b-ff-forsakring']['insurance_type'] ?? null,
+                'stallion_name' => $session_data['data']['hastforsakring-b-ff-betackning']['stallion_name'] ?? null,
+                'seminstation' => $session_data['data']['hastforsakring-b-ff-betackning']['seminstation'] ?? null,
+                'stallion_covering_type' => $session_data['data']['hastforsakring-b-ff-betackning']['stallion_covering_type'] ?? null,
+                'insurance_type' => $session_data['data']['hastforsakring-b-ff-forsakring']['insurance_type'] ?? null,
 
                 // Resultat
-                'veterinarvardsforsakring'  => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
-                'veterinarvardsforsakring_label'  => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
-                'veterinarvardsbelopp'      => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
-                'livforsakring'             => $session_data['data']['resultat']['livforsakring'] ?? null,
-                'livforsakring_label'       => $session_data['data']['resultat']['livforsakring_label'] ?? null,
-                'livvarde'                  => $session_data['data']['resultat']['livvarde'] ?? null,
-                'sjalvrisk'                 => $session_data['data']['resultat']['sjalvrisk'] ?? null,
-                'forsakring_enabled'        => $session_data['data']['resultat']['forsakring_enabled'] ?? null,
-                'safestart'                 => $session_data['data']['resultat']['safestart'] ?? null,
-                'uppsagning'                => $session_data['data']['resultat']['uppsagning'] ?? null,
-                'swbmedlem'                 => $session_data['data']['resultat']['swbmedlem'] ?? null,
+                'veterinarvardsforsakring' => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
+                'veterinarvardsforsakring_label' => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
+                'veterinarvardsbelopp' => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
+                'livforsakring' => $session_data['data']['resultat']['livforsakring'] ?? null,
+                'livforsakring_label' => $session_data['data']['resultat']['livforsakring_label'] ?? null,
+                'livvarde' => $session_data['data']['resultat']['livvarde'] ?? null,
+                'sjalvrisk' => $session_data['data']['resultat']['sjalvrisk'] ?? null,
+                'forsakring_enabled' => $session_data['data']['resultat']['forsakring_enabled'] ?? null,
+                'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
+                'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
+                'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
 
                 // Hälsodeklaration
-                'questions'                 => $session_data['data']['halsodeklaration']['questions'] ?? [],
-                'document_type'             => $session_data['data']['halsodeklaration']['document_type'] ?? null,
+                'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
+                'document_type' => $session_data['data']['halsodeklaration']['document_type'] ?? null,
 
                 // Sammanfattning
-                'startdatum'                => $session_data['data']['sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
-                'email'                     => $session_data['data']['sammanfattning']['email'] ?? $session_data['data']['hastforsakring-b-12']['email'] ?? null,
-                'telefon'                   => $session_data['data']['sammanfattning']['telefon'] ?? $session_data['data']['hastforsakring-b-12']['telefon'] ?? '',
-                'betalningsmetod'           => $session_data['data']['sammanfattning']['betalningsmetod'] ?? 'faktura',
-                'betalningstermin'          => $session_data['data']['sammanfattning']['betalningstermin'] ?? 12,
-                'autogiro_clearing'         => $session_data['data']['sammanfattning']['autogiro_clearing'] ?? null,
-                'autogiro_account'          => $session_data['data']['sammanfattning']['autogiro_account'] ?? null,
-                'chip_number'               => $session_data['data']['sammanfattning']['chip_number'] ?? $session_data['data']['hastforsakring-b-9']['chip_number'] ?? '',
+                'startdatum' => $session_data['data']['sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
+                'email' => $session_data['data']['sammanfattning']['email'] ?? $session_data['data']['hastforsakring-b-12']['email'] ?? null,
+                'telefon' => $session_data['data']['sammanfattning']['telefon'] ?? $session_data['data']['hastforsakring-b-12']['telefon'] ?? '',
+                'betalningsmetod' => $session_data['data']['sammanfattning']['betalningsmetod'] ?? 'faktura',
+                'betalningstermin' => $session_data['data']['sammanfattning']['betalningstermin'] ?? 12,
+                'autogiro_clearing' => $session_data['data']['sammanfattning']['autogiro_clearing'] ?? null,
+                'autogiro_account' => $session_data['data']['sammanfattning']['autogiro_account'] ?? null,
+                'chip_number' => $session_data['data']['sammanfattning']['chip_number'] ?? $session_data['data']['hastforsakring-b-9']['chip_number'] ?? '',
 
                 // Tack
-                'completed_products'        => $session_data['data']['tack']['products'] ?? [],
+                'completed_products' => $session_data['data']['tack']['products'] ?? [],
             ];
 
             if (
@@ -779,7 +785,43 @@ class FocusApi
                 $data['compare_insurance'] = $session_data['data']['hastforsakring-b-1']['insurances'][$session_data['data']['hastforsakring-b-2']['insurance']];
             }
         } else {
-            $data = [];
+            $data = [
+                'civic_number' => $session_data['data']['customer']['kund']['persnr'] ?? null,
+                'startdatum' => $session_data['data']['trailerforsakring-sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
+                'email' => $session_data['data']['trailerforsakring-sammanfattning']['email'] ?? $session_data['data']['hastforsakring-a-10']['email'] ?? null,
+                'telefon' => $session_data['data']['trailerforsakring-sammanfattning']['telefon'] ?? $session_data['data']['hastforsakring-a-10']['telefon'] ?? '',
+                'betalningsmetod' => $session_data['data']['trailerforsakring-sammanfattning']['betalningsmetod'] ?? 'faktura',
+                'betalningstermin' => $session_data['data']['trailerforsakring-sammanfattning']['betalningstermin'] ?? 12,
+                'autogiro_clearing' => $session_data['data']['trailerforsakring-sammanfattning']['autogiro_clearing'] ?? null,
+                'autogiro_account' => $session_data['data']['trailerforsakring-sammanfattning']['autogiro_account'] ?? null,
+            ];
+
+            // Get state / Län based on zipcode
+            try {
+                // Format zip, remove whitespaces
+                $zip_code = preg_replace("/\s+/", "", $session_data['data']['customer']['kund']['postnr'] ?? '');
+
+                // Use Papiliteapi to get state based on zip
+                $papilite = new PapiliteApi();
+                $papilite_address = $papilite->get_address_from_zip($zip_code);
+
+                // convert stupid state
+                $focus_state = $this->convert_state_to_focus($papilite_address['state'] ?? '');
+
+                // if we have a state, set it
+                if(isset($focus_state) && !empty($focus_state)){
+                    $data['state'] = $focus_state;
+                } else {
+                    // On error, default state tå Okänt
+                    $data['state'] = 'Okänt';
+                }
+
+            } catch (PapiliteApiException $e) {
+                report($e);
+                // On error, default state to Okänt
+                $data['state'] = 'Okänt';
+            }
+
         }
 
         return $data;
@@ -788,7 +830,6 @@ class FocusApi
     // Build focus fields data
     public function build_focus_fields($moments, $data)
     {
-
         $fields = [];
 
         foreach ($moments as $moment) {
@@ -809,8 +850,8 @@ class FocusApi
                         105 => $data['namn'], // Namn
                         15 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         104 => 'Nej', // Moms
-                        8 => $data['state'] ?? 'Skåne', // Län
-                        //7 => '0', // Rasgrupp
+                        8 => $data['state'] ?? 'Okänt', // Län
+                        // 7 => '0', // Rasgrupp
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[107] = $data['chip_number'];
@@ -829,9 +870,9 @@ class FocusApi
                         109 => $data['namn'], // Namn
                         35 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         139 => 'Nej', // Moms
-                        28 => $data['state'] ?? 'Skåne', // Län
-                        //27 => '0', // Rasgrupp
-                        //120 => '', Färg
+                        28 => $data['state'] ?? 'Okänt', // Län
+                        // 27 => '0', // Rasgrupp
+                        // 120 => '', Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[121] = $data['chip_number'];
@@ -850,9 +891,9 @@ class FocusApi
                         110 => $data['namn'], // Namn
                         45 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         140 => 'Nej', // Moms
-                        38 => $data['state'] ?? 'Skåne', // Län
-                        //43 => '0', // Rasgrupp
-                        //122 => '', Färg
+                        38 => $data['state'] ?? 'Okänt', // Län
+                        // 43 => '0', // Rasgrupp
+                        // 122 => '', Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[123] = $data['chip_number'];
@@ -871,9 +912,9 @@ class FocusApi
                         111 => $data['namn'], // Namn
                         55 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         141 => 'Nej', // Moms
-                        48 => $data['state'] ?? 'Skåne', // Län
-                        //47 => 0, // Rasgrupp
-                        //124 => '', // Färg
+                        48 => $data['state'] ?? 'Okänt', // Län
+                        // 47 => 0, // Rasgrupp
+                        // 124 => '', // Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[125] = $data['chip_number'];
@@ -892,7 +933,7 @@ class FocusApi
                         142 => 'Nej', // Moms
                         361 => 0, // Minimipremie
                         // 68 => '', // Rasgrupp
-                        //126 => '', // Färg
+                        // 126 => '', // Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[127] = $data['chip_number'];
@@ -911,7 +952,7 @@ class FocusApi
                         143 => 'Nej', // Moms
                         362 => 0, // Minimipremie
                         // 79 => '', // Rasgrupp
-                        //128 => '', // Färg
+                        // 128 => '', // Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[129] = $data['chip_number'];
@@ -928,8 +969,8 @@ class FocusApi
                         171 => (empty($data['born']) || $data['born'] == 'Ja' ? 'Nej' : 'Ja'), // Import
                         182 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         147 => 'Nej', // Moms
-                        //84 => '', // Rasgrupp
-                        //136 => '', // Färg
+                        // 84 => '', // Rasgrupp
+                        // 136 => '', // Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[137] = $data['chip_number'];
@@ -948,7 +989,7 @@ class FocusApi
                         145 => 'Nej', // Moms
                         364 => 0, // Minimipremie
                         // 94 => '', // Rasgrupp
-                        //132 => '', // Färg
+                        // 132 => '', // Färg
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
@@ -966,35 +1007,35 @@ class FocusApi
                         180 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         146 => 'Nej', // Moms
                         365 => 0, // Minimipremie
-                        //134 => 'Färg', // Färg
-                        //99 => 'Rasgrupp', // Rasgrupp
+                        // 134 => 'Färg', // Färg
+                        // 99 => 'Rasgrupp', // Rasgrupp
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
                     }
                     break;
-                    /* old Foster o föl
-                case 20:
-                    // Foster o föl
-                    $new_fields = [
-                        162 => $data['breed'], // Ras
-                        164 => $data['age'], // Ålder
-                        165 => $data['fodelsedatum'], // Född
-                        166 => $data['livvarde'], // Försäkringsbelopp
-                        167 => $data['namn'], // Namn
-                        172 => (empty($data['born']) || $data['born'] == 'Ja' ? 'Nej' : 'Ja'), // Import
-                        181 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
-                        170 => 'Nej', // Moms
-                        366 => 0, // Minimipremie
-                        //163 => 'Rasgrupp', // Rasgrupp
-                        //168 => 'Svart', // Färg
-                        //169 => '', // Chip-nummer / ID-nummer"
-                    ];
-                    if(!empty($data['chip_number'])){
-                        $new_fields[169] = $data['chip_number'];
-                    }
-                    break;
-                */
+                /* old Foster o föl
+            case 20:
+                // Foster o föl
+                $new_fields = [
+                    162 => $data['breed'], // Ras
+                    164 => $data['age'], // Ålder
+                    165 => $data['fodelsedatum'], // Född
+                    166 => $data['livvarde'], // Försäkringsbelopp
+                    167 => $data['namn'], // Namn
+                    172 => (empty($data['born']) || $data['born'] == 'Ja' ? 'Nej' : 'Ja'), // Import
+                    181 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
+                    170 => 'Nej', // Moms
+                    366 => 0, // Minimipremie
+                    //163 => 'Rasgrupp', // Rasgrupp
+                    //168 => 'Svart', // Färg
+                    //169 => '', // Chip-nummer / ID-nummer"
+                ];
+                if(!empty($data['chip_number'])){
+                    $new_fields[169] = $data['chip_number'];
+                }
+                break;
+            */
                 case 38:
                     // Nya Foster o föl (DFF)
                     $new_fields = [
@@ -1010,14 +1051,14 @@ class FocusApi
                         447 => $data['livvarde'], // Försäkringsbelopp
                         462 => $data['veterinarvardsbelopp'], // Veterinärvård
                         455 => $data['insurance_type'] // Stoets försäkring
-                        //463 => $data['sjalvrisk'].' %' // Självrisk veterinärvård
+                        // 463 => $data['sjalvrisk'].' %' // Självrisk veterinärvård
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[450] = $data['chip_number'];
                     }
                     break;
 
-                    // Dessa nedan kan enbart användas i kombination med varandra
+                // Dessa nedan kan enbart användas i kombination med varandra
                 case 40:
                     // Safe start Föl (kan endast användas o kombination med Safe start foster)
                     $new_fields = [
@@ -1035,13 +1076,13 @@ class FocusApi
                         509 => $data['insurance_type'], // stoet försäkrad
                         493 => $data['age'], // Ålder
                         530 => 'Nej', // Foster & föl i annat bolag
-                        491 => $data['state'] ?? 'Skåne', // Län
+                        491 => $data['state'] ?? 'Okänt', // Län
                         // Nedan borde inte krävas
-                        //511 => '', // Fölets namn
-                        //492 => '', // kön
-                        //490 => '', // rasgrupp
-                        //512 => '', // Import
-                        //498 => '', // SWB Registrerad
+                        // 511 => '', // Fölets namn
+                        // 492 => '', // kön
+                        // 490 => '', // rasgrupp
+                        // 512 => '', // Import
+                        // 498 => '', // SWB Registrerad
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[501] = $data['chip_number'];
@@ -1065,6 +1106,31 @@ class FocusApi
                     if (!empty($data['chip_number'])) {
                         $new_fields[517] = $data['chip_number'];
                     }
+                    break;
+                case 47:
+                    $vehicle = session()->get('steps.data.vehicle', []);
+                    $customer = session()->get('steps.data.customer', []);
+                    $options = session()->get('steps.data.options', []);
+
+                    if(!isset($customer['kund']['namn'])) {
+                        $customer['kund']['namn'] = $customer['kund']['fornamn'];
+                    }
+
+                    $new_fields = [
+                        652 => $vehicle['regnr'],
+                        653 => $vehicle['make'],
+                        654 => $vehicle['model'],
+                        655 => $vehicle['year'],
+                        656 => $vehicle['total_weight'],
+                        657 => $vehicle['service_weight'],
+                        658 => '',
+                        659 => $options['form'],
+                        660 => $options['safety'],
+                        661 => $options['benefit'],
+                        663 => 1500,
+                        670 => $data['state'],
+                        671 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
+                    ];
                     break;
             }
 
