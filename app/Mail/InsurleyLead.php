@@ -11,18 +11,20 @@ class InsurleyLead extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
-    public $subject;
+    public $file;
+    public $date;
+    public $custom;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $details)
+    public function __construct($file, $date = null)
     {
-        $this->subject = $subject;
-        $this->details = $details;
+        $this->file = $file;
+        $this->date = !empty($date) ? $date : now()->toDateString();
+        $this->custom = !empty($date) ? true : false;
     }
 
     /**
@@ -33,7 +35,8 @@ class InsurleyLead extends Mailable
     public function build()
     {
         return $this
-            ->subject($this->subject)
-            ->view('emails.insurley_lead')
+            ->subject('Leads via Insurley - ' . $this->date)
+            ->markdown('emails.insurley_lead')
+            ->attachFromStorage($this->file);
     }
 }

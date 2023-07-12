@@ -56,5 +56,13 @@ return [
         \App\Steps\Farminsurance\B\B3::class,
         \App\Steps\Farminsurance\Kontakt::class,
         \App\Steps\Farminsurance\KontaktTack::class,
+
+        // Trailerförsäkring
+        \App\Steps\Trailerinsurance\A\A::class,
+        \App\Steps\Trailerinsurance\A\A1::class,
+        \App\Steps\Trailerinsurance\A\A2::class,
+        \App\Steps\Trailerinsurance\Resultat::class,
+        \App\Steps\Trailerinsurance\Sammanfattning::class,
+        \App\Steps\Trailerinsurance\Tack::class,
     ]
 ];
