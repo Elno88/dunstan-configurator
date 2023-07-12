@@ -145,10 +145,7 @@ class Resultat extends StepAbstract
         try {
             $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString());
         } catch (\Exception $exception) {
-            return response()->json([
-                'status' => 0,
-                'error'  => $exception->getMessage(),
-            ]);
+            echo $exception->getMessage();
         }
         dd($data);
 
