@@ -415,6 +415,7 @@ class FocusApi
         ]);
 
         // pre((string) $response->getBody());
+        echo "Xxxx: {$response->getStatusCode()}";
 
         if (!in_array($response->getStatusCode(), [200])) {
             $this->handleError($response);
@@ -700,7 +701,7 @@ class FocusApi
                 'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
-              
+
                 'stable'                    => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
