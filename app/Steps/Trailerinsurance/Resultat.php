@@ -21,7 +21,7 @@ class Resultat extends StepAbstract
     /**
      * Shows the step/page.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      *
      * @return Illuminate\View\View
      */
@@ -31,10 +31,10 @@ class Resultat extends StepAbstract
         $vehicle = $this->get_data('vehicle');
 
         return view('steps.trailerinsurance.resultat', [
-            'safety'  => $options['safety'] ?? 'Normal',
-            'form'    => $options['form'] ?? 'Grund',
+            'safety' => $options['safety'] ?? 'Normal',
+            'form' => $options['form'] ?? 'Grund',
             'benefit' => $options['benefit'] ?? null,
-            'date'    => $options['date'] ?? date('Y-m-d'),
+            'date' => $options['date'] ?? date('Y-m-d'),
             'vehicle' => $vehicle ?? null,
         ]);
     }
@@ -42,21 +42,21 @@ class Resultat extends StepAbstract
     /**
      * Validates the step.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function validateStep(Request $request)
     {
         $this->store_data([
-            'safety'      => $request->get('safety', 'Normal'),
-            'form'        => $request->get('form', 'Grund'),
-            'date'        => $request->get('startdatum', null),
+            'safety' => $request->get('safety', 'Normal'),
+            'form' => $request->get('form', 'Grund'),
+            'date' => $request->get('startdatum', null),
             'termination' => $request->get('uppsagning', null),
         ], 'options');
 
         return response()->json([
-            'status'    => 1,
+            'status' => 1,
             'next_step' => 'trailerforsakring-sammanfattning',
         ]);
     }
@@ -64,9 +64,9 @@ class Resultat extends StepAbstract
     /**
      * Returns price based on user options.
      *
+     * @return \Illuminate\Http\JsonResponse
      * @todo Extract code to classes to avoid abundant code.
      *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function price()
     {
@@ -92,7 +92,7 @@ class Resultat extends StepAbstract
             } catch (\Exception $exception) {
                 return response()->json([
                     'status' => 0,
-                    'error'  => $exception->getMessage(),
+                    'error' => $exception->getMessage(),
                 ]);
             }
 
@@ -101,11 +101,11 @@ class Resultat extends StepAbstract
         }
 
         $this->store_data([
-            'safety'   => $request->get('safety', 'Normal'),
-            'form'     => $request->get('form', 'Grund'),
-            'benefit'  => $this->getBenefitLevel(),
-            'date'     => $request->get('startdatum', null),
-            'state'    => $state ?? 'Okänt',
+            'safety' => $request->get('safety', 'Normal'),
+            'form' => $request->get('form', 'Grund'),
+            'benefit' => $this->getBenefitLevel(),
+            'date' => $request->get('startdatum', null),
+            'state' => $state ?? 'Okänt',
         ], 'options');
 
         if (config('services.focus.live')) {
@@ -147,16 +147,24 @@ class Resultat extends StepAbstract
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }
-        dd($data);
+
+        if (isset($data['data']) && $data['data'] === false) {
+            $data = [
+                "utpris_per_termin" => 0,
+                "utpris" => 0,
+                "netto" => 0,
+                "provision" => 0,
+            ];
+        }
 
         return [
             'price' => number_format($data['utpris'], 0, '.', ' '),
-            'html'  => view('steps.trailerinsurance.resultat.pris', [
-                'price'     => $data['utpris'],
+            'html' => view('steps.trailerinsurance.resultat.pris', [
+                'price' => $data['utpris'],
                 'insurance' => 'Hästrailer',
-                'safety'    => $request->get('safety', 'Normal'),
-                'form'      => Str::title($request->get('form', 'grund')),
-                'benefit'   => $this->getBenefitLevel(),
+                'safety' => $request->get('safety', 'Normal'),
+                'form' => Str::title($request->get('form', 'grund')),
+                'benefit' => $this->getBenefitLevel(),
             ])->render(),
         ];
     }
@@ -164,9 +172,9 @@ class Resultat extends StepAbstract
     /**
      * Returns the textual string representing the benefit level.
      *
+     * @return string
      * @todo Extract code to classes to avoid abundant code.
      *
-     * @return string
      */
     protected function getBenefitLevel()
     {

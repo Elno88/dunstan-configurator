@@ -415,7 +415,6 @@ class FocusApi
         ]);
 
         // pre((string) $response->getBody());
-        echo "Xxxx: {$response->getStatusCode()}";
 
         if (!in_array($response->getStatusCode(), [200])) {
             $this->handleError($response);
