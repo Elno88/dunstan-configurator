@@ -206,7 +206,7 @@ class FocusApi
             'do' => 'dunstan.poang.spara',
             'kund' => $customer_id,
             'poang' => $points,
-            'notering' => 'Webbteckning: '.$horse_name,
+            'notering' => 'Webbteckning: ' . $horse_name,
         ];
 
         $response = $this->client->get('', [
@@ -681,6 +681,7 @@ class FocusApi
                 'civic_number' => $session_data['data']['hastforsakring-a-9']['civic_number'] ?? null,
                 'state' => $session_data['data']['hastforsakring-a-9']['state'] ?? 'Okänt',
 
+
                 // Nya fält för foster o föl (DFF)
                 'stallion_name' => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_name'] ?? null,
                 'seminstation' => $session_data['data']['hastforsakring-a-ff-betackning']['seminstation'] ?? null,
@@ -699,6 +700,8 @@ class FocusApi
                 'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
+              
+                'stable'                    => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
                 'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
@@ -747,6 +750,7 @@ class FocusApi
                 'insurance_type' => $session_data['data']['hastforsakring-b-ff-forsakring']['insurance_type'] ?? null,
 
                 // Resultat
+
                 'veterinarvardsforsakring' => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
                 'veterinarvardsforsakring_label' => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
                 'veterinarvardsbelopp' => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
@@ -758,6 +762,8 @@ class FocusApi
                 'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
+
+                'stable'                    => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
                 'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
@@ -850,8 +856,11 @@ class FocusApi
                         105 => $data['namn'], // Namn
                         15 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         104 => 'Nej', // Moms
-                        8 => $data['state'] ?? 'Okänt', // Län
-                        // 7 => '0', // Rasgrupp
+                        8 => $data['state'] ?? 'Skåne', // Län
+                        //7 => '0', // Rasgrupp
+                        //183 => $data['farg'], // Färg
+                        //548 => $data['stable'], // Uppstallning
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[107] = $data['chip_number'];
@@ -934,6 +943,7 @@ class FocusApi
                         361 => 0, // Minimipremie
                         // 68 => '', // Rasgrupp
                         // 126 => '', // Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[127] = $data['chip_number'];
@@ -1014,6 +1024,7 @@ class FocusApi
                         $new_fields[133] = $data['chip_number'];
                     }
                     break;
+
                 /* old Foster o föl
             case 20:
                 // Foster o föl
@@ -1036,6 +1047,7 @@ class FocusApi
                 }
                 break;
             */
+
                 case 38:
                     // Nya Foster o föl (DFF)
                     $new_fields = [
@@ -1058,7 +1070,7 @@ class FocusApi
                     }
                     break;
 
-                // Dessa nedan kan enbart användas i kombination med varandra
+                    // Dessa nedan kan enbart användas i kombination med varandra
                 case 40:
                     // Safe start Föl (kan endast användas o kombination med Safe start foster)
                     $new_fields = [
@@ -1107,6 +1119,7 @@ class FocusApi
                         $new_fields[517] = $data['chip_number'];
                     }
                     break;
+
                 case 47:
                     $vehicle = session()->get('steps.data.vehicle', []);
                     $customer = session()->get('steps.data.customer', []);
@@ -1147,47 +1160,47 @@ class FocusApi
                 $new_state = 'Blekinge';
                 break;
             case 'Dalarna':
-                $new_state = 'Dalarna';
+                $new_state = 'Dalarnas';
                 break;
             case 'Gävleborg':
-                $new_state = 'Gävleborg';
+                $new_state = 'Gävleborgs';
                 break;
             case 'Gotland':
-                $new_state = 'Gotland';
+                $new_state = 'Gotlands';
                 break;
             case 'Halland':
-                $new_state = 'Halland';
+                $new_state = 'Hallands';
                 break;
             case 'Jönköping':
-                $new_state = 'Jönköping';
+                $new_state = 'Jönköpings';
                 break;
             case 'Kalmar':
-            case 'Kronoberg':
+            case 'Kronobergs':
                 $new_state = 'Kalmar och Kronoberg';
                 break;
             case 'Norrbotten':
-                $new_state = 'Norrbotten';
+                $new_state = 'Norrbottens';
                 break;
             case 'Östergötland':
-                $new_state = 'Östergötland';
+                $new_state = 'Östergötlands';
                 break;
             case 'Skåne':
                 $new_state = 'Skåne';
                 break;
             case 'Södermanland':
-                $new_state = 'Södermanland';
+                $new_state = 'Södermanlands';
                 break;
             case 'Stockholm':
-                $new_state = 'Stockholm';
+                $new_state = 'Stockholms';
                 break;
             case 'Uppsala':
                 $new_state = 'Uppsala';
                 break;
             case 'Värmland':
-                $new_state = 'Värmland';
+                $new_state = 'Värmlands';
                 break;
             case 'Västerbotten':
-                $new_state = 'Västerbotten';
+                $new_state = 'Västerbottens';
                 break;
             case 'Västernorrland':
             case 'Jämtland':
@@ -1198,7 +1211,7 @@ class FocusApi
                 $new_state = 'Västmanlands och Örebro län';
                 break;
             case 'Västra Götaland':
-                $new_state = 'Västra Götaland';
+                $new_state = 'Västra Götalands';
                 break;
             default:
                 $new_state = null;

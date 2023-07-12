@@ -17,26 +17,41 @@ class A4 extends StepAbstract
 
     public function view(Request $request)
     {
-
         // Fetch session data
         $name = $this->get_data($this->name . '.namn');
+        $farg = $this->get_data($this->name . '.farg');
+
         $horse_usage = $this->get_data('hastforsakring-a-1.horse_usage');
 
+        $colors = [
+            'Brun',
+            'Fux',
+            'Skimmel',
+            'Svart',
+            'Black',
+            'Skäck',
+            'Isabell',
+            'Tigrerad',
+        ];
+
         return view('steps.horseinsurance.a.a4', [
-            'name' => $name,
+            'farg'        => $farg,
+            'colors'      => $colors,
+            'name'        => $name,
             'horse_usage' => $horse_usage
         ]);
     }
 
     public function validateStep(Request $request)
     {
-
         $input = [
-            'namn' => $request->get('namn')
+            'namn' => $request->get('namn'),
+            'farg' => $request->get('farg'),
         ];
 
         $rules = [
-            'namn'        => 'required'
+            'namn' => 'required',
+            'farg' => 'required',
         ];
 
         $validator = Validator::make($input, $rules);
