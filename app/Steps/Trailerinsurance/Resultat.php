@@ -90,11 +90,16 @@ class Resultat extends StepAbstract
                     $zip = preg_replace('~\D~', '', $customer['kund']['postnr'])
                 );
             } catch (\Exception $exception) {
-                echo $exception->getMessage();
+                return response()->json([
+                    'status' => 0,
+                    'error'  => $exception->getMessage(),
+                ]);
             }
 
             $state = !empty($address['state']) ? $address['state'] : null;
             $state = (new FocusApi)->convert_state_to_focus($state);
+
+            echo "xxx: $state \n";
         }
 
         $this->store_data([
@@ -104,6 +109,8 @@ class Resultat extends StepAbstract
             'date'     => $request->get('startdatum', null),
             'state'    => $state ?? 'Okänt',
         ], 'options');
+
+        echo "222: $state ";
 
         if (config('services.focus.live')) {
             $fields = [
@@ -140,7 +147,7 @@ class Resultat extends StepAbstract
         }
 
         try {
-            $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString(), true);
+            $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString());
         } catch (\Exception $exception) {
             return response()->json([
                 'status' => 0,
