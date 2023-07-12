@@ -16,7 +16,7 @@
             <header class="resultat-widget-header">
                 <div class="inner">
                     <p style="margin-bottom:6px;">Ditt pris<p>
-                    <p class="resultat-price">{{ number_format($price, 0, '.', ' ') }} kr/mån</p>
+                    <p class="resultat-price">{{ number_format($price, 0, '.', ' ') }} kr/år</p>
                 </div>
             </header>
         </div>

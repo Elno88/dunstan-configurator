@@ -37,9 +37,10 @@ class A extends StepAbstract
      */
     public function validateStep(Request $request)
     {
+        $regnr = Str::upper(str_replace(" ", "", $request->get('regnr')));
         $validator = Validator::make(
             [
-                'regnr' => Str::upper($request->get('regnr')),
+                'regnr' => $regnr,
             ],
             [
                 'regnr' => [
@@ -58,7 +59,7 @@ class A extends StepAbstract
             ]);
         }
 
-        $vehicle = (new Biluppgifter)->findByRegNo($request->get('regnr'));
+        $vehicle = (new Biluppgifter)->findByRegNo($regnr);
 
         if (empty($vehicle)) {
             return response()->json([

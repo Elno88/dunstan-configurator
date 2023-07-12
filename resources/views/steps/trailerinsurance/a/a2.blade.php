@@ -10,10 +10,19 @@
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
                 <div class="ssn-input-wrapper">
-                    <input id="ssn-input" type="number" name="ssn" value="{{ old('ssn') }}" placeholder="ÅÅÅÅMMDD-XXXX" maxlength="11">
+                    <input id="ssn-input" type="tel" name="ssn" value="{{ old('ssn') }}" placeholder="ÅÅÅÅMMDD-XXXX" maxlength="11">
                 </div>
             </div>
+        </div>
+        <div class="pnr-condition">
+            <p>Genom att fortsätta godkänner du våra användarvillkor samt att dina personuppgifter hanteras och skyddas enligt vår personuppgiftspolicy.</p>
         </div>
         <button type="button" class="btn1 btn-next">Nästa</button>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input[name=ssn]').mask('00000000-0000',{placeholder:""});
+    });
+</script>

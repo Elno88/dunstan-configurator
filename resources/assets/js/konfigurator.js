@@ -71,7 +71,7 @@ function Konfigurator(config){
 
     this.add_step_to_body = function add_step_to_body(step)
     {
-        console.log('running body check');
+        // console.log('running body check');
         $('body').removeClass().addClass(step);
     }
 
@@ -202,6 +202,11 @@ function Konfigurator(config){
         $('.btn-reset').on('click', function(e){
             e.preventDefault();
             _this.reset_steps();
+        });
+
+        _this.$form.on('click', '.box-button', function(e){
+            e.preventDefault();
+            $('#' + $(this).data('id')).attr('checked', true);
         });
 
         // On click trigger submit

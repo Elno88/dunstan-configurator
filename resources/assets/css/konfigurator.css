@@ -3446,6 +3446,77 @@ body.sammanfattning #resultat-footer .row-4 {
     font-size: 20px;
 }
 
+.row {
+    width: 100%;
+    margin-left: -10px;
+    margin-right: -10px;
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .col-md-4 {
+        width: 33.33333333%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@media only screen and (min-width: 640px) {
+    .hidden-md {
+        display: none;
+    }
+    .col-md-6 {
+        width: 50%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .hidden-xs {
+        display: none;
+    }
+    .col-sm-12 {
+        width: 100%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+    }
+}
+.box {
+    text-align: center;
+    display: block;
+    position: relative;
+    transition: all 300ms ease;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 40px 0 20px 0;
+    color: var(--color-green-1);
+    border-radius: 16px;
+}
+
+@media only screen and (max-width: 991px) {
+    .box {
+        margin-bottom: 20px;
+    }
+}
+
+.box img {
+    width: 125px;
+    height: 125px;
+}
+.box h3 {
+    margin: 10px 0;
+}
+.box p {
+    margin: 10px 0 30px 0;
+}
+
 #regnr-input {
     background: url("../img/lp.png") no-repeat left center !important;
     background-size: 40px !important;
@@ -3456,4 +3527,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.text-center {
+    text-align: center;
 }
