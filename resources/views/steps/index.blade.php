@@ -5,8 +5,10 @@
             <h1>Få ett prisförslag</h1>
         </div>
 
+{{--
         <div class="hidden-mdx">hidden mobile</div>
         <div class="hidden-xs">hidden desktop</div>
+--}}
 
         <div class="row">
             <div class="col-md-4 col-sm-12">
