@@ -8,10 +8,11 @@
                 Börja med att ange trailerns registrerings&shy;nummer i rutan nedan så hämtar vi uppgifter om den.</p>
             </div>
         </div>
-        <div class="bubble bubble-type-d center">
+
+        <div class="bubble bubble-type-e center">
             <div class="bubble-contents">
                 <div class="regnr-input-wrapper">
-                    <input id="regnr-input" type="text" name="regnr" value="{{ old('regnr') }}" placeholder="ABC123" maxlength="6">
+                    <input id="regnr-input" type="text" name="regnr" value="{{ old('regnr') }}" placeholder="ABC 123" maxlength="6">
                 </div>
             </div>
         </div>

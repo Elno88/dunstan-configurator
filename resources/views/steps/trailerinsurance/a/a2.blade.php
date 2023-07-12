@@ -3,9 +3,8 @@
         <div class="bubble bubble-type-a left">
             <div class="bubble-contents">
               <i class="bubble-help btn-sidebar" data-content="trailerforsakring-a-2">?</i>
-                <p><strong>Lorem ipsum!</strong><br/>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt.</p>
+                <p><strong>Toppen!</strong><br/>
+                    Ange ditt personnummer i fältet nedan.</p>
             </div>
         </div>
         <div class="bubble bubble-type-d center">
