@@ -120,6 +120,10 @@ function Konfigurator(config){
                 custom_message = message[0];
                 show_custom_message = true;
             }
+            if(id === 'regnr'){
+                custom_message = message[0];
+                show_custom_message = true;
+            }
         });
 
         if(show_custom_message){

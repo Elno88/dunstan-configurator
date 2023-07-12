@@ -68,6 +68,14 @@ class A extends StepAbstract
             ]);
         }
 
+        if($vehicle['basic']['data']['type'] !== 'SLÄP') {
+            return response()->json([
+                'status'  => 0,
+                'display' => 1,
+                'errors'  => ['regnr' => ["Vi lyckades inte hitta din trailer. Vänligen kontrollera ditt registreringsnummer. Har du fortsatta problem , kontakta kundtjänst via <a href='mailto:info@dunstan.se' style='color: black'>e-post</a> eller på <a href='tel:+46101798400' style='color: black'>010-179 84 00</a>"]]
+            ]);
+        }
+
         $data = [
             'regnr'          => $vehicle['attributes']['regno'] ?? null,
             'make'           => $vehicle['basic']['data']['make'] ?? null,
