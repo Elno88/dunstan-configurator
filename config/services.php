@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'biluppgifter' => [
+        'url' => env('BILUPPGIFTER_URL', 'https://api.biluppgifter.se/api/v1/'),
+        'token' => env('BILUPPGIFTER_TOKEN', null),
+        'timeout' => env('BILUPPGIFTER_TIMOUT', 5),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -29,6 +35,7 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
     'focus' => [
         'live'      => env('FOCUS_API_LIVE', false),
         'jwt_live'  => env('FOCUS_API_JWT_LIVE', ''),
@@ -41,16 +48,19 @@ return [
         'anstalld_test'  => env('FOCUS_API_ANSTALLD_TEST', ''), // förmedlare
         'bankid_status_force_retries' => 0
     ],
+
     'woocommerce' => [
         'create_user'   => false,
         'live'          => env('WOOCOMMERCE_API_LIVE', false),
         'jwt_live'      => env('WOOCOMMERCE_API_JWT_LIVE', ''),
         'jwt_test'      => env('WOOCOMMERCE_API_JWT_TEST', ''),
     ],
+
     'dunstan' => [
         'email_test' => env('DUNSTAN_EMAIL_TEST', 'mikael.nilsson@convertor.se'),
         'email_live' => env('DUNSTAN_EMAIL_LIVE', 'support@dunstan.se'),
     ],
+
     'insurley' => [
         'url'                   => env('INSURLEY_URL', 'https://blocks.insurely.com/'),
         'live'                  => env('INSURLEY_LIVE', false),
@@ -63,11 +73,13 @@ return [
             'days'      => env('INSURLEY_EMAIL_EXPORT_DAYS', null),
         ]
     ],
+
     'google_maps' => [
         'live'        => env('GOOGLE_MAPS_LIVE', false),
         'secret_live' => env('GOOGLE_MAPS_SECRET_LIVE', ''),
         'secret_test' => env('GOOGLE_MAPS_SECRET_TEST', ''),
     ],
+
     'mailchimp' => [
         'live'        => env('MAILCHIMP_LIVE', false),
         'dc_live' => env('MAILCHIMP_DC_LIVE', 'us5'),
@@ -77,6 +89,7 @@ return [
         'list_live' => env('MAILCHIMP_LIST_LIVE', ''),
         'list_test' => env('MAILCHIMP_LIST_TEST', ''),
     ],
+
     'papilite' => [
         'live'        => env('PAPILITE_LIVE', false),
         'key_live' => env('PAPILITE_KEY_LIVE', ''),

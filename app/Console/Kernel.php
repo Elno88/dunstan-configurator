@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // Schedule insurley log to be generated
         $schedule
-            ->command('insurley-log:export')
-            ->dailyAt('06:00');
+            ->command('lead:export')
+            ->dailyAt('04:00');
     }
 
     /**
@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

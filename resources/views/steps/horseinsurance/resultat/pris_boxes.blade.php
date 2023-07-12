@@ -59,5 +59,4 @@
         </h4>
     </div>
     @endif
-
 </div>

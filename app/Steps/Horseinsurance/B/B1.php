@@ -3,12 +3,11 @@
 namespace App\Steps\Horseinsurance\B;
 
 use App\Http\Controllers\Controller;
-use App\Steps\StepInterface;
+use App\Services\Lead\InsurleyLead;
 use App\Steps\StepAbstract;
+use App\Steps\StepInterface;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Log;
-
 use Validator;
 
 class B1 extends StepAbstract
@@ -63,8 +62,13 @@ class B1 extends StepAbstract
         // Store data
         $this->store_data($input);
 
-        // Temp log data
-        Log::info('Insurley data.', $input['insurances'] ?? []);
+        // Store lead
+        try {
+            (new InsurleyLead)->process($input['insurances'] ?? []);
+        } catch (\Exception $e) {
+            Log::info('Failed to store this lead:');
+            Log::info($input['insurances']);
+        }
 
         $next_step = 'hastforsakring-b-2';
 

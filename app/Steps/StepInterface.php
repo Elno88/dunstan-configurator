@@ -1,8 +1,11 @@
-<?php namespace App\Steps;
+<?php
+
+namespace App\Steps;
 
 use Illuminate\Http\Request;
 
-interface StepInterface {
+interface StepInterface
+{
     public function view(Request $request);
     public function validateStep(Request $request);
     public function store_data($data);
