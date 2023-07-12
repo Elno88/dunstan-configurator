@@ -98,8 +98,6 @@ class Resultat extends StepAbstract
 
             $state = !empty($address['state']) ? $address['state'] : null;
             $state = (new FocusApi)->convert_state_to_focus($state);
-
-            echo "xxx: $state \n";
         }
 
         $this->store_data([
@@ -109,8 +107,6 @@ class Resultat extends StepAbstract
             'date'     => $request->get('startdatum', null),
             'state'    => $state ?? 'Okänt',
         ], 'options');
-
-        echo "222: $state ";
 
         if (config('services.focus.live')) {
             $fields = [
@@ -154,6 +150,7 @@ class Resultat extends StepAbstract
                 'error'  => $exception->getMessage(),
             ]);
         }
+        dd($data);
 
         return [
             'price' => number_format($data['utpris'], 0, '.', ' '),
