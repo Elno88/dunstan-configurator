@@ -85,9 +85,13 @@ class Resultat extends StepAbstract
         $vehicle = $this->get_data('vehicle');
 
         if (!empty($customer) && !empty($customer['kund'])) {
-            $address = (new PapiliteApi)->get_address_from_zip(
-                $zip = preg_replace('~\D~', '', $customer['kund']['postnr'])
-            );
+            try {
+                $address = (new PapiliteApi)->get_address_from_zip(
+                    $zip = preg_replace('~\D~', '', $customer['kund']['postnr'])
+                );
+            } catch (\Exception $exception) {
+                echo $exception->getMessage();
+            }
 
             $state = !empty($address['state']) ? $address['state'] : null;
             $state = (new FocusApi)->convert_state_to_focus($state);
@@ -135,7 +139,14 @@ class Resultat extends StepAbstract
             ];
         }
 
-        $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString(), true);
+        try {
+            $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString(), true);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => 0,
+                'error'  => $exception->getMessage(),
+            ]);
+        }
 
         return [
             'price' => number_format($data['utpris'], 0, '.', ' '),
