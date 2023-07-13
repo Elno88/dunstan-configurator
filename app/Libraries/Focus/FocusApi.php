@@ -51,7 +51,7 @@ class FocusApi
             'headers' => [
                 'Accept' => 'application/json'
             ],
-            'http_errors' => true
+            'http_errors' => false
         ]);
 
         // Get jwt and cache
@@ -1128,7 +1128,9 @@ class FocusApi
                     $options = session()->get('steps.data.options', []);
 
                     if(!isset($customer['kund']['namn'])) {
-                        $customer['kund']['namn'] = $customer['kund']['fornamn'];
+                        $name = $customer['kund']['fornamn'].' '.$customer['kund']['efternamn'];
+                    } else {
+                        $name = $customer['kund']['namn'];
                     }
 
                     $new_fields = [
@@ -1144,7 +1146,7 @@ class FocusApi
                         638 => $options['benefit'],
                         641 => 1500,
                         642 => $data['state'],
-                        643 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
+                        643 => $name,
                     ];
 
                     break;
@@ -1155,41 +1157,27 @@ class FocusApi
                     $options = session()->get('steps.data.options', []);
 
                     if(!isset($customer['kund']['namn'])) {
-                        $customer['kund']['namn'] = $customer['kund']['fornamn'];
+                        $name = $customer['kund']['fornamn'].' '.$customer['kund']['efternamn'];
+                    } else {
+                        $name = $customer['kund']['namn'];
                     }
-                    if (config('services.focus.live')) {
-                        $new_fields = [
-                            630 => $vehicle['regnr'],
-                            631 => $vehicle['make'],
-                            632 => $vehicle['model'],
-                            633 => $vehicle['year'],
-                            634 => $vehicle['total_weight'],
-                            635 => $vehicle['service_weight'],
-                            636 => '',
-                            640 => $options['form'],
-                            639 => $options['safety'],
-                            638 => $options['benefit'],
-                            641 => 1500,
-                            642 => $data['state'],
-                            643 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
-                        ];
-                    } else { // test
-                        $new_fields = [
-                            652 => $vehicle['regnr'],
-                            653 => $vehicle['make'],
-                            654 => $vehicle['model'],
-                            655 => $vehicle['year'],
-                            656 => $vehicle['total_weight'],
-                            657 => $vehicle['service_weight'],
-                            658 => '',
-                            659 => $options['form'],
-                            660 => $options['safety'],
-                            661 => $options['benefit'],
-                            663 => 1500,
-                            670 => $data['state'],
-                            671 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
-                        ];
-                    }
+
+                    $new_fields = [
+                        652 => $vehicle['regnr'],
+                        653 => $vehicle['make'],
+                        654 => $vehicle['model'],
+                        655 => $vehicle['year'],
+                        656 => $vehicle['total_weight'],
+                        657 => $vehicle['service_weight'],
+                        658 => '',
+                        659 => $options['form'],
+                        660 => $options['safety'],
+                        661 => $options['benefit'],
+                        663 => 1500,
+                        670 => $data['state'],
+                        671 => $name,
+                    ];
+
                     break;
             }
 
