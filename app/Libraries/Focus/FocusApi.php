@@ -46,9 +46,6 @@ class FocusApi
         $this->username = config('services.focus.live') ? config('services.focus.username_live') : config('services.focus.username_test');
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
 
-        $this->base_uri = self::LIVE_SERVER;
-        $this->anstalld = 3;
-
         $this->client = new Client([
             'base_uri' => $this->base_uri,
             'headers' => [
@@ -77,6 +74,9 @@ class FocusApi
         $this->jwt = Cache::remember($this->jwt_cache, $this->jwt_cache_lifetime, function () {
             return $this->login($this->username, $this->password)['jwt'] ?? '';
         });
+
+        echo "base_uri: " . $this->base_uri . " - " . $this->username . " - " . $this->password . " - " . $this->anstalld . " - " . $this->jwt . "\n";
+
     }
 
     // Get jwt
