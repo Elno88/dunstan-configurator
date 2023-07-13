@@ -193,6 +193,25 @@
         <p>Vi behöver dina personuppgifter för att kunna ge ett prisförslag anpassat efter dig och dina behov. Priset kan till exempel skilja sig beroende på vart i landet du bor.</p>
     </div>
 
+    <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-1">
+        <h3>Vad innebär försäkringsform?</h3>
+        <p>Det innebär att det finns olika typer av försäkringar. Hos oss kan du välja mellan Grund och Premium.</p>
+
+        <strong>Premiumförsäkring</strong>
+        <p>Premiumförsäkring ger ett omfattande skydd och ersätter till exempel plåt- och lackskador, skadegörelse och skador inuti hästtrailern som orsakats av hästen.</p>
+
+        <strong>Grundförsäkring</strong>
+        <p>Ersätter vissa skador på din hästtrailer. Det kan handla om skador som orsakas av bland annat stöld eller brand.</p>
+
+        <p>För komplett information se <a href="https://dunstan.se/wp-content/uploads/villkor/website/dunstan_villkor-hasttrailer_2023-07-01.pdf" target="_blank">fullständigt villkor.</a></p>
+
+    </div>
+    <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-2">
+        <h3>Varför frågar vi om säkerhetsbommar?</h3>
+        Om din hästtrailer har säkerhetsbommar så blir du erbjuden ett längre pris på din försäkring.
+    </div>
+    <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-3"></div>
+
     <footer class="app-sidebar-footer">
         <img src="{{ asset('img/girl-help.png') }}" alt="Hjälp">
         <h3>Har du fler frågor?</h3>
