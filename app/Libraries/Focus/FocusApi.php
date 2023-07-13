@@ -1232,7 +1232,7 @@ class FocusApi
                 $message = $response->getBody();
                 break;
             default:
-                $message = 'Unknown error.';
+                $message = 'Unknown error. Code: ' . $response->getStatusCode();
         }
 
         throw new FocusApiException($message, $response->getStatusCode());

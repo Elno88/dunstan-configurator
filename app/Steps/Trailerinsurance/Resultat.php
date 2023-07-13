@@ -143,10 +143,10 @@ class Resultat extends StepAbstract
         }
 
         try {
-            $data = (new FocusApi)->get_pris('47', $fields, $ssn, $payment, null, $startDate->addMonth(1)->toDateString());
+            $data = (new FocusApi)->get_pris('47', $fields, $ssn, $payment, null, $startDate->toDateString());
             // echo "data = (new FocusApi)->get_pris('47', fields, {$ssn}, {$payment}, null, {$startDate->toDateString()});";
         } catch (\Exception $exception) {
-            echo $exception->getMessage();
+            echo "result exception: " . $exception->getCode() . " - " . $exception->getMessage();
         }
 
         if (isset($data['data']) && $data['data'] === false) {
