@@ -41,7 +41,7 @@ class FocusApi
      */
     function __construct()
     {
-        $this->base_uri = config('services.focus.live') ? self::LIVE_SERVER : self::TEST_SERVER;
+        $this->base_uri = config('services.focus.live') ? self::TEST_SERVER : self::TEST_SERVER;
         $this->anstalld = config('services.focus.live') ? config('services.focus.anstalld_live') : config('services.focus.anstalld_test');
         $this->username = config('services.focus.live') ? config('services.focus.username_live') : config('services.focus.username_test');
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
