@@ -5,10 +5,10 @@
                 <div class="body-price body-price-liv selected">
                     <p class="resultat-widget-list-label">Försäkring:</p>
                     <h4 class="resultat-widget-list-value first">{{ $insurance }}</h4>
-                    <p class="resultat-widget-list-label">Säkerhetsanordningar:</p>
-                    <h4 class="resultat-widget-list-value">{{ $safety }}</h4>
                     <p class="resultat-widget-list-label">Försäkringsform:</p>
                     <h4 class="resultat-widget-list-value">{{ $form }}</h4>
+                    <p class="resultat-widget-list-label">Säkerhetsanordningar:</p>
+                    <h4 class="resultat-widget-list-value">{{ $safety }}</h4>
                     <p class="resultat-widget-list-label">Förmånsnivå:</p>
                     <h4 class="resultat-widget-list-value">{{ $benefit }}</h4>
                 </div>

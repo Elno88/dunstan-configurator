@@ -8,7 +8,7 @@
             <div class="frame-resultat-inputs">
                 <h2>Välj och anpassa din försäkring</h2>
 
-                <h4>Försäkringsform <i class="bubble-help btn-sidebar" data-content="trailerforsakring">?</i></h4>
+                <h4>Försäkringsform <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-1">?</i></h4>
                 <p>
                     Välj omfattning på försäkringen. Se i listan nedan vad som ingår.
                 </p>
@@ -110,22 +110,22 @@
                     </div>
                 </div>
 
-                <h4>Är hästtrailern försedd med säkerhetsbommar? <i class="bubble-help btn-sidebar" data-content="sakerhetsanordningar">?</i></h4>
+                <h4>Är hästtrailern försedd med säkerhetsbommar? <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-2">?</i></h4>
                 <p>&nbsp;</p>
                 <ul class="resultat-slide-select safety-slide-select options-2">
                     <li class="{{ $safety === 'Normal' || empty($safety) ? 'selected' : null }}">
                         <input id="safety-1" class="filter" type="radio" name="safety" value="Normal" {{ $safety === 'Normal' || empty($safety) ? 'checked' : null }}>
-                        <label for="safety-1">Normal</label>
+                        <label for="safety-1">Nej</label>
                     </li>
                     <li class="{{ $safety === 'Säkerhetsbommar' ? 'selected' : null }}">
                         <input id="safety-2" class="filter" type="radio" name="safety" value="Säkerhetsbommar" {{ $safety === 'Säkerhetsbommar' ? 'checked' : null }}>
-                        <label for="safety-2">Säkerhetsbommar</label>
+                        <label for="safety-2">Ja</label>
                     </li>
                     <div class="marker"></div>
                 </ul>
 
                 <div class="resultat-formansniva" style="display: block;">
-                    <h4>Förmånsninvå <i class="bubble-help btn-sidebar" data-content="formansniva">?</i></h4>
+                    <h4>Förmånsninvå <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-3">?</i></h4>
                     <p>Eftersom du har både häst och gårdsförsäkring hos oss ger vi dig ett ännu bättre pris.</p>
                 </div>
                 <div class="resultat-bottom-wrapper">
