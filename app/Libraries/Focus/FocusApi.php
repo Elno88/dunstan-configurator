@@ -46,8 +46,6 @@ class FocusApi
         $this->username = config('services.focus.live') ? config('services.focus.username_live') : config('services.focus.username_test');
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
 
-        // $this->base_uri = self::LIVE_SERVER;
-
         $this->client = new Client([
             'base_uri' => $this->base_uri,
             'headers' => [
@@ -1124,7 +1122,7 @@ class FocusApi
                     }
                     break;
 
-                case 47:
+                case 45:
                     $vehicle = session()->get('steps.data.vehicle', []);
                     $customer = session()->get('steps.data.customer', []);
                     $options = session()->get('steps.data.options', []);
@@ -1134,20 +1132,64 @@ class FocusApi
                     }
 
                     $new_fields = [
-                        652 => $vehicle['regnr'],
-                        653 => $vehicle['make'],
-                        654 => $vehicle['model'],
-                        655 => $vehicle['year'],
-                        656 => $vehicle['total_weight'],
-                        657 => $vehicle['service_weight'],
-                        658 => '',
-                        659 => $options['form'],
-                        660 => $options['safety'],
-                        661 => $options['benefit'],
-                        663 => 1500,
-                        670 => $data['state'],
-                        671 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
+                        630 => $vehicle['regnr'],
+                        631 => $vehicle['make'],
+                        632 => $vehicle['model'],
+                        633 => $vehicle['year'],
+                        634 => $vehicle['total_weight'],
+                        635 => $vehicle['service_weight'],
+                        636 => '',
+                        640 => $options['form'],
+                        639 => $options['safety'],
+                        638 => $options['benefit'],
+                        641 => 1500,
+                        642 => $data['state'],
+                        643 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
                     ];
+
+                    break;
+
+                case 47:
+                    $vehicle = session()->get('steps.data.vehicle', []);
+                    $customer = session()->get('steps.data.customer', []);
+                    $options = session()->get('steps.data.options', []);
+
+                    if(!isset($customer['kund']['namn'])) {
+                        $customer['kund']['namn'] = $customer['kund']['fornamn'];
+                    }
+                    if (config('services.focus.live')) {
+                        $new_fields = [
+                            630 => $vehicle['regnr'],
+                            631 => $vehicle['make'],
+                            632 => $vehicle['model'],
+                            633 => $vehicle['year'],
+                            634 => $vehicle['total_weight'],
+                            635 => $vehicle['service_weight'],
+                            636 => '',
+                            640 => $options['form'],
+                            639 => $options['safety'],
+                            638 => $options['benefit'],
+                            641 => 1500,
+                            642 => $data['state'],
+                            643 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
+                        ];
+                    } else { // test
+                        $new_fields = [
+                            652 => $vehicle['regnr'],
+                            653 => $vehicle['make'],
+                            654 => $vehicle['model'],
+                            655 => $vehicle['year'],
+                            656 => $vehicle['total_weight'],
+                            657 => $vehicle['service_weight'],
+                            658 => '',
+                            659 => $options['form'],
+                            660 => $options['safety'],
+                            661 => $options['benefit'],
+                            663 => 1500,
+                            670 => $data['state'],
+                            671 => $customer['kund']['namn'].' '.$customer['kund']['efternamn'],
+                        ];
+                    }
                     break;
             }
 

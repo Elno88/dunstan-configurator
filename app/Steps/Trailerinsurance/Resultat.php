@@ -142,7 +142,11 @@ class Resultat extends StepAbstract
             ];
         }
 
-        $data = (new FocusApi)->get_pris('47', $fields, $ssn, $payment, null, $startDate->toDateString());
+        if (config('services.focus.live')) {
+            $data = (new FocusApi)->get_pris(45, $fields, $ssn, $payment, null, $startDate->toDateString());
+        } else {
+            $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->toDateString());
+        }
         // echo "data = (new FocusApi)->get_pris('47', fields, {$ssn}, {$payment}, null, {$startDate->toDateString()});";
 
         if (isset($data['data']) && $data['data'] === false) {
