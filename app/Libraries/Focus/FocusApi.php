@@ -41,19 +41,19 @@ class FocusApi
      */
     function __construct()
     {
-        $this->base_uri = config('services.focus.live') ? str_replace(" ", "", self::LIVE_SERVER) : str_replace(" ", "", self::TEST_SERVER);
+        $this->base_uri = config('services.focus.live') ? self::LIVE_SERVER : self::TEST_SERVER;
         $this->anstalld = config('services.focus.live') ? config('services.focus.anstalld_live') : config('services.focus.anstalld_test');
         $this->username = config('services.focus.live') ? config('services.focus.username_live') : config('services.focus.username_test');
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
 
-        $this->base_uri = str_replace(" ", "", self::LIVE_SERVER);
+        $this->base_uri = self::TEST_SERVER;
 
         $this->client = new Client([
             'base_uri' => $this->base_uri,
             'headers' => [
                 'Accept' => 'application/json'
             ],
-            'http_errors' => false
+            'http_errors' => true
         ]);
 
         // Get jwt and cache
@@ -400,6 +400,8 @@ class FocusApi
             'falt' => $fields,
             'betalningstermin' => $paymentterm_months
         ];
+
+        echo json_encode($query);
 
         if (!is_null($civic_number)) {
             $query['persnr'] = $civic_number;
