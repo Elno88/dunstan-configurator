@@ -46,7 +46,7 @@ class FocusApi
         $this->username = config('services.focus.live') ? config('services.focus.username_live') : config('services.focus.username_test');
         $this->password = config('services.focus.live') ? config('services.focus.password_live') : config('services.focus.password_test');
 
-        $this->base_uri = SELF::TEST_SERVER;
+        $this->base_uri = self::TEST_SERVER;
         $this->anstalld = 3;
 
         $this->client = new Client([
