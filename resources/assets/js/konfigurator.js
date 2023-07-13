@@ -331,4 +331,11 @@ $(document).ready(function(){
         $('.app-sidebar-content').fadeOut(300);
     });
 
+    $('#app').click(function(e) {
+      if($('body').hasClass('sidebar-open')){
+        $('body').removeClass('sidebar-open');
+        $('.app-sidebar-content').fadeOut(300);
+      }
+    });
+
 });

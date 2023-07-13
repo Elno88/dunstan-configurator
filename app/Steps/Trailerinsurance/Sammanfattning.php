@@ -7,7 +7,7 @@ use App\Libraries\Focus\FocusApiException;
 use App\Libraries\Mailchimp\MailchimpApi;
 use App\Libraries\Woocommerce\WoocommerceApi;
 use App\Libraries\Woocommerce\WoocommerceApiException;
-use App\Mail\Booking as BookingMail;
+use App\Mail\Trailer as TrailerMail;
 use App\Steps\StepAbstract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -546,8 +546,8 @@ class Sammanfattning extends StepAbstract
             }
 
             // Dunstan
-            Mail::to($send_email_to)->send(new BookingMail(
-                'Nytecknad försäkring via web',
+            Mail::to($send_email_to)->send(new TrailerMail(
+                'Nytecknad trailerförsäkring via web',
                 [
                     'kundnr' => $focus_customer['kundnr'] ?? '',
                     'fornamn' => $focus_customer['fornamn'] ?? '',

@@ -56,14 +56,22 @@ class A2 extends StepAbstract
         try {
             $customer = (new FocusApi)->get_customer($ssn);
         } catch (FocusApiException $e) {
-            try {
-                $new_customer = (new FocusApi())->get_address($ssn);
-                $customer['kund'] = $new_customer;
-                $customer['kund']['namn'] = $new_customer['fornamn'] ?? '';
-                $customer['kund']['typ'] = 'person';
+            if($e->getCode() === 400) {
+                return response()->json([
+                    'status'  => 0,
+                    'display' => 1,
+                    'errors'  => ['regnr' => ['Vi kunde inte hitta ditt personnummer. Vänligen kontrollera siffrorna och försök igen!']]
+                ]);
+            } else {
+                try {
+                    $new_customer = (new FocusApi())->get_address($ssn);
+                    $customer['kund'] = $new_customer;
+                    $customer['kund']['namn'] = $new_customer['fornamn'] ?? '';
+                    $customer['kund']['typ'] = 'person';
 
-            } catch (FocusApiException $e) {
-                $customer = null;
+                } catch (FocusApiException $e) {
+                    $customer = null;
+                }
             }
         }
 

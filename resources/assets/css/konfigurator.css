@@ -3459,8 +3459,8 @@ body.sammanfattning #resultat-footer .row-4 {
         float: left;
         position: relative;
         min-height: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 @media only screen and (min-width: 640px) {
@@ -3472,8 +3472,8 @@ body.sammanfattning #resultat-footer .row-4 {
         float: left;
         position: relative;
         min-height: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -3498,6 +3498,8 @@ body.sammanfattning #resultat-footer .row-4 {
     padding: 40px 0 20px 0;
     color: var(--color-green-1);
     border-radius: 16px;
+    width: 280px;
+    height: 350px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -3507,14 +3509,22 @@ body.sammanfattning #resultat-footer .row-4 {
 }
 
 .box img {
-    width: 125px;
-    height: 125px;
+    width: 75px;
+    height: 75px;
 }
-.box h3 {
-    margin: 10px 0;
+.box h4 {
+    font-size: 18px;
+    margin: 40px 0 10px 0;
 }
 .box p {
-    margin: 10px 0 30px 0;
+    margin: 0 auto;
+    display: table-cell;
+    height: 20px;
+    width: 280px;
+    vertical-align: middle;
+}
+.box .box-button {
+    margin-top: 50px;
 }
 
 #regnr-input {
