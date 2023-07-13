@@ -84,6 +84,8 @@ class Resultat extends StepAbstract
         $customer = $this->get_data('customer');
         $vehicle = $this->get_data('vehicle');
 
+        $benefit = $this->getBenefitLevel();
+
         if (!empty($customer) && !empty($customer['kund'])) {
             try {
                 $address = (new PapiliteApi)->get_address_from_zip(
@@ -100,7 +102,7 @@ class Resultat extends StepAbstract
         $this->store_data([
             'safety' => $request->get('safety', 'Normal'),
             'form' => $request->get('form', 'Grund'),
-            'benefit' => $this->getBenefitLevel(),
+            'benefit' => $benefit,
             'date' => $request->get('startdatum', null),
             'state' => $state ?? 'Okänt',
         ], 'options');
@@ -115,7 +117,7 @@ class Resultat extends StepAbstract
                 635 => $vehicle['service_weight'] ?? 0, // Tjänstevikt
                 658 => 'För transport av djur', // Kaross
                 639 => $request->get('safety', 'Normal'), // Säkerhetsanordningar
-                638 => $this->getBenefitLevel(), // Förmånsnivå
+                638 => $benefit, // Förmånsnivå
                 640 => Str::title($request->get('form', 'grund')), // Försäkringsform
                 641 => null, // Självrisk
                 643 => null, // Ägare
@@ -131,7 +133,7 @@ class Resultat extends StepAbstract
                 657 => $vehicle['service_weight'] ?? 0, // Tjänstevikt
                 658 => 'För transport av djur', // Kaross
                 660 => $request->get('safety', 'Normal'), // Säkerhetsanordningar
-                661 => $this->getBenefitLevel(), // Förmånsnivå
+                661 => $benefit, // Förmånsnivå
                 659 => Str::title($request->get('form', 'grund')), // Försäkringsform
                 663 => null, // Självrisk
                 671 => null, // Ägare
@@ -144,6 +146,7 @@ class Resultat extends StepAbstract
         } else {
             $data = (new FocusApi)->get_pris(47, $fields, $ssn, $payment, null, $startDate->toDateString());
         }
+
         // echo "data = (new FocusApi)->get_pris('47', fields, {$ssn}, {$payment}, null, {$startDate->toDateString()});";
 
         if (isset($data['data']) && $data['data'] === false) {
@@ -162,7 +165,7 @@ class Resultat extends StepAbstract
                 'insurance' => 'Hästrailer',
                 'safety' => $request->get('safety', 'Normal'),
                 'form' => Str::title($request->get('form', 'grund')),
-                'benefit' => $this->getBenefitLevel(),
+                'benefit' => $benefit,
             ])->render(),
         ];
     }
@@ -192,13 +195,13 @@ class Resultat extends StepAbstract
             return 'Nej';
         }
 
-        if (($insurances->contains(26) && ($insurances->contains(22)) || $insurances->contains(23))) {
+        if (($insurances->contains('produktId',26) && ($insurances->contains('produktId',22)) || $insurances->contains('produktId',23))) {
             return 'Gårds- och hästförsäkring i Dunstan';
-        } elseif ($insurances->contains(26)) {
+        } elseif ($insurances->contains('produktId',26)) {
             return 'Gårdsförsäkring i Dunstan';
-        } elseif ($insurances->contains(23)) {
+        } elseif ($insurances->contains('produktId',23)) {
             return 'Hästförsäkring i Dunstan';
-        } elseif ($insurances->contains(22)) {
+        } elseif ($insurances->contains('produktId',22)) {
             return 'Hästförsäkring i Dunstan';
         }
 
