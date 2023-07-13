@@ -399,7 +399,7 @@ class FocusApi
             'falt' => $fields,
             'betalningstermin' => $paymentterm_months
         ];
-        
+
         if (!is_null($civic_number)) {
             $query['persnr'] = $civic_number;
         }

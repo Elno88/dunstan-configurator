@@ -145,7 +145,6 @@ class Resultat extends StepAbstract
         $data = (new FocusApi)->get_pris('47', $fields, $ssn, $payment, null, $startDate->toDateString());
         // echo "data = (new FocusApi)->get_pris('47', fields, {$ssn}, {$payment}, null, {$startDate->toDateString()});";
 
-        dd($data);
         if (isset($data['data']) && $data['data'] === false) {
             $data = [
                 "utpris_per_termin" => 0,
