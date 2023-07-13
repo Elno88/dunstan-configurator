@@ -28,7 +28,7 @@
                     <div class="box">
                         <img src="{{ asset('img/2.svg') }}" alt="Hästförsäkring">
 
-                        <h3>Jämför<br> hästgårdsförsäkring</h3>
+                        <h4>Jämför hästgårdsförsäkring</h4>
                         <p>Få en prisjämförelse.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="gard-b">Välj</button>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="box">
                         <img src="{{ asset('img/4.svg') }}" alt="Hästförsäkring">
 
-                        <h3>Ny<br> hästgårdsförsäkring</h3>
+                        <h4>Ny hästgårdsförsäkring</h4>
                         <p>Vi hjälper dig att räkna ut rätt pris</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="gard-a">Välj</button>
 

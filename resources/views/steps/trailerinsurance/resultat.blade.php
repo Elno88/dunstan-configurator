@@ -7,33 +7,17 @@
         <div class="frame-resultat">
             <div class="frame-resultat-inputs">
                 <h2>Välj och anpassa din försäkring</h2>
-                <h4>Säkerhetsanordningar <i class="bubble-help btn-sidebar" data-content="sakerhetsanordningar">?</i></h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur dipiscing elit. Integer sollicitudin est sed iaculis luctus.
-                    In est ipsum, mattis venenatis mi eget, varius varius nibh.
-                </p>
-                <ul class="resultat-slide-select safety-slide-select options-2">
-                    <li class="{{ $safety === 'Normal' || empty($safety) ? 'selected' : null }}">
-                        <input id="safety-1" class="filter" type="radio" name="safety" value="Normal" {{ $safety === 'Normal' || empty($safety) ? 'checked' : null }}>
-                        <label for="safety-1">Normal</label>
-                    </li>
-                    <li class="{{ $safety === 'Säkerhetsbommar' ? 'selected' : null }}">
-                        <input id="safety-2" class="filter" type="radio" name="safety" value="Säkerhetsbommar" {{ $safety === 'Säkerhetsbommar' ? 'checked' : null }}>
-                        <label for="safety-2">Säkerhetsbommar</label>
-                    </li>
-                    <div class="marker"></div>
-                </ul>
+
                 <h4>Försäkringsform <i class="bubble-help btn-sidebar" data-content="trailerforsakring">?</i></h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur dipiscing elit. Integer sollicitudin est sed iaculis luctus.
-                    In est ipsum, mattis venenatis mi eget, varius varius nibh.
+                    Välj omfattning på försäkringen. Se i listan nedan vad som ingår.
                 </p>
                 <ul class="resultat-slide-select form-slide-select options-2">
-                    <li class="{{ $form === 'Grund' || empty($form) ? 'selected' : null }}">
+                    <li class="{{ $form === 'Grund' ? 'selected' : null }}">
                         <input id="form-1" class="filter" type="radio" name="form" value="Grund" {{ $form === 'Grund' || empty($form) ? 'checked' : null }}>
                         <label for="form-1">Grund</label>
                     </li>
-                    <li class="{{ $form === 'Premium' ? 'selected' : null }}">
+                    <li class="{{ $form === 'Premium' || empty($form) ? 'selected' : null }}">
                         <input id="form-2" class="filter" type="radio" name="form" value="Premium" {{ $form === 'Premium' ? 'checked' : null }}>
                         <label for="form-2">Premium</label>
                     </li>
@@ -60,63 +44,63 @@
                         <div class="compare-table-wrapper">
                             <table class="compare-table compare-table-Premium">
                                 <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Grund</th>
-                                        <th>Premium</th>
-                                    </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Grund</th>
+                                    <th>Premium</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>Stöld och rån</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tvistemål</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Brand</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Blixtnedslag</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Explosion</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Kortslutning</th>
-                                        <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Trafikolycka</th>
-                                        <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Skadegörelse</th>
-                                        <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Skador orsakade av häst</th>
-                                        <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Incident på resa</th>
-                                        <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
-                                        <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
-                                    </tr>
+                                <tr>
+                                    <th>Stöld och rån</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Tvistemål</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Brand</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Blixtnedslag</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Explosion</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Kortslutning</th>
+                                    <td><i class="icon icon-check {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Trafikolycka</th>
+                                    <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Skadegörelse</th>
+                                    <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Skador orsakade av häst</th>
+                                    <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
+                                <tr>
+                                    <th>Incident på resa</th>
+                                    <td><i class="icon icon-nope {{ $form === 'Grund' ? 'active' : null }}" data-type="Grund"></i></td>
+                                    <td><i class="icon icon-check {{ $form === 'Premium' ? 'active' : null }}" data-type="Premium"></i></td>
+                                </tr>
                                 </tbody>
                             </table>
                             <div class="compare-table-more">
@@ -125,6 +109,21 @@
                         </div>
                     </div>
                 </div>
+
+                <h4>Är hästtrailern försedd med säkerhetsbommar? <i class="bubble-help btn-sidebar" data-content="sakerhetsanordningar">?</i></h4>
+                <p>&nbsp;</p>
+                <ul class="resultat-slide-select safety-slide-select options-2">
+                    <li class="{{ $safety === 'Nej' ? 'selected' : null }}">
+                        <input id="safety-1" class="filter" type="radio" name="safety" value="Normal" {{ $safety === 'Normal' || empty($safety) ? 'checked' : null }}>
+                        <label for="safety-1">Nej</label>
+                    </li>
+                    <li class="{{ $safety === 'Ja' || empty($safety) ? 'selected' : null }}">
+                        <input id="safety-2" class="filter" type="radio" name="safety" value="Säkerhetsbommar" {{ $safety === 'Säkerhetsbommar' ? 'checked' : null }}>
+                        <label for="safety-2">Ja</label>
+                    </li>
+                    <div class="marker"></div>
+                </ul>
+
                 <div class="resultat-formansniva" style="display: block;">
                     <h4>Förmånsninvå <i class="bubble-help btn-sidebar" data-content="formansniva">?</i></h4>
                     <p>Eftersom du har både häst och gårdsförsäkring hos oss ger vi dig ett ännu bättre pris.</p>

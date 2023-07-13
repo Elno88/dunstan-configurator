@@ -26,9 +26,9 @@
                 <label for="hast-b">
                     <div class="box">
                         <img src="{{ asset('img/2.svg') }}" alt="Hästförsäkring">
-                        <h3>Jämför<br> hästförsäkring</h3>
-                        <p>Få en prisjämförelse och teckna direkt</p>
-                        <button type="button" class="btn1 btn-next box-button" data-id="hast-b">Välj</button>
+                        <h4>Jämför hästförsäkring</h4>
+                        <div>Få en prisjämförelse <br> och teckna direkt</div>
+                        <button type="button" class="btn1 btn-next box-button" data-id="hast-b" style="margin-top: 30px !important;">Välj</button>
                     </div>
                 </label>
             </div>
@@ -37,9 +37,9 @@
                 <label for="hast-a">
                     <div class="box">
                         <img src="{{ asset('img/1.svg') }}" alt="Ny Hästförsäkring">
-                        <h3>Ny<br> hästförsäkring</h3>
-                        <p>Vi hjälper dig att räkna ut rätt pris</p>
-                        <button type="button" class="btn1 btn-next box-button" data-id="hast-a">Välj</button>
+                        <h4>Ny hästförsäkring</h4>
+                        <p>Vi hjälper dig att <br> räkna ut rätt pris</p>
+                        <button type="button" class="btn1 btn-next box-button" data-id="hast-a" style="margin-top: 30px !important;">Välj</button>
 
                     </div>
                 </label>

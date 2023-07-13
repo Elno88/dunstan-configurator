@@ -12,13 +12,13 @@
 	            </div>
 
                 <h3 style="text-align: center;">Varmt välkommen som kund hos Dunstan</h3>
-                
+
                 <p>Grattis till din nya försäkring. Vi hoppas att du och {{ $horse_name ?? '' }} ska trivas hos oss. Om du tittar i din inkorg ska du ha fått ett mejl med lite nyttig information om när din försäkring börjar gälla och vad som händer härnäst.</p>
 
                 <br/>
 
                 <div class="btn-wrapper">
-	                <button class="btn1" onclick="location.href='https://forsakra.dunstan.se/#hastforsakring'">Försäkra en till häst</button>
+	                <button class="btn1" onclick="location.href='https://forsakra.dunstan.se/#hastforsakring'">Teckna en till försäkring</button>
 	                <button class="btn1 btn3" onclick="location.href='https://dunstan.se/mina-sidor/'">Gå till Mina Sidor</button>
 	            </div>
             </div>

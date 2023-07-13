@@ -16,7 +16,7 @@
                 <label for="hast-select">
                     <div class="box">
                         <img src="{{ asset('img/1.svg') }}" alt="Hästförsäkring">
-                        <h3>Häst&shy;försäkring</h3>
+                        <h4>Häst&shy;försäkring</h4>
                         <p>Få ett prisförslag & teckna direkt.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="hast-select">Se pris</button>
                     </div>
@@ -26,8 +26,8 @@
                 <input id="gard-select" type="radio" class="btn-select" name="forsakring" value="gardsforsakring" style="display: none">
                 <label for="gard-select">
                     <div class="box">
-                        <img src="{{ asset('img/2.svg') }}" alt="Hästgårdsförsäkring">
-                        <h3>Hästgårds&shy;försäkring</h3>
+                        <img src="{{ asset('img/4.svg') }}" alt="Hästgårdsförsäkring">
+                        <h4>Hästgårds&shy;försäkring</h4>
                         <p>Få en offert.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="gard-select">Få offert</button>
                     </div>
@@ -38,7 +38,7 @@
                 <label for="trailer-select">
                     <div class="box">
                         <img src="{{ asset('img/3.svg') }}" alt="Hästtrailerförsäkring">
-                        <h3>Häst&shy;trailerförsäkring</h3>
+                        <h4>Häst&shy;trailerförsäkring</h4>
                         <p>Få ett prisförslag & teckna direkt.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="trailer-select">Se pris</button>
                     </div>
