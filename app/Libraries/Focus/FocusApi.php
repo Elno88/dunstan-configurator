@@ -57,6 +57,14 @@ class FocusApi
             'http_errors' => false
         ]);
 
+        if(Cache::has('focus_jwt_live')) {
+            Cache::forget('focus_jwt_live');
+        }
+
+        if(Cache::has('focus_jwt_test')) {
+            Cache::forget('focus_jwt_test');
+        }
+
         // Get jwt and cache
         $this->jwt_cache = config('services.focus.live') ? 'focus_jwt_live' : 'focus_jwt_test';
 
