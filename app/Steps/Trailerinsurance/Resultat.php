@@ -90,10 +90,7 @@ class Resultat extends StepAbstract
                     $zip = preg_replace('~\D~', '', $customer['kund']['postnr'])
                 );
             } catch (\Exception $exception) {
-                return response()->json([
-                    'status' => 0,
-                    'error' => $exception->getMessage(),
-                ]);
+                $address = [];
             }
 
             $state = !empty($address['state']) ? $address['state'] : null;

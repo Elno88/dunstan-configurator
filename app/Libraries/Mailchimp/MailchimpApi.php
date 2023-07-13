@@ -120,7 +120,7 @@ class MailchimpApi
                 $message = $response->getBody();
                 break;
             default:
-                $message = 'Unknown error.';
+                $message = 'MC Unknown error.';
         }
 
         throw new MailchimpApiException($message, $response->getStatusCode());

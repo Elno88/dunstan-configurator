@@ -113,13 +113,13 @@
                 <h4>Är hästtrailern försedd med säkerhetsbommar? <i class="bubble-help btn-sidebar" data-content="sakerhetsanordningar">?</i></h4>
                 <p>&nbsp;</p>
                 <ul class="resultat-slide-select safety-slide-select options-2">
-                    <li class="{{ $safety === 'Nej' ? 'selected' : null }}">
+                    <li class="{{ $safety === 'Normal' || empty($safety) ? 'selected' : null }}">
                         <input id="safety-1" class="filter" type="radio" name="safety" value="Normal" {{ $safety === 'Normal' || empty($safety) ? 'checked' : null }}>
-                        <label for="safety-1">Nej</label>
+                        <label for="safety-1">Normal</label>
                     </li>
-                    <li class="{{ $safety === 'Ja' || empty($safety) ? 'selected' : null }}">
+                    <li class="{{ $safety === 'Säkerhetsbommar' ? 'selected' : null }}">
                         <input id="safety-2" class="filter" type="radio" name="safety" value="Säkerhetsbommar" {{ $safety === 'Säkerhetsbommar' ? 'checked' : null }}>
-                        <label for="safety-2">Ja</label>
+                        <label for="safety-2">Säkerhetsbommar</label>
                     </li>
                     <div class="marker"></div>
                 </ul>

@@ -51,7 +51,7 @@ class FocusApi
             'headers' => [
                 'Accept' => 'application/json'
             ],
-            'http_errors' => false
+            'http_errors' => true
         ]);
 
         // Get jwt and cache
@@ -1266,7 +1266,7 @@ class FocusApi
                 $message = $response->getBody();
                 break;
             default:
-                $message = 'Unknown error. Code: ' . $response->getStatusCode();
+                $message = 'Focus Unknown error. Code: ' . $response->getStatusCode();
         }
 
         throw new FocusApiException($message, $response->getStatusCode());

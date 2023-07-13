@@ -90,7 +90,7 @@ class WoocommerceApi
                 $message = $response->getBody();
                 break;
             default:
-                $message = 'Unknown error.';
+                $message = 'WC Unknown error.';
         }
         throw new WoocommerceApiException($message, $response->getStatusCode());
     }
