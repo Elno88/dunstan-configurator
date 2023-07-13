@@ -69,8 +69,7 @@ class FocusApi
             return $this->login($this->username, $this->password)['jwt'] ?? '';
         });
 
-        echo "base_uri: " . $this->base_uri . " - " . $this->username . " - " . $this->password . " - " . $this->anstalld . " - " . $this->jwt . "\n";
-
+        // echo "base_uri: " . $this->base_uri . " - " . $this->username . " - " . $this->password . " - " . $this->anstalld . " - " . $this->jwt . "\n";
     }
 
     // Get jwt
@@ -400,9 +399,7 @@ class FocusApi
             'falt' => $fields,
             'betalningstermin' => $paymentterm_months
         ];
-
-        echo json_encode($query);
-
+        
         if (!is_null($civic_number)) {
             $query['persnr'] = $civic_number;
         }
