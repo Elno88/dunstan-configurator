@@ -3463,7 +3463,7 @@ body.sammanfattning #resultat-footer .row-4 {
         padding-right: 20px;
     }
 }
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 481px) {
     .hidden-md {
         display: none;
     }
@@ -3477,7 +3477,7 @@ body.sammanfattning #resultat-footer .row-4 {
     }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 480px) {
     .hidden-xs {
         display: none;
     }

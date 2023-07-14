@@ -5,12 +5,39 @@
             <h1>Få ett prisförslag</h1>
         </div>
 
-{{--
-        <div class="hidden-mdx">hidden mobile</div>
-        <div class="hidden-xs">hidden desktop</div>
---}}
+        <div class="hidden-md">
+            <div class="bubble bubble-type-b input-radio left">
+                <input id="hast-select" type="radio" class="btn-select" name="forsakring" value="hastforsakring">
+                <label class="bubble-contents" for="hast-select">
+                    <div class="stroke-left">
+                        <h2>Häst&shy;försäkring</h2>
+                        <p>Få ett prisförslag & teckna direkt.</p>
+                    </div>
+                </label>
+            </div>
 
-        <div class="row">
+            <div class="bubble bubble-type-b input-radio middle">
+                <input id="gard-select" type="radio" class="btn-select" name="forsakring" value="gardsforsakring">
+                <label class="bubble-contents" for="gard-select">
+                    <div class="stroke-left">
+                        <h2>Hästgårds&shy;försäkring</h2>
+                        <p>Få en offert.</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="bubble bubble-type-b input-radio right">
+                <input id="trailer-select" type="radio" class="btn-select" name="forsakring" value="trailerforsakring">
+                <label class="bubble-contents" for="trailer-select">
+                    <div class="stroke-left">
+                        <h2>Teckna en försäkring för din hästtrailer</h2>
+                        <p>Teckna direkt</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="row hidden-xs">
             <div class="col-md-4 col-sm-12">
                 <input id="hast-select" type="radio" class="btn-select" name="forsakring" value="hastforsakring" style="display: none;">
                 <label for="hast-select">
