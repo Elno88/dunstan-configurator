@@ -17,7 +17,7 @@
                     <div class="box">
                         <img src="{{ asset('img/1.svg') }}" alt="Hästförsäkring">
                         <h4>Häst&shy;försäkring</h4>
-                        <p>Få ett prisförslag & teckna direkt.</p>
+                        <p>Få prisförslag & teckna direkt.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="hast-select">Se pris</button>
                     </div>
                 </label>
