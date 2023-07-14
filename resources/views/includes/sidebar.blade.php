@@ -183,7 +183,7 @@
         <p>Vi behöver uppgifter om betäckningen eftersom informationen ger oss insikt i hästens historik och möjlighet att ta fram ett prisförslag för en försäkring som passar till just din häst.</p>
     </div>
 
-    <div class="app-sidebar-content app-sidebar-trailerforsakring app-sidebar-trailerforsakring-a-1">
+    <div class="app-sidebar-content app-sidebar-trailerforsakring-a app-sidebar-trailerforsakring-a-1">
         <h3>Varför frågar vi om registreringsnumret?</h3>
         <p>För att kunna ge dig ett prisförslag behöver vi kontrollera att din hästtrailer är registrerad hos Trafikverket.</p>
     </div>

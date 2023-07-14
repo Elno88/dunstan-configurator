@@ -46,8 +46,12 @@ class A extends StepAbstract
                 'regnr' => [
                     'required',
                     'regex:/(^[A-Za-z]{3}[\d]{2}[\w]{1}$)/u',
-                    'bail'
+                    'bail',
                 ]
+            ],
+            [
+                'regnr.required' => 'Du måste ange ett registreringsnummer',
+                'regnr.regex'    => 'Du måste ange ett giltigt registreringsnummer',
             ]
         );
 
@@ -69,7 +73,7 @@ class A extends StepAbstract
             ]);
         }
 
-        if($vehicle['basic']['data']['type'] !== 'SLÄP') {
+        if($vehicle['basic']['data']['type'] !== 'SLÄP' || $vehicle['technical']['data']['chassi'] !== 'Släp') {
             return response()->json([
                 'status'  => 0,
                 'display' => 1,
