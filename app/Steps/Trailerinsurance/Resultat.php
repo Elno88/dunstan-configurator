@@ -31,8 +31,8 @@ class Resultat extends StepAbstract
         $vehicle = $this->get_data('vehicle');
 
         return view('steps.trailerinsurance.resultat', [
-            'safety' => $options['safety'] ?? 'Normal',
-            'form' => $options['form'] ?? 'Grund',
+            'safety' => $options['safety'] ?? 'Säkerhetsbommar',
+            'form' => $options['form'] ?? 'Premium',
             'benefit' => $options['benefit'] ?? null,
             'date' => $options['date'] ?? date('Y-m-d'),
             'vehicle' => $vehicle ?? null,

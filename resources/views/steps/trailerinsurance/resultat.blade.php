@@ -14,11 +14,11 @@
                 </p>
                 <ul class="resultat-slide-select form-slide-select options-2">
                     <li class="{{ $form === 'Grund' ? 'selected' : null }}">
-                        <input id="form-1" class="filter" type="radio" name="form" value="Grund" {{ $form === 'Grund' || empty($form) ? 'checked' : null }}>
+                        <input id="form-1" class="filter" type="radio" name="form" value="Grund" {{ $form === 'Grund' ? 'checked' : null }}>
                         <label for="form-1">Grund</label>
                     </li>
                     <li class="{{ $form === 'Premium' || empty($form) ? 'selected' : null }}">
-                        <input id="form-2" class="filter" type="radio" name="form" value="Premium" {{ $form === 'Premium' ? 'checked' : null }}>
+                        <input id="form-2" class="filter" type="radio" name="form" value="Premium" {{ $form === 'Premium' || empty($form) ? 'checked' : null }}>
                         <label for="form-2">Premium</label>
                     </li>
                     <div class="marker"></div>
