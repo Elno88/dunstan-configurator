@@ -51,7 +51,7 @@ class FocusApi
             'headers' => [
                 'Accept' => 'application/json'
             ],
-            'http_errors' => true
+            'http_errors' => false
         ]);
 
         // Get jwt and cache

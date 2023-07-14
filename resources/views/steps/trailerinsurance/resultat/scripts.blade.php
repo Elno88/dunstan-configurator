@@ -1,9 +1,6 @@
 <script type="text/javascript">
 
-    $('.resultat-widget-body .jamfor-show-more').on('click', function() {
-        $(this).toggleClass('open');
-        $('.jamfor-more-text').slideToggle(300);
-    });
+console.log("resultat/scripts.blade.php");
 
     function sticky_relocate() {
 

@@ -1,1 +1,1 @@
-<div></div>
+<div id="resultat-footer" style="display: block;"></div>
