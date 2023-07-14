@@ -126,8 +126,10 @@
 
                 <div class="resultat-formansniva" style="display: block;">
                     <h4>Förmånsninvå <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-3">?</i></h4>
-                    <p>Eftersom du har både häst och gårdsförsäkring hos oss ger vi dig ett ännu bättre pris.</p>
+                    <p>Nuvarande försäkringar hos Dunstan:  <strong>{{ $benefit }}</strong></p>
                 </div>
+                    <div style="margin-top: 30px; position: relative; display:block; left: 22%; width:50%; border-top: 1px solid var(--color-yellow)"></div>
+                <br>
                 <div class="resultat-bottom-wrapper">
                     <div class="startdatum-wrapper">
                         <h3>Välj startdatum</h3>
