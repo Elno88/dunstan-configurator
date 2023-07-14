@@ -17,7 +17,6 @@ class Tack extends StepAbstract
 
     public function view(Request $request)
     {
-
         $focusapi = new FocusApi();
         $data = $focusapi->get_shared_focus_data();
 
