@@ -37,8 +37,8 @@
             </div>
         </div>
 
-        <div class="row hidden-xs">
-            <div class="col-md-4 col-sm-12">
+        <div class="flex justify-center gap-4 w-full hidden-xs">
+            <div>
                 <input id="hast-select" type="radio" class="btn-select" name="forsakring" value="hastforsakring" style="display: none;">
                 <label for="hast-select">
                     <div class="box">
@@ -49,7 +49,7 @@
                     </div>
                 </label>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div>
                 <input id="gard-select" type="radio" class="btn-select" name="forsakring" value="gardsforsakring" style="display: none">
                 <label for="gard-select">
                     <div class="box">
@@ -60,7 +60,7 @@
                     </div>
                 </label>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div>
                 <input id="trailer-select" type="radio" class="btn-select" name="forsakring" value="trailerforsakring" style="display: none">
                 <label for="trailer-select">
                     <div class="box">

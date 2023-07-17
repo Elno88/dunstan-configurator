@@ -3446,34 +3446,25 @@ body.sammanfattning #resultat-footer .row-4 {
     font-size: 20px;
 }
 
-.row {
-    width: 100%;
-    margin-left: -10px;
-    margin-right: -10px;
-    display: block;
+.flex {
+    display: flex;
 }
 
-@media (min-width: 992px) {
-    .col-md-4 {
-        width: 33.33333333%;
-        float: left;
-        position: relative;
-        min-height: 1px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+.justify-center {
+    justify-content: center;
 }
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
 @media only screen and (min-width: 481px) {
     .hidden-md {
         display: none;
-    }
-    .col-md-6 {
-        width: 50%;
-        float: left;
-        position: relative;
-        min-height: 1px;
-        padding-left: 20px;
-        padding-right: 20px;
     }
 }
 
@@ -3481,14 +3472,10 @@ body.sammanfattning #resultat-footer .row-4 {
     .hidden-xs {
         display: none;
     }
-    .col-sm-12 {
-        width: 100%;
-        float: left;
-        position: relative;
-        min-height: 1px;
-    }
 }
+
 .box {
+    margin: 0 auto;
     text-align: center;
     display: block;
     position: relative;
@@ -3512,10 +3499,12 @@ body.sammanfattning #resultat-footer .row-4 {
     width: 75px;
     height: 75px;
 }
+
 .box h4 {
     font-size: 18px;
     margin: 40px 0 10px 0;
 }
+
 .box p {
     margin: 0 auto;
     display: table-cell;
@@ -3523,6 +3512,7 @@ body.sammanfattning #resultat-footer .row-4 {
     width: 280px;
     vertical-align: middle;
 }
+
 .box .box-button {
     margin-top: 50px;
 }
