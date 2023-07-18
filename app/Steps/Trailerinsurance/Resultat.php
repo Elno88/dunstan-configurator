@@ -158,6 +158,7 @@ class Resultat extends StepAbstract
 
         return [
             'price' => number_format($data['utpris'], 0, '.', ' '),
+            'benefit' => $benefit,
             'html' => view('steps.trailerinsurance.resultat.pris', [
                 'price' => $data['utpris'],
                 'insurance' => 'Hästrailer',

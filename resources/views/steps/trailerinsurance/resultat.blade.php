@@ -8,6 +8,8 @@
             <div class="frame-resultat-inputs">
                 <h2>Välj och anpassa din försäkring</h2>
 
+                --{{$benefit}}--
+
                 <h4>Försäkringsform <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-1">?</i></h4>
                 <p>
                     Välj omfattning på försäkringen. Se i listan nedan vad som ingår.
@@ -126,7 +128,7 @@
 
                 <div class="resultat-formansniva" style="display: block;">
                     <h4>Förmånsninvå <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-3">?</i></h4>
-                    <p>Nuvarande försäkringar hos Dunstan:  <strong>{{ $benefit }}</strong></p>
+                    <p>Nuvarande försäkringar hos Dunstan:  <strong><span id="benefit">{{ $benefit }}</span></strong></p>
                 </div>
 
                 <div style="margin-top: 30px; position: relative; display:block; left: 22%; width:50%; border-top: 1px solid var(--color-yellow)"></div>
@@ -181,6 +183,7 @@
         $.post('/step/trailerforsakring-resultat/price', data, function (data) {
             $('#resultat-widget').html(data.html);
             $('#resultat-price-mobile .price').html(data.price);
+            $('#benefit').html(data.benefit);
         }, 'json');
     }
 
