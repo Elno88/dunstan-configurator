@@ -440,7 +440,6 @@
 
         $('input[name=betalningstermin]').on('change', function () {
             let selected = $('input[name=betalningstermin]:checked').val();
-            console.log("selected: " + selected);
             let startPrice = $('#resultat-widget-data').data('price');
             let price;
             let count;
@@ -455,7 +454,6 @@
             } else {
                 price = startPrice + ' kr/mån';
             }
-            console.log(startPrice + " -- " + price);
 
             $('.resultat-price').text(price);
         });
