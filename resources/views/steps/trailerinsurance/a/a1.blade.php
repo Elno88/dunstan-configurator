@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="bubble bubble-type-e center" style="margin-bottom: 20px !important;">
-            <div class="bubble-contents" style="zoom: .5 !important;">
+            <div class="bubble-contents no-padding" style="zoom: .5 !important;">
                 <div class="regnr-input-wrapper">
                     <input id="regnr-input" type="text" name="regnr" value="{{ $vehicle['regnr'] }}" disabled>
                 </div>
