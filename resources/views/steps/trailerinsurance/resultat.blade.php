@@ -8,8 +8,6 @@
             <div class="frame-resultat-inputs">
                 <h2>Välj och anpassa din försäkring</h2>
 
-                --{{$benefit}}--
-
                 <h4>Försäkringsform <i class="bubble-help btn-sidebar" data-content="trailerforsakring-resultat-1">?</i></h4>
                 <p>
                     Välj omfattning på försäkringen. Se i listan nedan vad som ingår.
