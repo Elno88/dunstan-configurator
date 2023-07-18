@@ -320,6 +320,10 @@ $(document).ready(function(){
 
     $('body').on('click', '.btn-sidebar', function() {
         var data = $(this).attr('data-content');
+
+        if(!$('body').hasClass('sidebar-open') && $('.app-sidebar-'+data).css('display') === 'block'){
+            return;
+        }
         $('.app-sidebar-content').hide();
         $('.app-sidebar-'+data).show();
         $('body').addClass('sidebar-open');
