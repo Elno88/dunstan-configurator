@@ -1,7 +1,5 @@
 <script type="text/javascript">
 
-console.log("resultat/scripts.blade.php");
-
     function sticky_relocate() {
 
         var window_top     = $(window).scrollTop();

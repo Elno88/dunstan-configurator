@@ -31,7 +31,7 @@ class Resultat extends StepAbstract
         $vehicle = $this->get_data('vehicle');
 
         return view('steps.trailerinsurance.resultat', [
-            'safety' => $options['safety'] ?? 'Säkerhetsbommar',
+            'safety' => $options['safety'] ?? 'Normal',
             'form' => $options['form'] ?? 'Premium',
             'benefit' => $options['benefit'] ?? null,
             'date' => $options['date'] ?? date('Y-m-d'),
@@ -78,7 +78,9 @@ class Resultat extends StepAbstract
 
         $payment = !empty($request->get('payment'))
             ? (int) $request->get('payment')
-            : 12;
+            : 1;
+
+        session()->put('data.trailerforsakring-sammanfattning.betalningstermin', $payment);
 
         $ssn = $this->get_data('ssn');
         $customer = $this->get_data('customer');
@@ -140,7 +142,6 @@ class Resultat extends StepAbstract
                 670 => $state ?? 'Okänt', // Län
             ];
         }
-
         if (config('services.focus.live')) {
             $data = (new FocusApi)->get_pris(45, $fields, $ssn, $payment, null, $startDate->toDateString());
         } else {
@@ -154,6 +155,8 @@ class Resultat extends StepAbstract
                 "netto" => 0,
                 "provision" => 0,
             ];
+        } else {
+            $data['utpris'] = round($data['utpris']/12);
         }
 
         return [

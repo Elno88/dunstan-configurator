@@ -35,6 +35,8 @@ class Sammanfattning extends StepAbstract
         $vehicle = $this->get_data('vehicle');
         $ssn = $this->get_data('ssn');
 
+        $betalningstermin = session()->get('data.trailerforsakring-sammanfattning.betalningstermin', 1);
+
         return view('steps.trailerinsurance.sammanfattning', [
             'options'  => $options,
             'safety'   => $options['safety'] ?? 'Normal',
@@ -44,6 +46,7 @@ class Sammanfattning extends StepAbstract
             'vehicle'  => $vehicle ?? null,
             'customer' => $customer ?? null,
             'ssn'      => $ssn ?? null,
+            'betalningstermin' => $betalningstermin
         ]);
     }
 
@@ -378,7 +381,7 @@ class Sammanfattning extends StepAbstract
             'moment_ids' => $moments_ids ?? null,
             'fields' => $focus_moments_fields ?? null,
             'question_response_id' => null,
-            'payment_terms' => $data['betalningstermin'] ?? null,
+            'payment_terms' => $data['betalningstermin'] ?? 1,
             'start_date' => $data['startdatum'] ?? null,
             'invoice_status' => $invoice_status ?? null,
             'notes' => $notes ?? null

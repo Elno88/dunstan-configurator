@@ -549,7 +549,7 @@ class Resultat extends StepAbstract
                 'compare_insurance' => $compare_insurance,
                 'horse_usage' => $data['horse_usage'] ?? 0
             ])->render(),
-            'html_boxes' => view('steps.horseinsurance.resultat.pris_boxes', [
+                'html_boxes' => view('steps.horseinsurance.resultat.pris_boxes', [
                 'data' => $data,
             ])->render(),
             'utpris' => $total_utpris,

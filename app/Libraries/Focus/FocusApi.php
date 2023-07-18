@@ -703,7 +703,7 @@ class FocusApi
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
 
-                'stable'                    => $session_data['data']['resultat']['stable'] ?? null,
+                'stable' => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
                 'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
@@ -765,7 +765,7 @@ class FocusApi
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
 
-                'stable'                    => $session_data['data']['resultat']['stable'] ?? null,
+                'stable' => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
                 'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],

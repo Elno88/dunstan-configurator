@@ -131,14 +131,16 @@
                         <th colspan="2">
                             <p style="font-size:16px;">Betalningstermin</p>
                             <ul class="resultat-slide-select options-3" style="margin-bottom:0;">
-                                <li class="selected">
-                                    <input checked id="radio-12" type="radio" name="betalningstermin" value="12">
+                                <li @if($betalningstermin === 12) class="selected" @endif>
+                                    <input id="radio-12" type="radio" name="betalningstermin" value="12">
                                     <label for="radio-12">År</label>
                                 </li>
-                                <li><input id="radio-3" type="radio" name="betalningstermin" value="3">
+                                <li @if($betalningstermin === 3) class="selected" @endif>
+                                    <input id="radio-3" type="radio" name="betalningstermin" value="3">
                                     <label for="radio-3">Kvartal</label>
                                 </li>
-                                <li><input id="radio-1" type="radio" name="betalningstermin" value="1">
+                                <li @if($betalningstermin === 1) class="selected" @endif>
+                                    <input id="radio-1" type="radio" name="betalningstermin" value="1">
                                     <label for="radio-1">Månad</label>
                                 </li>
                                 <div class="marker"></div>
@@ -190,8 +192,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function updatePrice()
-    {
+    function updatePrice() {
         let data = {
             'form': '{{ $form }}',
             'safety': '{{ $safety }}',
@@ -330,7 +331,7 @@
                     $button.html(buttonOriginalText);
 
                     if (data.next_step) {
-                        window.konfigurator.changeurl(data.next_step, '#'+data.next_step);
+                        window.konfigurator.changeurl(data.next_step, '#' + data.next_step);
                         window.konfigurator.hash();
                     }
                 } else if (data.status == 0) {
@@ -338,9 +339,9 @@
                         force_retries--;
 
                         let attempt = parseInt('{{ config('services.focus.bankid_status_force_retries') }}') - force_retries;
-                        let retry_time  = attempt * 2000;
+                        let retry_time = attempt * 2000;
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             bankid_status(orderRef, $button, buttonOriginalText, force_retries);
                         }, retry_time);
                     } else {
@@ -352,13 +353,13 @@
                         $('#popup-bankid').find('.bankid-spinner').css('display', 'none');
                     }
                 } else {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         bankid_status(orderRef, $button, buttonOriginalText, force_retries);
                     }, 1000);
                 }
             },
-            error: function(xhr, textStatus, errorThrown){
-                setTimeout(function() {
+            error: function (xhr, textStatus, errorThrown) {
+                setTimeout(function () {
                     bankid_status(orderRef, $button, buttonOriginalText, force_retries);
                 }, 1000);
             }
@@ -393,7 +394,7 @@
                     $('#popup-bankid').find('.bankid-spinner').css('display', 'none');
                 }
             },
-            error: function(xhr, textStatus, errorThrown){
+            error: function (xhr, textStatus, errorThrown) {
                 $button.prop('disabled', false);
                 $button.removeClass('disabled');
                 $button.html(buttonOriginalText);
@@ -413,7 +414,7 @@
 
         $('select').selectric();
 
-        $('.popup-close-x').on('click', function() {
+        $('.popup-close-x').on('click', function () {
             $(this).parent().fadeOut(300);
             $('.popup-overlay').fadeOut(500);
             $('body').removeClass('popup-open');
@@ -439,24 +440,22 @@
 
         $('input[name=betalningstermin]').on('change', function () {
             let selected = $('input[name=betalningstermin]:checked').val();
-
+            console.log("selected: " + selected);
             let startPrice = $('#resultat-widget-data').data('price');
-            let split = startPrice.split(" kr");
-            let trimmed = split[0].replace(" ", "");
             let price;
             let count;
 
-            console.log(trimmed);
 
-            if (selected == 3) {
-                count = Math.ceil(trimmed * 3 * 0.99);
-                price = addSeprators(count)+' kr/kvartal';
-            } else if (selected == 12) {
-                count = Math.ceil(trimmed * 12 * 0.97);
-                price = addSeprators(count)+' kr/år';
+            if (selected === '3') {
+                count = Math.ceil(startPrice * 3 * 0.99);
+                price = addSeprators(count) + ' kr/kvartal';
+            } else if (selected === '12') {
+                count = Math.ceil(startPrice * 12 * 0.97);
+                price = addSeprators(count) + ' kr/år';
             } else {
-                price = startPrice;
+                price = startPrice + ' kr/mån';
             }
+            console.log(startPrice + " -- " + price);
 
             $('.resultat-price').text(price);
         });
@@ -473,7 +472,7 @@
             return x1 + x2;
         }
 
-        $('.btn-bankid').on('click', function(e){
+        $('.btn-bankid').on('click', function (e) {
             e.preventDefault();
             $button = $(this);
             validate_step($button);
