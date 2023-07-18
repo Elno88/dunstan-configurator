@@ -11,7 +11,7 @@
                 <label class="bubble-contents" for="hast-select">
                     <div class="stroke-left">
                         <h2>Häst&shy;försäkring</h2>
-                        <p>Få ett prisförslag & teckna direkt.</p>
+                        <p>Få prisförslag & teckna direkt.</p>
                     </div>
                 </label>
             </div>
@@ -30,8 +30,8 @@
                 <input id="trailer-select" type="radio" class="btn-select" name="forsakring" value="trailerforsakring">
                 <label class="bubble-contents" for="trailer-select">
                     <div class="stroke-left">
-                        <h2>Teckna en försäkring för din hästtrailer</h2>
-                        <p>Teckna direkt</p>
+                        <h2>Häst&shy;trailerförsäkring</h2>
+                        <p>Få ett prisförslag & teckna direkt.</p>
                     </div>
                 </label>
             </div>

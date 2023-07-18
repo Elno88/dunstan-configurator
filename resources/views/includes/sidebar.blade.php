@@ -206,11 +206,16 @@
         <p>För komplett information se <a href="https://dunstan.se/wp-content/uploads/villkor/website/dunstan_villkor-hasttrailer_2023-07-01.pdf" target="_blank">fullständigt villkor.</a></p>
 
     </div>
+
     <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-2">
         <h3>Varför frågar vi om säkerhetsbommar?</h3>
-        Om din hästtrailer har säkerhetsbommar så blir du erbjuden ett längre pris på din försäkring.
+        <p>Om din hästtrailer har säkerhetsbommar så blir du erbjuden ett lägre pris på din försäkring.</p>
     </div>
-    <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-3"></div>
+
+    <div class="app-sidebar-content app-sidebar-trailerforsakring-resultat-3">
+        <h3>Vad innebär förmånsnivå?</h3>
+        <p>Om du samlar dina försäkringar hos Dunstan får du ett förmånligt pris på dina försäkringar.</p>
+    </div>
 
     <footer class="app-sidebar-footer">
         <img src="{{ asset('img/girl-help.png') }}" alt="Hjälp">
