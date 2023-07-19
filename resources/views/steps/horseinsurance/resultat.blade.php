@@ -833,7 +833,6 @@
             $('.resultat-points-int').html(data.points);
             $('.forsakring-enabled-wrapper').html(data.html_boxes);
         }, 'json');
-        console.log('update_price');
     }
 
     function formatNumber(x, seperator) {
@@ -949,7 +948,6 @@
             update_price();
             console.log('change');
         });
-
 
         // Bugfix
         setTimeout(function () {

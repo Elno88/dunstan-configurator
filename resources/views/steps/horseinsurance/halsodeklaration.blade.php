@@ -26,7 +26,7 @@
 	                    <p>Foster och föl kan tecknas tidigast från 40 dagars dräktighet och senast 60 dagar innan beräknad fölning. Dräktighetsintyget får vara högst tre dagar gammalt vid försäkringens tecknande och ska bifogas om stoet resorberar eller har en ej bevisad kastning. Alla som tecknar Dunstan Foster & Föl samt försäkrade föl i Dunstan omfattas av trygghetsgarantin och dolda fel-skydd.</p>
 	                @else
 	                    <p>Du behöver fylla i hälsoenkäten för att vi ska kunna göra en bedömning av hur hästens hälsa påverkar försäkringens omfattning.</p>
-	                   
+
 	                @endif
 
 	                    @foreach($questions as $question)
@@ -109,9 +109,9 @@
 	                    @endforeach
 
 	                </div>
-                    
+
                     <h3 style="font-size:14px;margin-bottom:0;">Bra att veta!</h3>
-<!--                   <p style="font-size:12px;font-style: italic;">Tänk på att uppge alla tidigare skador eller sjukdomar som din häst har haft vid införsäkran. 						Vi har då möjlighet att ge rådet att du ska stanna kvar i ditt nuvarande bolag (om sådant finns) om vi anser att skadorna är så allvarliga 							att en reservation kommer att påföras.</p> 
+<!--                   <p style="font-size:12px;font-style: italic;">Tänk på att uppge alla tidigare skador eller sjukdomar som din häst har haft vid införsäkran. 						Vi har då möjlighet att ge rådet att du ska stanna kvar i ditt nuvarande bolag (om sådant finns) om vi anser att skadorna är så allvarliga 							att en reservation kommer att påföras.</p>
  -->
                     <p style="font-size:12px;font-style: italic;">Inkommer uppgifter om skador och sjukdomar som funnits innan införsäkringen, som inte informerats om vid tecknade hos Dunstan, kan det innebära att ersättning inte utgår och att en reservation påförs.</p>
 
@@ -137,9 +137,7 @@
     {!! $price['html'] ?? '' !!}
 </div>
 
-<div style="display:none;">
-@include('steps.horseinsurance.resultat.footer')
-</div>
+@include('steps.horseinsurance.resultat.empty_footer')
 
 @include('steps.horseinsurance.resultat.popup')
 

@@ -12,7 +12,7 @@
               </div>
 
                 <h3 style="text-align: center;">Grattis till din nya försäkring!</h3>
-                
+
                 <p>Om du tittar i din inkorg ska du ha fått ett mejl med lite nyttig information om när din försäkring börjar gälla och vad som händer härnäst.</p>
 
                 <br/>
