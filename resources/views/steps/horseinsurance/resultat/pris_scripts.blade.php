@@ -42,7 +42,6 @@
 
         $(window).scroll(sticky_relocate);
         sticky_relocate();
-        console.log("sticky_relocate")
     });
 
 </script>

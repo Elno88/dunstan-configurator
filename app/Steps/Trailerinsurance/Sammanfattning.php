@@ -244,7 +244,6 @@ class Sammanfattning extends StepAbstract
             $focus_data = $focusApi->get_shared_focus_data();
 
             try {
-
                 // Log data after bankid have been signed, this is done before anything is sent to focus.
                 $this->log_data('Bankid signed. Shared data.', [
                     'session_id' => $focus_data['session_id'] ?? null,
@@ -256,7 +255,6 @@ class Sammanfattning extends StepAbstract
                 session()->put('bankid', [
                     $orderRef => $bankid_status
                 ]);
-
                 $response = [
                     'status' => 1,
                     'next_step' => 'tack'
@@ -368,7 +366,7 @@ class Sammanfattning extends StepAbstract
         }
 
 
-        $moments[] = 47; //$data['trailerforsakring'];
+        $moments[] = config('services.focus.live') ? 45 : 47; //$data['trailerforsakring'];
 
         $moments_ids = implode(',', $moments);
         $focus_moments_fields = $focusApi->build_focus_fields($moments, $data);
