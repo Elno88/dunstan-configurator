@@ -1,17 +1,17 @@
-<?php namespace App\Steps\Index;
+<?php
+
+namespace App\Steps\Index;
 
 use App\Http\Controllers\Controller;
 use App\Steps\StepInterface;
 use App\Steps\StepAbstract;
 use Illuminate\Http\Request;
-
 use Validator;
 
 class Index extends StepAbstract
 {
-
     public $name = 'index';
-    public $progressbar = null;
+    public $progressbar = 0;
 
     public function view(Request $request)
     {
@@ -25,12 +25,12 @@ class Index extends StepAbstract
         ];
 
         $rules = [
-            'forsakring'        => 'required|in:hastforsakring,gardsforsakring'
+            'forsakring' => 'required|in:hastforsakring,gardsforsakring,trailerforsakring'
         ];
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = [
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
@@ -47,5 +47,4 @@ class Index extends StepAbstract
             'next_step' => $next_step
         ]);
     }
-
 }

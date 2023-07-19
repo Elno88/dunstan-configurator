@@ -66,7 +66,7 @@ class PapiliteApi
                 $message = $response->getBody();
                 break;
             default:
-                $message = 'Unknown error.';
+                $message = 'Papilite Unknown error. Code: ' . $response->getStatusCode();
         }
 
         throw new PapiliteApiException($message, $response->getStatusCode());

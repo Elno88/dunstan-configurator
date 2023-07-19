@@ -169,14 +169,14 @@ class B2 extends StepAbstract
                 if(isset($focus_state) && !empty($focus_state)){
                     $steps_data['hastforsakring-b-11']['state'] = $focus_state;
                 } else {
-                    // On error, default state tå Skåne
-                    $steps_data['hastforsakring-b-11']['state'] = 'Skåne';
+                    // On error, default state tå Okänt
+                    $steps_data['hastforsakring-b-11']['state'] = 'Okänt';
                 }
 
             } catch (PapiliteApiException $e) {
                 report($e);
-                // On error, default state to Skåne
-                $steps_data['hastforsakring-b-11']['state'] = 'Skåne';
+                // On error, default state to Okänt
+                $steps_data['hastforsakring-b-11']['state'] = 'Okänt';
             }
 
         } else {

@@ -113,14 +113,14 @@ class A9 extends StepAbstract
             if(isset($focus_state) && !empty($focus_state)){
                 $input['state'] = $focus_state;
             } else {
-                // On error, default state tå Skåne
-                $input['state'] = 'Skåne';
+                // On error, default state tå Okänt
+                $input['state'] = 'Okänt';
             }
 
         } catch (PapiliteApiException $e) {
             report($e);
-            // On error, default state tå Skåne
-            $input['state'] = 'Skåne';
+            // On error, default state tå Okänt
+            $input['state'] = 'Okänt';
         }
 
         // Store data

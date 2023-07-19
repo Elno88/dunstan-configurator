@@ -71,7 +71,7 @@ function Konfigurator(config){
 
     this.add_step_to_body = function add_step_to_body(step)
     {
-        console.log('running body check');
+        // console.log('running body check');
         $('body').removeClass().addClass(step);
     }
 
@@ -117,6 +117,10 @@ function Konfigurator(config){
                 show_custom_message = true;
             }
             if(id === 'livvarde'){
+                custom_message = message[0];
+                show_custom_message = true;
+            }
+            if(id === 'regnr'){
                 custom_message = message[0];
                 show_custom_message = true;
             }
@@ -198,6 +202,11 @@ function Konfigurator(config){
         $('.btn-reset').on('click', function(e){
             e.preventDefault();
             _this.reset_steps();
+        });
+
+        _this.$form.on('click', '.box-button', function(e){
+            e.preventDefault();
+            $('#' + $(this).data('id')).attr('checked', true);
         });
 
         // On click trigger submit
@@ -311,8 +320,12 @@ $(document).ready(function(){
 
     $('body').on('click', '.btn-sidebar', function() {
         var data = $(this).attr('data-content');
+
+        if(!$('body').hasClass('sidebar-open') && $('.app-sidebar-'+data).css('display') === 'block'){
+            return;
+        }
         $('.app-sidebar-content').hide();
-        $('.app-sidebar-'+data).show();
+        $('.app-sidebar-'+data).show();.0
         $('body').addClass('sidebar-open');
     });
 
@@ -320,6 +333,13 @@ $(document).ready(function(){
         e.preventDefault();
         $('body').removeClass('sidebar-open');
         $('.app-sidebar-content').fadeOut(300);
+    });
+
+    $('#app').click(function(e) {
+      if($('body').hasClass('sidebar-open')){
+        $('body').removeClass('sidebar-open');
+        $('.app-sidebar-content').fadeOut(300);
+      }
     });
 
 });
