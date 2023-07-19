@@ -7,11 +7,11 @@
 
     function sticky_relocate() {
 
-        var window_top 	= $(window).scrollTop();
-        footer_top 	= $('#resultat-footer').offset().top;
-        div_top 	= $('#resultat-widget').offset().top;
-        div_height 	= $('.resultat-widget-contents').height();
-        padding 	= 20;  // tweak here or get from margins etc
+        let window_top 	= $(window).scrollTop();
+        let footer_top 	= $('#resultat-footer').offset().top;
+        let div_top 	= $('#resultat-widget').offset().top;
+        let div_height 	= $('.resultat-widget-contents').height();
+        let padding 	= 20;  // tweak here or get from margins etc
 
         if (window_top + div_height > footer_top - padding)
             $('.resultat-widget-contents').css({ top: (window_top + div_height - footer_top + padding) * -1 });
