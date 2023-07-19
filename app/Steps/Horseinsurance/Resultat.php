@@ -299,7 +299,6 @@ class Resultat extends StepAbstract
                 'defaults' => $defaults,
                 'price' => $get_price
             ])->render(),
-
             'defaults' => $defaults,
             'available' => $available,
             'price' => $get_price
