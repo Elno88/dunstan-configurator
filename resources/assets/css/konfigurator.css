@@ -3536,3 +3536,7 @@ input::-webkit-inner-spin-button {
 .no-padding {
     padding: 0 !important;
 }
+
+.hastforsakring-a-4 .selectric .label {
+    font-size: 20px;
+}

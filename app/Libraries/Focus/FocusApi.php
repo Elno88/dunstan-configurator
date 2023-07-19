@@ -684,6 +684,7 @@ class FocusApi
                 'state' => $session_data['data']['hastforsakring-a-9']['state'] ?? 'Okänt',
 
 
+
                 // Nya fält för foster o föl (DFF)
                 'stallion_name' => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_name'] ?? null,
                 'seminstation' => $session_data['data']['hastforsakring-a-ff-betackning']['seminstation'] ?? null,
@@ -702,7 +703,6 @@ class FocusApi
                 'safestart' => $session_data['data']['resultat']['safestart'] ?? null,
                 'uppsagning' => $session_data['data']['resultat']['uppsagning'] ?? null,
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
-
                 'stable' => $session_data['data']['resultat']['stable'] ?? null,
 
                 // Hälsodeklaration
@@ -752,7 +752,6 @@ class FocusApi
                 'insurance_type' => $session_data['data']['hastforsakring-b-ff-forsakring']['insurance_type'] ?? null,
 
                 // Resultat
-
                 'veterinarvardsforsakring' => $session_data['data']['resultat']['veterinarvardsforsakring'] ?? null,
                 'veterinarvardsforsakring_label' => $session_data['data']['resultat']['veterinarvardsforsakring_label'] ?? null,
                 'veterinarvardsbelopp' => $session_data['data']['resultat']['veterinarvardsbelopp'] ?? null,
@@ -766,6 +765,7 @@ class FocusApi
                 'swbmedlem' => $session_data['data']['resultat']['swbmedlem'] ?? null,
 
                 'stable' => $session_data['data']['resultat']['stable'] ?? null,
+
 
                 // Hälsodeklaration
                 'questions' => $session_data['data']['halsodeklaration']['questions'] ?? [],
@@ -885,6 +885,7 @@ class FocusApi
                         28 => $data['state'] ?? 'Okänt', // Län
                         // 27 => '0', // Rasgrupp
                         // 120 => '', Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[121] = $data['chip_number'];
@@ -906,6 +907,7 @@ class FocusApi
                         38 => $data['state'] ?? 'Okänt', // Län
                         // 43 => '0', // Rasgrupp
                         // 122 => '', Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[123] = $data['chip_number'];
@@ -927,6 +929,7 @@ class FocusApi
                         48 => $data['state'] ?? 'Okänt', // Län
                         // 47 => 0, // Rasgrupp
                         // 124 => '', // Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[125] = $data['chip_number'];
@@ -946,7 +949,6 @@ class FocusApi
                         361 => 0, // Minimipremie
                         // 68 => '', // Rasgrupp
                         // 126 => '', // Färg
-
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[127] = $data['chip_number'];
@@ -966,6 +968,7 @@ class FocusApi
                         362 => 0, // Minimipremie
                         // 79 => '', // Rasgrupp
                         // 128 => '', // Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[129] = $data['chip_number'];
@@ -984,6 +987,7 @@ class FocusApi
                         147 => 'Nej', // Moms
                         // 84 => '', // Rasgrupp
                         // 136 => '', // Färg
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[137] = $data['chip_number'];
@@ -1022,6 +1026,7 @@ class FocusApi
                         365 => 0, // Minimipremie
                         // 134 => 'Färg', // Färg
                         // 99 => 'Rasgrupp', // Rasgrupp
+
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];

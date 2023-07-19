@@ -166,7 +166,7 @@ class Kontakt extends StepAbstract
             $send_emails_to = [];
 
             if (config('services.focus.live')) {
-                $send_email_to[] = config('services.dunstan.email_test');
+                $send_email_to[] = config('services.dunstan.email_live');
                 $send_email_to[] = 'daniel.lazic@convertor.se';
                 $send_email_to[] = 'info@dunstan.se';
                 $send_email_to[] = 'petru.gilezan@dunstan.se';
@@ -253,8 +253,13 @@ class Kontakt extends StepAbstract
             $send_emails_to = [];
 
             if (config('services.focus.live')) {
-                $send_email_to[] = config('services.dunstan.email_test');
+                $send_email_to[] = config('services.dunstan.email_live');
                 $send_email_to[] = 'daniel.lazic@convertor.se';
+                $send_email_to[] = 'info@dunstan.se';
+                $send_email_to[] = 'petru.gilezan@dunstan.se';
+                $send_email_to[] = 'klas.redemo@dunstan.se';
+                $send_email_to[] = 'pernilla.ivarsson@dunstan.se';
+                $send_email_to[] = 'christine.wikstrand@dunstan.se';
             } else {
                 $send_email_to[] = config('services.dunstan.email_test');
             }
