@@ -141,12 +141,12 @@
                         <h4>Vill du ha hjälp med att säga upp din nuvarande försäkring när den löper ut?</h4>
                         <ul>
                             <li>
-                                <input id="uppsagning-1" type="radio" name="uppsagning" value="0" checked>
+                                <input id="uppsagning-1" type="radio" name="uppsagning" value="0" {{ $uppsagning === '0' || !isset($uppsagning) ? 'checked' : null }}>
                                 <label for="uppsagning-1">Nej, jag tar hand om det själv</label>
                                 <div class="check"></div>
                             </li>
                             <li>
-                                <input id="uppsagning-0" type="radio" name="uppsagning" value="1">
+                                <input id="uppsagning-0" type="radio" name="uppsagning" value="1" {{ $uppsagning === '1' ? 'checked' : null }}>
                                 <label for="uppsagning-0">Ja, det låter bra!</label>
                                 <div class="check"></div>
                             </li>
@@ -244,8 +244,16 @@
             }
         });
 
+        @if ($uppsagning === '1')
+            $(".uppsagning-caption").slideDown(200);
+        @endif
+
         $("input[name='uppsagning']").on("change", function () {
-            $(".uppsagning-caption").slideToggle(200);
+            if ($(this).val() === '1') {
+                $(".uppsagning-caption").slideDown(200);
+            } else {
+                $(".uppsagning-caption").slideUp(200);
+            }
         });
 
         $('input[name="startdatum"]').on('change', function () {

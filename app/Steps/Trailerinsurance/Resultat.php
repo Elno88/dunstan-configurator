@@ -36,6 +36,7 @@ class Resultat extends StepAbstract
             'benefit' => $options['benefit'] ?? null,
             'date' => $options['date'] ?? date('Y-m-d'),
             'vehicle' => $vehicle ?? null,
+            'uppsagning' => $options['uppsagning'] ?? null,
         ]);
     }
 
@@ -52,7 +53,7 @@ class Resultat extends StepAbstract
             'safety' => $request->get('safety', 'Normal'),
             'form' => $request->get('form', 'Grund'),
             'date' => $request->get('startdatum', null),
-            'termination' => $request->get('uppsagning', null),
+            'uppsagning' => $request->get('uppsagning', null),
         ], 'options');
 
         return response()->json([
@@ -86,6 +87,9 @@ class Resultat extends StepAbstract
         $customer = $this->get_data('customer');
         $vehicle = $this->get_data('vehicle');
 
+        $options = $this->get_data('options');
+        $uppsagning = $options['uppsagning'] ?? null;
+
         $benefit = $this->getBenefitLevel();
 
         if (!empty($customer) && !empty($customer['kund'])) {
@@ -107,6 +111,7 @@ class Resultat extends StepAbstract
             'benefit' => $benefit,
             'date' => $request->get('startdatum', null),
             'state' => $state ?? 'Okänt',
+            'uppsagning' => $uppsagning,
         ], 'options');
 
         if (config('services.focus.live')) {

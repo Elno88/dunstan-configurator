@@ -132,15 +132,15 @@
                             <p style="font-size:16px;">Betalningstermin</p>
                             <ul class="resultat-slide-select options-3" style="margin-bottom:0;">
                                 <li @if($betalningstermin === 12) class="selected" @endif>
-                                    <input id="radio-12" type="radio" name="betalningstermin" value="12">
+                                    <input id="radio-12" type="radio" name="betalningstermin" value="12" @if($betalningstermin === 12) checked @endif>
                                     <label for="radio-12">År</label>
                                 </li>
                                 <li @if($betalningstermin === 3) class="selected" @endif>
-                                    <input id="radio-3" type="radio" name="betalningstermin" value="3">
+                                    <input id="radio-3" type="radio" name="betalningstermin" value="3" @if($betalningstermin === 3) checked @endif>
                                     <label for="radio-3">Kvartal</label>
                                 </li>
                                 <li @if($betalningstermin === 1) class="selected" @endif>
-                                    <input id="radio-1" type="radio" name="betalningstermin" value="1">
+                                    <input id="radio-1" type="radio" name="betalningstermin" value="1" @if($betalningstermin === 1) checked @endif>
                                     <label for="radio-1">Månad</label>
                                 </li>
                                 <div class="marker"></div>

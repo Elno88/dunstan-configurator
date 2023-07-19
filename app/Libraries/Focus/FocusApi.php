@@ -802,6 +802,7 @@ class FocusApi
                 'betalningstermin' => $session_data['data']['trailerforsakring-sammanfattning']['betalningstermin'] ?? 12,
                 'autogiro_clearing' => $session_data['data']['trailerforsakring-sammanfattning']['autogiro_clearing'] ?? null,
                 'autogiro_account' => $session_data['data']['trailerforsakring-sammanfattning']['autogiro_account'] ?? null,
+                'uppsagning' => $session_data['data']['options']['uppsagning'] ?? null,
             ];
 
             // Get state / Län based on zipcode

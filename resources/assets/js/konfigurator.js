@@ -325,7 +325,7 @@ $(document).ready(function(){
             return;
         }
         $('.app-sidebar-content').hide();
-        $('.app-sidebar-'+data).show();
+        $('.app-sidebar-'+data).show();.0
         $('body').addClass('sidebar-open');
     });
 
