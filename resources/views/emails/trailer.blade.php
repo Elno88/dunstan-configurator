@@ -1,5 +1,6 @@
-<p>Den här kunden har tecknat en trailerförsäkring via webben. </p>
-
-<p>Kund #{{ $details['kundnr'] ?? '' }}</p>
-<p>{{ $details['efternamn'] ?? '' }}, {{ $details['fornamn'] ?? '' }}</p>
-
+Nytecknad trailerförsäkring via web.<br/>
+<br/>
+Kund #{{ $details['kundnr'] ?? '' }}<br/>
+{{ $details['efternamn'] ?? '' }}, {{ $details['fornamn'] ?? '' }}<br/>
+<br/>
+Försäkring som tecknats över webben måste kontrolleras innan den aktiveras och faktura skickas.<br/>
