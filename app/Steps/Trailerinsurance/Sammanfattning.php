@@ -535,9 +535,7 @@ class Sammanfattning extends StepAbstract
             }
 
             // Dunstan
-            Mail::to($send_email_to)->send(new TrailerMail(
-                'Nytecknad trailerförsäkring via web',
-                [
+            Mail::to($send_email_to)->send(new TrailerMail('Nytecknad trailerförsäkring via web', [
                     'kundnr' => $focus_customer['kundnr'] ?? '',
                     'fornamn' => $focus_customer['fornamn'] ?? '',
                     'efternamn' => $focus_customer['efternamn'] ?? '',
