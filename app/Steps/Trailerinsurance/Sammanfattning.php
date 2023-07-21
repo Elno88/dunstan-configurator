@@ -195,7 +195,7 @@ class Sammanfattning extends StepAbstract
         if (session()->has('bankid.'.$orderRef) && session()->get('bankid.'.$orderRef) == 'COMPLETE') {
             $response = [
                 'status' => 1,
-                'next_step' => 'tack'
+                'next_step' => 'trailerforsakring-tack'
             ];
 
             session()->forget('bankid');
@@ -257,7 +257,7 @@ class Sammanfattning extends StepAbstract
                 ]);
                 $response = [
                     'status' => 1,
-                    'next_step' => 'tack'
+                    'next_step' => 'trailerforsakring-tack'
                 ];
             } catch (FocusApiException $e) {
                 report($e);
