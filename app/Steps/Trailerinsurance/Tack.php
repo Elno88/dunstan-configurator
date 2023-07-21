@@ -25,9 +25,6 @@ class Tack extends StepAbstract
         $focusapi = new FocusApi();
         $data = $focusapi->get_shared_focus_data();
 
-        // Fetch session data
-        $horse_name = $data['namn'] ?? '';
-
         // Build google analytics ecommerce data
         try {
             $ecommerce_data = $this->build_ga_ecommerce_data();
@@ -43,7 +40,7 @@ class Tack extends StepAbstract
             try {
                 $mailchimpapi = new MailchimpApi;
                 $mailchimpapi->subscribe_member($data['email'], []);
-                $mailchimpapi->member_assign_tags($data['email'], ['Webteckning-trailer']);
+                $mailchimpapi->member_assign_tags($data['email'], ['webteckning-trailer']);
             } catch (\Exception $e){
                 report($e);
             }
