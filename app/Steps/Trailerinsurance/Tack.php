@@ -51,8 +51,8 @@ class Tack extends StepAbstract
         $request->session()->forget('bankid');
 
         return view('steps.trailerinsurance.tack', [
-            'ecommerce_data' => $ecommerce_data,
-            'ecommerce_data_send' => $ecommerce_data_send,
+            // 'ecommerce_data' => $ecommerce_data,
+            // 'ecommerce_data_send' => $ecommerce_data_send,
         ]);
     }
 
@@ -69,5 +69,70 @@ class Tack extends StepAbstract
             'status'    => 1,
             'next_step' => '',
         ]);
+    }
+
+    public function build_ga_ecommerce_data()
+    {
+        $focusapi = new FocusApi();
+        $data = $focusapi->get_shared_focus_data();
+
+        $ecommerce = [];
+
+        $total_price = 0;
+        if(isset($data['completed_products']) && !empty($data['completed_products'])){
+            foreach($data['completed_products'] as $product){
+                $total_price += $product['total'];
+            }
+        } else {
+            // end here already
+            return $ecommerce;
+        }
+
+        $total_price = number_format($total_price,2,'.','');
+        $ecommerce['event'] = 'purchase';
+        $ecommerce['ecommerce']['purchase']['actionField'] = [
+            'id' => $data['session_id'] ?? '',
+            'affiliation' => 'Konfigurator',
+            'revenue' => $total_price
+        ];
+        $ecommerce['ecommerce']['purchase']['products'] = [];
+
+        // Set category based on manual or insurley
+        $category = 'TrailerFörsäkringNy';
+
+
+        // Livförsäkring, om den inte är samma som veterinärförsäkring
+        if(
+            isset($data['livforsakring']) &&
+            !empty($data['livforsakring']) &&
+            $data['livforsakring'] != $data['veterinarvardsforsakring'] &&
+            isset($data['completed_products'][$data['livforsakring']]['total'])
+        ){
+            $price = 0;
+            if(isset($data['completed_products'][$data['livforsakring']])){
+                $price = number_format($data['completed_products'][$data['livforsakring']]['total'],2,'.','');
+            }
+            $ecommerce['ecommerce']['purchase']['products'][] = [
+                'name' => $data['livforsakring_label'],
+                'id' => $data['livforsakring'],
+                'price' => $price,
+                'brand' => 'Dunstan',
+                'category' => $category,
+                'quantity' => 1,
+            ];
+        }
+
+        // TODO: this should be solved.
+
+        $ecommerce['ecommerce']['purchase']['products'][] = [
+            'name' => $data['livforsakring_label'],
+            'id' => $data['livforsakring'],
+            'price' => $price,
+            'brand' => 'Dunstan',
+            'category' => $category,
+            'quantity' => 1,
+        ];
+
+        return $ecommerce;
     }
 }

@@ -683,8 +683,6 @@ class FocusApi
                 'civic_number' => $session_data['data']['hastforsakring-a-9']['civic_number'] ?? null,
                 'state' => $session_data['data']['hastforsakring-a-9']['state'] ?? 'Okänt',
 
-
-
                 // Nya fält för foster o föl (DFF)
                 'stallion_name' => $session_data['data']['hastforsakring-a-ff-betackning']['stallion_name'] ?? null,
                 'seminstation' => $session_data['data']['hastforsakring-a-ff-betackning']['seminstation'] ?? null,
