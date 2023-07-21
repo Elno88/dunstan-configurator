@@ -67,7 +67,6 @@ class Tack extends StepAbstract
 
     public function build_ga_ecommerce_data()
     {
-
         $focusapi = new FocusApi();
         $data = $focusapi->get_shared_focus_data();
 
