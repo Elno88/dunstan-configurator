@@ -43,7 +43,7 @@ class Tack extends StepAbstract
             try {
                 $mailchimpapi = new MailchimpApi;
                 $mailchimpapi->subscribe_member($data['email'], []);
-                $mailchimpapi->member_assign_tags($data['email'], ['webteckning-trailer']);
+                $mailchimpapi->member_assign_tags($data['email'], ['Webteckning-trailer']);
             } catch (\Exception $e){
                 report($e);
             }
