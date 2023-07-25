@@ -22,11 +22,11 @@
                 <div style="margin-top: 0; position: fixed; left: 37%; width:25%; border-top: 1px solid var(--color-yellow)"></div>
               <p style="margin-top: 40px;">
                   Tjänstevikt:
-                   <span>{{ number_format($vehicle['total_weight'], 0, ' ', '') }} kg</span>
+                   <span>{{ number_format($vehicle['service_weight'], 0, ' ', '') }} kg</span>
               </p>
               <p>
                   Totalvikt:
-                  <span>{{ number_format($vehicle['service_weight'], 0, ' ', '') }} kg</span>
+                  <span>{{ number_format($vehicle['total_weight'], 0, ' ', '') }} kg</span>
               </p>
             </div>
         </div>
