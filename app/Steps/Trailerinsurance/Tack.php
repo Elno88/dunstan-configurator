@@ -103,8 +103,6 @@ class Tack extends StepAbstract
 
         $options = session()->get('steps.data.options', []);
 
-        // TODO: this should be solved.
-
         $ecommerce['ecommerce']['purchase']['products'][] = [
             'name' => $options['form'] . ' Hästrailerförsäkring',
             'id' => $product_id,
