@@ -16,7 +16,7 @@ class Tack extends StepAbstract
     /**
      * Shows the step/page.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      *
      * @return Illuminate\View
      */
@@ -35,13 +35,13 @@ class Tack extends StepAbstract
         $ecommerce_data_send = !empty($ecommerce_data);
 
         // Update mailchimp tags
-        if(isset($data['email']) && !empty($data['email'])){
+        if (isset($data['email']) && !empty($data['email'])) {
             // Mailchimp
             try {
                 $mailchimpapi = new MailchimpApi;
                 $mailchimpapi->subscribe_member($data['email'], []);
                 $mailchimpapi->member_assign_tags($data['email'], ['webteckning-trailer']);
-            } catch (\Exception $e){
+            } catch (\Exception $e) {
                 report($e);
             }
         }
@@ -51,22 +51,22 @@ class Tack extends StepAbstract
         $request->session()->forget('bankid');
 
         return view('steps.trailerinsurance.tack', [
-            // 'ecommerce_data' => $ecommerce_data,
-            // 'ecommerce_data_send' => $ecommerce_data_send,
+            'ecommerce_data' => $ecommerce_data,
+            'ecommerce_data_send' => $ecommerce_data_send,
         ]);
     }
 
     /**
      * Validates the step.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function validateStep(Request $request)
     {
         return response()->json([
-            'status'    => 1,
+            'status' => 1,
             'next_step' => '',
         ]);
     }
@@ -79,8 +79,9 @@ class Tack extends StepAbstract
         $ecommerce = [];
 
         $total_price = 0;
-        if(isset($data['completed_products']) && !empty($data['completed_products'])){
-            foreach($data['completed_products'] as $product){
+        $product_id = array_keys($data['completed_products']);
+        if (isset($data['completed_products']) && !empty($data['completed_products'])) {
+            foreach ($data['completed_products'] as $product) {
                 $total_price += $product['total'];
             }
         } else {
@@ -88,7 +89,7 @@ class Tack extends StepAbstract
             return $ecommerce;
         }
 
-        $total_price = number_format($total_price,2,'.','');
+        $total_price = number_format($total_price, 2, '.', '');
         $ecommerce['event'] = 'purchase';
         $ecommerce['ecommerce']['purchase']['actionField'] = [
             'id' => $data['session_id'] ?? '',
@@ -98,36 +99,14 @@ class Tack extends StepAbstract
         $ecommerce['ecommerce']['purchase']['products'] = [];
 
         // Set category based on manual or insurley
-        $category = 'TrailerFörsäkringNy';
+        $category = 'Hästrailerförsäkring';
 
-
-        // Livförsäkring, om den inte är samma som veterinärförsäkring
-        if(
-            isset($data['livforsakring']) &&
-            !empty($data['livforsakring']) &&
-            $data['livforsakring'] != $data['veterinarvardsforsakring'] &&
-            isset($data['completed_products'][$data['livforsakring']]['total'])
-        ){
-            $price = 0;
-            if(isset($data['completed_products'][$data['livforsakring']])){
-                $price = number_format($data['completed_products'][$data['livforsakring']]['total'],2,'.','');
-            }
-            $ecommerce['ecommerce']['purchase']['products'][] = [
-                'name' => $data['livforsakring_label'],
-                'id' => $data['livforsakring'],
-                'price' => $price,
-                'brand' => 'Dunstan',
-                'category' => $category,
-                'quantity' => 1,
-            ];
-        }
-
-        // TODO: this should be solved.
+        $options = session()->get('steps.data.options', []);
 
         $ecommerce['ecommerce']['purchase']['products'][] = [
-            'name' => $data['livforsakring_label'],
-            'id' => $data['livforsakring'],
-            'price' => $price,
+            'name' => $options['form'] . ' Hästrailerförsäkring',
+            'id' => $product_id,
+            'price' => $total_price,
             'brand' => 'Dunstan',
             'category' => $category,
             'quantity' => 1,

@@ -31,6 +31,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        // send ecommerce data to GTM
         @if(isset($ecommerce_data_send) && $ecommerce_data_send == true)
             let ecommerce_data = {!! json_encode($ecommerce_data) !!};
             dataLayer.push({ ecommerce: null });

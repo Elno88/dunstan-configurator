@@ -526,7 +526,6 @@ class Sammanfattning extends StepAbstract
 
         // Send mail
         try {
-
             $send_email_to = null;
             if (config('services.focus.live')) {
                 $send_email_to = config('services.dunstan.email_live');
