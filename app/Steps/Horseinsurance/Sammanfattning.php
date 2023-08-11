@@ -647,7 +647,6 @@ class Sammanfattning extends StepAbstract
 
         try
         {
-
             if (isset($focus_moments_response['utpris']))
             {
                 $total_utpris += $focus_moments_response['utpris'];
