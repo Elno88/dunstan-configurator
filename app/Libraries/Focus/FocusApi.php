@@ -1202,66 +1202,92 @@ class FocusApi
     {
         switch ($state) {
             case 'Blekinge':
-                $new_state = 'Blekinge';
-                break;
+            case 'Blekinges':
+                return 'Blekinge';
+
             case 'Dalarna':
-                $new_state = 'Dalarnas';
-                break;
-            case 'Gävleborg':
-                $new_state = 'Gävleborgs';
-                break;
+            case 'Dalarnas':
+                return 'Dalarnas';
+
             case 'Gotland':
-                $new_state = 'Gotlands';
-                break;
+            case 'Gotlands':
+                return 'Gotlands';
+
+            case 'Gävleborg':
+            case 'Gävleborgs':
+                return 'Gävleborgs';
+
             case 'Halland':
-                $new_state = 'Hallands';
-                break;
-            case 'Jönköping':
-                $new_state = 'Jönköpings';
-                break;
-            case 'Kalmar':
-            case 'Kronobergs':
-                $new_state = 'Kalmar och Kronoberg';
-                break;
-            case 'Norrbotten':
-                $new_state = 'Norrbottens';
-                break;
-            case 'Östergötland':
-                $new_state = 'Östergötlands';
-                break;
-            case 'Skåne':
-                $new_state = 'Skåne';
-                break;
-            case 'Södermanland':
-                $new_state = 'Södermanlands';
-                break;
-            case 'Stockholm':
-                $new_state = 'Stockholms';
-                break;
-            case 'Uppsala':
-                $new_state = 'Uppsala';
-                break;
-            case 'Värmland':
-                $new_state = 'Värmlands';
-                break;
-            case 'Västerbotten':
-                $new_state = 'Västerbottens';
-                break;
-            case 'Västernorrland':
+            case 'Hallands':
+                return 'Hallands';
+
             case 'Jämtland':
-                $new_state = 'Västernorrlands och Jämtland';
-                break;
+            case 'Jämtlands':
+                return 'Jämtlands';
+
+            case 'Jönköping':
+            case 'Jönköpings':
+                return 'Jönköpings';
+
+            case 'Kalmar':
+            case 'Kalmars':
+                return 'Kalmar';
+
+            case 'Kronoberg':
+            case 'Kronobergs':
+                return 'Kronobergs';
+
+            case 'Norrbotten':
+            case 'Norrbottens':
+                return 'Norrbottens';
+
+            case 'Skåne':
+            case 'Skånes':
+                return 'Skåne';
+
+            case 'Stockholm':
+            case 'Stockholms':
+                return 'Stockholms';
+
+            case 'Södermanland':
+            case 'Södermanlands':
+                return 'Södermanlands';
+
+            case 'Uppsala':
+            case 'Uppsalas':
+                return 'Uppsala';
+
+            case 'Värmland':
+            case 'Värmlands':
+                return 'Värmlands';
+
+            case 'Västerbotten':
+            case 'Västerbottens':
+                return 'Västerbottens';
+
+            case 'Västernorrland':
+            case 'Västernorrlands':
+                return 'Västernorrlands';
+
             case 'Västmanland':
-            case 'Örebro':
-                $new_state = 'Västmanlands och Örebro län';
-                break;
+            case 'Västmanlands':
+                return 'Västmanlands';
+
             case 'Västra Götaland':
-                $new_state = 'Västra Götalands';
-                break;
+            case 'Västra Götalands':
+                return 'Västra Götalands';
+
+            case 'Örebro':
+            case 'Örebros':
+                return 'Örebro';
+
+            case 'Östergötland':
+            case 'Östergötlands':
+                return 'Östergötlands';
+
             default:
-                $new_state = null;
+                return 'Okänt';
         }
-        return $new_state;
     }
 
     /*
