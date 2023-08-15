@@ -209,6 +209,7 @@ class FocusApi
             'kund' => $customer_id,
             'poang' => $points,
             'notering' => 'Webbteckning: ' . $horse_name,
+            'anstalld' => $this->anstalld,
         ];
 
         $response = $this->client->get('', [
@@ -257,7 +258,8 @@ class FocusApi
             'jwt' => $this->jwt,
             'do' => 'crm.kund.spara',
             'persnr' => $civic_number,
-            'uppdatera' => $update
+            'uppdatera' => $update,
+            'anstalld' => $this->anstalld,
         ];
 
         foreach ($data as $key => $d) {
@@ -341,7 +343,7 @@ class FocusApi
             'kund' => $customer_id,
             'undersokning' => $type,
             'preview' => $preview,
-            'svar' => $questions
+            'svar' => $questions,
         ];
 
         $response = $this->client->get('', [
