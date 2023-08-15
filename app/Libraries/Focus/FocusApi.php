@@ -953,6 +953,7 @@ class FocusApi
                         // 68 => '', // Rasgrupp
                         126 => $data['farg'], // Färg
                         552 => $data['stable'], // Uppstallning
+                        574 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[127] = $data['chip_number'];
@@ -973,6 +974,7 @@ class FocusApi
                         // 79 => '', // Rasgrupp
                         128 => $data['farg'], // Färg
                         553 => $data['stable'], // Uppstallning
+                        575 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[129] = $data['chip_number'];
@@ -992,6 +994,7 @@ class FocusApi
                         // 84 => '', // Rasgrupp
                         136 => $data['farg'], // Färg
                         555 => $data['stable'], // Uppstallning
+                        578 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[137] = $data['chip_number'];
@@ -1012,6 +1015,7 @@ class FocusApi
                         // 94 => '', // Rasgrupp
                         132 => $data['farg'], // Färg
                         554 => $data['stable'], // Uppstallning
+                        576 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
@@ -1032,6 +1036,7 @@ class FocusApi
                         // 99 => 'Rasgrupp', // Rasgrupp
                         134 => $data['farg'], // Färg
                         556 => $data['stable'], // Uppstallning
+                        577 => $data['state'] ?? 'Skåne', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
