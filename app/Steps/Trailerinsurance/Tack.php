@@ -94,7 +94,6 @@ class Tack extends StepAbstract
         $ecommerce['ecommerce']['purchase']['actionField'] = [
             'id' => $data['session_id'] ?? '',
             'affiliation' => 'Konfigurator',
-            'category' => $category,
             'revenue' => $total_price
         ];
         $ecommerce['ecommerce']['purchase']['products'] = [];
