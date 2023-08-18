@@ -92,15 +92,51 @@ class Tack extends StepAbstract
         $ecommerce['ecommerce']['purchase']['products'] = [];
 
         // Set category based on manual or insurley
-        $category = 'Hasttrailer';
-        $ecommerce['ecommerce']['purchase']['products'][] = [
-            'name' => $data['livforsakring_label'],
-            'id' => $data['livforsakring'],
-            'price' => $price,
-            'brand' => 'Dunstan',
-            'category' => $category,
-            'quantity' => 1,
-        ];
+        $category = 'FörsäkringNy';
+        if(isset($data['step_insurance']) && $data['step_insurance'] == 'hastforsakring-b-1'){
+            $category = 'FörsäkringJamför';
+        }
+
+        // Veterinärförsäkring
+        if(
+            isset($data['veterinarvardsforsakring']) &&
+            !empty($data['veterinarvardsforsakring']) &&
+            isset($data['completed_products'][$data['veterinarvardsforsakring']]['total'])
+        ){
+            $price = 0;
+            if(isset($data['completed_products'][$data['veterinarvardsforsakring']])){
+                $price = number_format($data['completed_products'][$data['veterinarvardsforsakring']]['total'],2,'.','');
+            }
+            $ecommerce['ecommerce']['purchase']['products'][] = [
+                'name' => $data['veterinarvardsforsakring_label'],
+                'id' => $data['veterinarvardsforsakring'],
+                'price' => $price,
+                'brand' => 'Dunstan',
+                'category' => $category,
+                'quantity' => 1,
+            ];
+        }
+
+        // Livförsäkring, om den inte är samma som veterinärförsäkring
+        if(
+            isset($data['livforsakring']) &&
+            !empty($data['livforsakring']) &&
+            $data['livforsakring'] != $data['veterinarvardsforsakring'] &&
+            isset($data['completed_products'][$data['livforsakring']]['total'])
+        ){
+            $price = 0;
+            if(isset($data['completed_products'][$data['livforsakring']])){
+                $price = number_format($data['completed_products'][$data['livforsakring']]['total'],2,'.','');
+            }
+            $ecommerce['ecommerce']['purchase']['products'][] = [
+                'name' => $data['livforsakring_label'],
+                'id' => $data['livforsakring'],
+                'price' => $price,
+                'brand' => 'Dunstan',
+                'category' => $category,
+                'quantity' => 1,
+            ];
+        }
 
         return $ecommerce;
     }
