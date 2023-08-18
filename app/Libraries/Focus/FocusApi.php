@@ -796,6 +796,7 @@ class FocusApi
             }
         } else {
             $data = [
+                'session_id' => $session_data['session_id'] ?? null,
                 'civic_number' => $session_data['data']['customer']['kund']['persnr'] ?? null,
                 'startdatum' => $session_data['data']['trailerforsakring-sammanfattning']['startdatum'] ?? $session_data['data']['resultat']['startdatum'] ?? today()->format('Y-m-d'),
                 'email' => $session_data['data']['trailerforsakring-sammanfattning']['email'] ?? $session_data['data']['hastforsakring-a-10']['email'] ?? null,
