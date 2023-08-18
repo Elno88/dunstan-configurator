@@ -209,6 +209,7 @@ class FocusApi
             'kund' => $customer_id,
             'poang' => $points,
             'notering' => 'Webbteckning: ' . $horse_name,
+            'anstalld' => $this->anstalld,
         ];
 
         $response = $this->client->get('', [
@@ -257,7 +258,8 @@ class FocusApi
             'jwt' => $this->jwt,
             'do' => 'crm.kund.spara',
             'persnr' => $civic_number,
-            'uppdatera' => $update
+            'uppdatera' => $update,
+            'anstalld' => $this->anstalld,
         ];
 
         foreach ($data as $key => $d) {
@@ -341,7 +343,7 @@ class FocusApi
             'kund' => $customer_id,
             'undersokning' => $type,
             'preview' => $preview,
-            'svar' => $questions
+            'svar' => $questions,
         ];
 
         $response = $this->client->get('', [
@@ -676,6 +678,7 @@ class FocusApi
                 'age' => $session_data['data']['hastforsakring-a-2']['age'] ?? null,
                 'gender' => $session_data['data']['hastforsakring-a-3']['gender'] ?? '',
                 'namn' => $session_data['data']['hastforsakring-a-4']['namn'] ?? '',
+                'farg' => $session_data['data']['hastforsakring-a-4']['farg'] ?? '',
                 'breed' => $session_data['data']['hastforsakring-a-5']['breed'] ?? null,
                 'folningdatum' => $session_data['data']['hastforsakring-a-6']['folningdatum'] ?? '',
                 'born' => $session_data['data']['hastforsakring-a-8']['born'] ?? '',
@@ -736,6 +739,7 @@ class FocusApi
                 'age' => $session_data['data']['hastforsakring-b-4']['age'] ?? null,
                 'gender' => $session_data['data']['hastforsakring-b-5']['gender'] ?? '',
                 'namn' => $session_data['data']['hastforsakring-b-6']['namn'] ?? '',
+                'farg' => $session_data['data']['hastforsakring-b-6']['farg'] ?? '',
                 'breed' => $session_data['data']['hastforsakring-b-7']['breed'] ?? null,
                 'folningdatum' => $session_data['data']['hastforsakring-b-8']['folningdatum'] ?? '',
                 'born' => $session_data['data']['hastforsakring-b-10']['born'] ?? '',
@@ -819,19 +823,17 @@ class FocusApi
                 $focus_state = $this->convert_state_to_focus($papilite_address['state'] ?? '');
 
                 // if we have a state, set it
-                if(isset($focus_state) && !empty($focus_state)){
+                if (isset($focus_state) && !empty($focus_state)) {
                     $data['state'] = $focus_state;
                 } else {
                     // On error, default state tå Okänt
                     $data['state'] = 'Okänt';
                 }
-
             } catch (PapiliteApiException $e) {
                 report($e);
                 // On error, default state to Okänt
                 $data['state'] = 'Okänt';
             }
-
         }
 
         return $data;
@@ -862,8 +864,8 @@ class FocusApi
                         104 => 'Nej', // Moms
                         8 => $data['state'] ?? 'Skåne', // Län
                         //7 => '0', // Rasgrupp
-                        //183 => $data['farg'], // Färg
-                        //548 => $data['stable'], // Uppstallning
+                        183 => $data['farg'], // Färg
+                        548 => $data['stable'], // Uppstallning
 
                     ];
                     if (!empty($data['chip_number'])) {
@@ -885,8 +887,8 @@ class FocusApi
                         139 => 'Nej', // Moms
                         28 => $data['state'] ?? 'Okänt', // Län
                         // 27 => '0', // Rasgrupp
-                        // 120 => '', Färg
-
+                        120 => $data['farg'], // Färg
+                        549 => $data['stable'], // Uppstallning
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[121] = $data['chip_number'];
@@ -907,8 +909,8 @@ class FocusApi
                         140 => 'Nej', // Moms
                         38 => $data['state'] ?? 'Okänt', // Län
                         // 43 => '0', // Rasgrupp
-                        // 122 => '', Färg
-
+                        122 => $data['farg'], // Färg
+                        550 => $data['stable'], // Uppstallning
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[123] = $data['chip_number'];
@@ -929,8 +931,8 @@ class FocusApi
                         141 => 'Nej', // Moms
                         48 => $data['state'] ?? 'Okänt', // Län
                         // 47 => 0, // Rasgrupp
-                        // 124 => '', // Färg
-
+                        124 => $data['farg'], // Färg
+                        551 => $data['stable'], // Uppstallning
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[125] = $data['chip_number'];
@@ -949,7 +951,9 @@ class FocusApi
                         142 => 'Nej', // Moms
                         361 => 0, // Minimipremie
                         // 68 => '', // Rasgrupp
-                        // 126 => '', // Färg
+                        126 => $data['farg'], // Färg
+                        552 => $data['stable'], // Uppstallning
+                        574 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[127] = $data['chip_number'];
@@ -968,8 +972,9 @@ class FocusApi
                         143 => 'Nej', // Moms
                         362 => 0, // Minimipremie
                         // 79 => '', // Rasgrupp
-                        // 128 => '', // Färg
-
+                        128 => $data['farg'], // Färg
+                        553 => $data['stable'], // Uppstallning
+                        575 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[129] = $data['chip_number'];
@@ -987,8 +992,9 @@ class FocusApi
                         182 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         147 => 'Nej', // Moms
                         // 84 => '', // Rasgrupp
-                        // 136 => '', // Färg
-
+                        136 => $data['farg'], // Färg
+                        555 => $data['stable'], // Uppstallning
+                        578 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[137] = $data['chip_number'];
@@ -1007,7 +1013,9 @@ class FocusApi
                         145 => 'Nej', // Moms
                         364 => 0, // Minimipremie
                         // 94 => '', // Rasgrupp
-                        // 132 => '', // Färg
+                        132 => $data['farg'], // Färg
+                        554 => $data['stable'], // Uppstallning
+                        576 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
@@ -1025,16 +1033,17 @@ class FocusApi
                         180 => $data['swbmedlem'] ?? 'Nej', // SWB registrerad, alt, Ja, Ja - Unghäst, Nej
                         146 => 'Nej', // Moms
                         365 => 0, // Minimipremie
-                        // 134 => 'Färg', // Färg
                         // 99 => 'Rasgrupp', // Rasgrupp
-
+                        134 => $data['farg'], // Färg
+                        556 => $data['stable'], // Uppstallning
+                        577 => $data['state'] ?? 'Skåne', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
                     }
                     break;
 
-                /* old Foster o föl
+                    /* old Foster o föl
             case 20:
                 // Foster o föl
                 $new_fields = [
@@ -1134,8 +1143,8 @@ class FocusApi
                     $customer = session()->get('steps.data.customer', []);
                     $options = session()->get('steps.data.options', []);
 
-                    if(!isset($customer['kund']['namn'])) {
-                        $name = $customer['kund']['fornamn'].' '.$customer['kund']['efternamn'];
+                    if (!isset($customer['kund']['namn'])) {
+                        $name = $customer['kund']['fornamn'] . ' ' . $customer['kund']['efternamn'];
                     } else {
                         $name = $customer['kund']['namn'];
                     }
@@ -1163,8 +1172,8 @@ class FocusApi
                     $customer = session()->get('steps.data.customer', []);
                     $options = session()->get('steps.data.options', []);
 
-                    if(!isset($customer['kund']['namn'])) {
-                        $name = $customer['kund']['fornamn'].' '.$customer['kund']['efternamn'];
+                    if (!isset($customer['kund']['namn'])) {
+                        $name = $customer['kund']['fornamn'] . ' ' . $customer['kund']['efternamn'];
                     } else {
                         $name = $customer['kund']['namn'];
                     }
@@ -1198,66 +1207,92 @@ class FocusApi
     {
         switch ($state) {
             case 'Blekinge':
-                $new_state = 'Blekinge';
-                break;
+            case 'Blekinges':
+                return 'Blekinge';
+
             case 'Dalarna':
-                $new_state = 'Dalarnas';
-                break;
-            case 'Gävleborg':
-                $new_state = 'Gävleborgs';
-                break;
+            case 'Dalarnas':
+                return 'Dalarnas';
+
             case 'Gotland':
-                $new_state = 'Gotlands';
-                break;
+            case 'Gotlands':
+                return 'Gotlands';
+
+            case 'Gävleborg':
+            case 'Gävleborgs':
+                return 'Gävleborgs';
+
             case 'Halland':
-                $new_state = 'Hallands';
-                break;
-            case 'Jönköping':
-                $new_state = 'Jönköpings';
-                break;
-            case 'Kalmar':
-            case 'Kronobergs':
-                $new_state = 'Kalmar och Kronoberg';
-                break;
-            case 'Norrbotten':
-                $new_state = 'Norrbottens';
-                break;
-            case 'Östergötland':
-                $new_state = 'Östergötlands';
-                break;
-            case 'Skåne':
-                $new_state = 'Skåne';
-                break;
-            case 'Södermanland':
-                $new_state = 'Södermanlands';
-                break;
-            case 'Stockholm':
-                $new_state = 'Stockholms';
-                break;
-            case 'Uppsala':
-                $new_state = 'Uppsala';
-                break;
-            case 'Värmland':
-                $new_state = 'Värmlands';
-                break;
-            case 'Västerbotten':
-                $new_state = 'Västerbottens';
-                break;
-            case 'Västernorrland':
+            case 'Hallands':
+                return 'Hallands';
+
             case 'Jämtland':
-                $new_state = 'Västernorrlands och Jämtland';
-                break;
+            case 'Jämtlands':
+                return 'Jämtlands';
+
+            case 'Jönköping':
+            case 'Jönköpings':
+                return 'Jönköpings';
+
+            case 'Kalmar':
+            case 'Kalmars':
+                return 'Kalmar';
+
+            case 'Kronoberg':
+            case 'Kronobergs':
+                return 'Kronobergs';
+
+            case 'Norrbotten':
+            case 'Norrbottens':
+                return 'Norrbottens';
+
+            case 'Skåne':
+            case 'Skånes':
+                return 'Skåne';
+
+            case 'Stockholm':
+            case 'Stockholms':
+                return 'Stockholms';
+
+            case 'Södermanland':
+            case 'Södermanlands':
+                return 'Södermanlands';
+
+            case 'Uppsala':
+            case 'Uppsalas':
+                return 'Uppsala';
+
+            case 'Värmland':
+            case 'Värmlands':
+                return 'Värmlands';
+
+            case 'Västerbotten':
+            case 'Västerbottens':
+                return 'Västerbottens';
+
+            case 'Västernorrland':
+            case 'Västernorrlands':
+                return 'Västernorrlands';
+
             case 'Västmanland':
-            case 'Örebro':
-                $new_state = 'Västmanlands och Örebro län';
-                break;
+            case 'Västmanlands':
+                return 'Västmanlands';
+
             case 'Västra Götaland':
-                $new_state = 'Västra Götalands';
-                break;
+            case 'Västra Götalands':
+                return 'Västra Götalands';
+
+            case 'Örebro':
+            case 'Örebros':
+                return 'Örebro';
+
+            case 'Östergötland':
+            case 'Östergötlands':
+                return 'Östergötlands';
+
             default:
-                $new_state = null;
+                return 'Okänt';
         }
-        return $new_state;
     }
 
     /*

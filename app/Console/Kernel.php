@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // Schedule insurley log to be generated
         $schedule
-            ->command('lead:export')
-            ->dailyAt('04:00');
+            ->command('insurley-log:export')
+            ->dailyAt('06:00');
     }
 
     /**
