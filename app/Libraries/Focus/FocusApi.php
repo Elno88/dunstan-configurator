@@ -256,7 +256,7 @@ class FocusApi
         $query = [
             'rest' => 1,
             'jwt' => $this->jwt,
-            'do' => 'crm.kund.spara',
+            'do' => 'crm.kund.api.spara',
             'persnr' => $civic_number,
             'uppdatera' => $update,
             'anstalld' => $this->anstalld,
