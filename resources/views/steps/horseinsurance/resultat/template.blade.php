@@ -10,7 +10,7 @@
 @endphp
 
 <h4>Välj självrisk <i class="bubble-help btn-sidebar" data-content="sjalvrisk">?</i></h4>
-<p>Vid skador upp till 5 000 SEK är självrisken 50 %. Fast självrisk med ersättning från första kronan. <span style="text-decoration: underline;" class="btn-sidebar" data-content="sjalvrisk">Läs mer</span>.</p>
+<p>För skador upp till 5 000 SEK är självrisken 50%, därefter gäller din valda självrisk. <span style="text-decoration: underline;" class="btn-sidebar" data-content="sjalvrisk">Läs mer om självrisken här</span>.</p>
 <ul class="resultat-slide-select options-{{ count($sjalvrisk_options) }}">
     @foreach($sjalvrisk_options as $key => $sjalvrisk)
         <li class="@if(!isset($defaults['sjalvrisk_options']) || is_null($defaults['sjalvrisk_options']) || !in_array($sjalvrisk, $defaults['sjalvrisk_options'])) disabled @endif @if(isset($defaults['sjalvrisk']) && $defaults['sjalvrisk'] == $sjalvrisk) selected @endif"><input id="sjalvrisk-{{ $key }}" class="filter" type="radio" name="sjalvrisk" value="{{ $sjalvrisk }}" @if(!isset($defaults['sjalvrisk_options']) || is_null($defaults['sjalvrisk_options']) || !in_array($sjalvrisk, $defaults['sjalvrisk_options'])) disabled @endif @if(isset($defaults['sjalvrisk']) && $defaults['sjalvrisk'] == $sjalvrisk) checked @endif ><label for="sjalvrisk-{{ $key }}">{{ $sjalvrisk }} %</label></li>
