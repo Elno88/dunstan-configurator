@@ -4,7 +4,7 @@
             <div class="bubble-contents">
             	<i class="bubble-help btn-sidebar" data-content="hastforsakring-a-1">?</i>
                 <p><span style="font-weight:600;">I vilken kategori passar din häst bäst?</span><br/>
-                <p class="hidden-mobile">Om du känner dig osäker på något, kan du när som helst klicka på en ?-ikon för att få mer information. Förresten, visste du att vi inte har någon fast självrisk eller självriskperiod?</p>
+                <p class="hidden-mobile">Om du känner dig osäker på något, kan du när som helst klicka på en ?-ikon för att få mer information. Förresten, visste du att du får ersättning från första kronan när du försäkrar din häst hos oss?</p>
             </div>
         </div>
 

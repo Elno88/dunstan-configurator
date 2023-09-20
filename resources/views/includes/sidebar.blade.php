@@ -104,12 +104,12 @@
     </div>
     <div class="app-sidebar-content app-sidebar-sjalvrisk">
         <h3>Självrisk</h3>
-        <p>Självrisk är den del av veterinärvårdskostnaden som du själv betalar vid en ersättningsbar sjukdom eller skada. Dunstan är det enda bolaget på marknaden som inte har någon fast självrisk, utan enbart en rörlig del, 25 % eller 50 %. Om du har valt 25% rörlig självrisk betalar du bara 25 % av de ersättningsbara kostnaderna när du behöver veterinär. Vid skador upp till 5 000 SEK är självrisken alltid 50 %.</p>
+        <p>Självrisk är den del av veterinärvårdskostnaden som du själv betalar vid en ersättningsbar sjukdom eller skada. Om du har valt 25% rörlig självrisk betalar du bara 25 % av de ersättningsbara kostnaderna när du behöver veterinär. Vid skador upp till 5 000 SEK är självrisken alltid 50 %.</p>
         <p>Exempel:</p>
-        <p>Kostnad hos veterinär: 7 000 SEK<br/>
-            Du betalar 50% upp till 5000 SEK: 2 500 SEK<br/>
-            Med 25% vald självrisk upp till 2 000 SEK: 500 SEK<br/>
-            Dunstan betalar: 4 000 SEK</p>
+        <p>Kostnad hos veterinär: 7 000 SEK</br>
+        Du betalar 50% upp till 5000 SEK: 2 500 SEK</br>
+        Med 25% vald självrisk upp till 2 000 SEK: 500 SEK</br>
+        Dunstan betalar 4 000 SEK</p>
     </div>
     <div class="app-sidebar-content app-sidebar-livvarde">
         <p><strong>Livvärdet ska spegla hästens marknadsvärde och är ofta detsamma som inköpspriset.</strong></p>
