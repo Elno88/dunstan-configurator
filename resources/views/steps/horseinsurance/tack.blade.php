@@ -37,6 +37,11 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+        //Init Trust Pilot widget
+        var element = document.getElementsByClassName("trustpilot-widget");
+        window.Trustpilot.loadFromElement(element);
+
         @if(isset($ecommerce_data_send) && $ecommerce_data_send == true)
             let ecommerce_data = {!! json_encode($ecommerce_data) !!};
             dataLayer.push({ ecommerce: null });
