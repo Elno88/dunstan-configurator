@@ -23,7 +23,7 @@
 	            </div>
 
               <!-- TrustBox widget - Review Collector -->
-              <div id="trustbox" class="trustpilot-widget" data-locale="sv-SE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="635b9d35f97e5c2c7dfeb1ba" data-style-height="52px" data-style-width="100%">
+              <div id="trustbox" class="trustpilot-widget" style="margin-top:50px" data-locale="sv-SE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="635b9d35f97e5c2c7dfeb1ba" data-style-height="52px" data-style-width="100%">
                 <a href="https://se.trustpilot.com/review/dunstan.se" target="_blank" rel="noopener">Trustpilot</a>
               </div>
               <!-- End TrustBox widget -->
