@@ -9,28 +9,31 @@
         <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	    <link rel="icon" href="{{ asset('img/favicon-32x32.png') }}" sizes="32x32" />
-		<link rel="icon" href="{{ asset('img/favicon-192x192.png') }}" sizes="192x192" />
-		<link rel="apple-touch-icon" href="{{ asset('img/favicon-180x180.png') }}" />
-		<meta name="msapplication-TileImage" content="{{ asset('img/favicon-270x270.png') }}" />
+	      <link rel="icon" href="{{ asset('img/favicon-32x32.png') }}" sizes="32x32" />
+    		<link rel="icon" href="{{ asset('img/favicon-192x192.png') }}" sizes="192x192" />
+    		<link rel="apple-touch-icon" href="{{ asset('img/favicon-180x180.png') }}" />
+    		<meta name="msapplication-TileImage" content="{{ asset('img/favicon-270x270.png') }}" />
         <link href="{{ mix('css/vendor.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ mix('css/konfigurator.css') }}" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" media="print" onload="this.media='all'">
         @yield('styles')
         @stack('styles')
-{{--        <link href="{{ asset('css/auth.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">--}}
         <!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-PFL6M43');</script>
-		<!-- End Google Tag Manager -->
+    		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    		})(window,document,'script','dataLayer','GTM-PFL6M43');</script>
+    		<!-- End Google Tag Manager -->
+        <!-- TrustBox script -->
+        <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+        <!-- End TrustBox script -->
         <!-- Cookie information -->
-        <script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js"
-        data-culture="SV" type="text/javascript"></script>
+        <script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js" data-culture="SV" type="text/javascript"></script>
         <!-- End Cookie information -->
+
     </head>
     <body>
     	<!-- Google Tag Manager (noscript) -->
