@@ -2,6 +2,7 @@
 
 namespace App\Steps\Trailerinsurance\A;
 
+use App\Actions\ValidatePersonAction;
 use App\Libraries\Focus\FocusApi;
 use App\Libraries\Focus\FocusApiException;
 use App\Steps\StepAbstract;
@@ -37,13 +38,23 @@ class A2 extends StepAbstract
                 'ssn' => $ssn,
             ],
             [
-                'ssn' => [
-                    'required',
-                    'regex:/(^[\d]{12}$)/u',
-                    'bail'
-                ]
-            ]
+                'ssn' => ['required', 'numeric', 'regex:/(^(19|20)[\d]{10}$)/u', 'bail'],
+            ],
+            [
+                'ssn.required'   => 'Du måste ange ett personnummer',
+                'ssn.regex'      => 'Du måste ange ett giltigt personnummer',
+            ],
         );
+
+        $validator->after(function ($validator) use ($ssn) {
+            try {
+                if (!(new ValidatePersonAction)->execute($ssn)) {
+                    $validator->errors()->add('ssn', 'Du måste ange ett giltigt personnummer');
+                }
+            } catch (\Exception $e) {
+                $validator->errors()->add('ssn', $e->getMessage());
+            }
+        });
 
         if ($validator->fails()) {
             return response()->json([
@@ -65,7 +76,6 @@ class A2 extends StepAbstract
                 $customer['kund']['typ'] = 'person';
                 $customer['kund']['namn'] = $new_customer['fornamn'] . ' ' . $new_customer['efternamn'];
             } catch (FocusApiException $e) {
-
             }
         }
 

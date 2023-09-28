@@ -100,10 +100,9 @@ function Konfigurator(config){
         }, 400);
     }
 
-    this.show_error_message = function show_error_message(errors)
+    this.show_error_message = function show_error_message(errors, display = false)
     {
-
-        let show_custom_message = false;
+        let show_custom_message = display;
         let custom_message = '';
 
         // show message
@@ -123,6 +122,8 @@ function Konfigurator(config){
             if(id === 'regnr'){
                 custom_message = message[0];
                 show_custom_message = true;
+            } else {
+                custom_message = message[0];
             }
         });
 
@@ -289,7 +290,9 @@ function Konfigurator(config){
                     } else {
                         // error to submit validation
                         if(data.errors){
-                            _this.show_error_message(data.errors);
+                            let display = (data.display) ? data.display : 0;
+
+                            _this.show_error_message(data.errors, display);
 
                             // Handle errors on hälsodeklarationen
                             $.each(data.errors, function(id, message) {

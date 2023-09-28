@@ -25,7 +25,7 @@ class Index extends StepAbstract
         ];
 
         $rules = [
-            'forsakring' => 'required|in:hastforsakring,gardsforsakring,trailerforsakring'
+            'forsakring' => 'required|in:hastforsakring,gardsforsakring,trailerforsakring,olycksfallsforsakring'
         ];
 
         $validator = Validator::make($input, $rules);

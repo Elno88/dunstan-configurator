@@ -36,7 +36,6 @@ return [
         \App\Steps\Horseinsurance\B\BFFBetackning::class, // Nya för foster o föl (DFF), Betäckt, typ av bestäckning, seminstation (3 frågor)
         \App\Steps\Horseinsurance\B\BFFForsakring::class, // Nya för foster o föl (DFF), Försäkring
 
-
         // Hästförsäkring Resultat
         \App\Steps\Horseinsurance\Resultat::class,
         //\App\Steps\Horseinsurance\Fosterofol::class,
@@ -64,5 +63,11 @@ return [
         \App\Steps\Trailerinsurance\Resultat::class,
         \App\Steps\Trailerinsurance\Sammanfattning::class,
         \App\Steps\Trailerinsurance\Tack::class,
+
+        // Olycksförsäkringförsäkring
+        \App\Steps\Accidentinsurance\A\A::class,
+        \App\Steps\Accidentinsurance\Resultat::class,
+        \App\Steps\Accidentinsurance\Sammanfattning::class,
+        \App\Steps\Accidentinsurance\Tack::class,
     ]
 ];

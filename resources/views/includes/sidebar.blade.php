@@ -217,6 +217,11 @@
         <p>Om du samlar dina försäkringar hos Dunstan får du ett förmånligt pris på dina försäkringar.</p>
     </div>
 
+    <div class="app-sidebar-content app-sidebar-olycksfallsforsakring-a">
+        <h3>Varför frågar vi efter personuppgifter?</h3>
+        <p>Vi behöver dina personuppgifter för att kunna ge ett prisförslag anpassat efter dig. Priset kan till exempel skilja sig beroende på vart i landet du bor.</p>
+    </div>
+
     <footer class="app-sidebar-footer">
         <img src="{{ asset('img/girl-help.png') }}" alt="Hjälp">
         <h3>Har du fler frågor?</h3>

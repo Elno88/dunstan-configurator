@@ -170,6 +170,18 @@ input[type="email"], input[type="number"], input[type="tel"], input[type="text"]
     font-weight: 400;
 }
 
+.index-page .box {
+    opacity: 0.9;
+}
+
+.box:hover {
+    opacity: 1;
+    transform: scale(1.045);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
 .btn-sidebar {
     cursor: pointer;
 }
@@ -1209,6 +1221,15 @@ body #app-footer button:hover {
     float: right;
 }
 
+.bubble .bubble-label {
+    margin: 0 auto;
+    padding: 0 0 10px 0;
+    max-width: 440px;
+    min-width: 440px;
+    text-align: left;
+    font-weight: bold;
+}
+
 .bubble .bubble-contents {
     display: block;
     position: relative;
@@ -1322,6 +1343,10 @@ body #app-footer button:hover {
 .bubble-type-c.right .bubble-contents {
     margin-right: auto;
     padding-left: 4%;
+}
+
+.bubble.bubble-type-d {
+    flex-direction: column;
 }
 
 .bubble-type-d {
@@ -3177,8 +3202,14 @@ body.sammanfattning #resultat-footer .row-4 {
         display: none;
     }
 
-    .resultat-select-caption .bullet-lists::before,
-    .resultat-select-caption .bullet-lists::after {
+    .no-fade .bullet-lists {
+        display: block;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .resultat-select-caption::not(.no-fade) .bullet-lists::before,
+    .resultat-select-caption::not(.no-fade) .bullet-lists::after {
         position: absolute;
         z-index: 10;
         content: "";
@@ -3455,7 +3486,7 @@ body.sammanfattning #resultat-footer .row-4 {
 }
 
 .gap-4 {
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .w-full {
@@ -3489,6 +3520,11 @@ body.sammanfattning #resultat-footer .row-4 {
     height: 350px;
 }
 
+.icons-home .box {
+    width: 160px;
+    height: 190px;
+}
+
 @media only screen and (max-width: 991px) {
     .box {
         margin-bottom: 20px;
@@ -3503,6 +3539,10 @@ body.sammanfattning #resultat-footer .row-4 {
 .box h4 {
     font-size: 18px;
     margin: 40px 0 10px 0;
+}
+
+.icons-home .box h4 {
+    margin: 20px 0 10px 0;
 }
 
 .box p {

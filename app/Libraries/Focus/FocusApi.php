@@ -1139,6 +1139,21 @@ class FocusApi
                     }
                     break;
 
+                case 34:
+                    $new_fields = [
+                        383 => 1000000, // Medicinsk eller eko. Invaliditet
+                        384 => 50000, // Tandskada
+                        385 => 30000, // Kostnader pga olycksfallsskada
+                        386 => null, // Ärr
+                        387 => null, // Ersättning sjukhusvistelse
+                        388 => 25000, // Ersättning kläder, utrustning mm
+                        389 => 10000, // Kristerapi
+                        390 => 50000, // Dödsfall
+                        583 => $data['state'] ?? 'Okänt',
+                    ];
+
+                    break;
+
                 case 45:
                     $vehicle = session()->get('steps.data.vehicle', []);
                     $customer = session()->get('steps.data.customer', []);
