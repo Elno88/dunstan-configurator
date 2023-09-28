@@ -46,7 +46,7 @@
                 <input id="hast-b" type="radio" class="btn-select" name="hastforsakring" value="hastforsakring-b-1" style="display: none;">
                 <label for="hast-b">
                     <div class="box">
-                        <img src="{{ asset('img/5.svg') }}" alt="Hästförsäkring">
+                        <img src="{{ asset('img/2.svg') }}" alt="Hästförsäkring">
                         <h4>Jämför hästförsäkring</h4>
                         <div>Få en prisjämförelse <br> och teckna direkt</div>
                         <button type="button" class="btn1 btn-next box-button" data-id="hast-b" style="margin-top: 30px !important;">Välj</button>

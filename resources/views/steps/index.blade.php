@@ -75,7 +75,7 @@
                 <input id="olycksfall-select" type="radio" class="btn-select" name="forsakring" value="olycksfallsforsakring" style="display: none">
                 <label for="olycksfall-select">
                     <div class="box">
-                        <img src="{{ asset('img/2.svg') }}" alt="Olycksfallsförsäkring">
+                        <img src="{{ asset('img/5.svg') }}" alt="Olycksfallsförsäkring">
                         <h4>Olycksfall</h4>
                     </div>
                 </label>
