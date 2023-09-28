@@ -68,7 +68,7 @@
                                     <li>Luftrörsjukdomar</li>
                                 </ul>
 
-                                <p class="klausul">OBS! Är eller har din häst varit aktiv inom trav- och galopp vänligen kontakta Servicecenter. Aktiva trav- och galopphästar kan inte teckna Premium online. Observera att ovanstående endast är ett urval av vad våra olika försäkringar täcker. För fullständig information, läs villkoren som du hittar längst ner på sidan.</p>
+                                <p class="klausul">Observera att detta endast är ett urval av vad våra olika försäkringar täcker. För fullständig information, läs villkoren som du hittar längst ner på sidan.</p>
 
                             </div>
 
@@ -199,7 +199,7 @@
                                     <span>Visa mer</span>
                                 </div>
 
-                                <p class="klausul">OBS! Är eller har din häst varit aktiv inom trav- och galopp vänligen kontakta Servicecenter. Aktiva trav- och galopphästar kan inte teckna Premium online. Observera att ovanstående endast är ett urval av vad våra olika försäkringar täcker. För fullständig information, läs villkoren som du hittar längst ner på sidan.</p>
+                                <p class="klausul">Observera att detta endast är ett urval av vad våra olika försäkringar täcker. För fullständig information, läs villkoren som du hittar längst ner på sidan.</p>
 
                             </div>
 
