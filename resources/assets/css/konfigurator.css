@@ -2916,6 +2916,10 @@ body.sammanfattning #resultat-footer .row-4 {
         font-size: 22px;
     }
 
+    input[type="email"], input[type="number"], input[type="tel"], input[type="text"] {
+      font-size: 16px;
+    }
+
     .bubble h2 {
         font-size: 18px;
         margin-bottom: 12px;

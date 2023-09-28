@@ -46,8 +46,8 @@
                 <label for="gard-b">
                     <div class="box">
                         <img src="{{ asset('img/2.svg') }}" alt="Hästförsäkring">
-                        <h4>Jämför hästgårdsförsäkring</h4>
-                        <p>Få en prisjämförelse.</p>
+                        <h4>Jämför din hästgårdsförsäkring</h4>
+                        <p>Se prisjämförelse och få en anpassad offert.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="gard-b">Välj</button>
                     </div>
                 </label>
@@ -57,8 +57,8 @@
                 <label for="gard-a">
                     <div class="box">
                         <img src="{{ asset('img/4.svg') }}" alt="Hästförsäkring">
-                        <h4>Ny hästgårdsförsäkring</h4>
-                        <p>Vi hjälper dig att räkna ut rätt pris</p>
+                        <h4>Teckna ny hästgårdsförsäkring</h4>
+                        <p>Prata med våra rådgivare och få en detaljerad offert.</p>
                         <button type="button" class="btn1 btn-next box-button" data-id="gard-a">Välj</button>
                     </div>
                 </label>
