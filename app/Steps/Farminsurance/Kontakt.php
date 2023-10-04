@@ -177,6 +177,8 @@ class Kontakt extends StepAbstract
                 $send_email_to[] = config('services.dunstan.email_test');
             }
 
+            $send_email_to = array_unique($send_email_to);
+
             foreach ($send_email_to as $email_to) {
                 Mail::to($email_to)->send(new GardsforsakingContact(
                     'Intresseanmälan Gårdsförsäkring',
@@ -263,6 +265,8 @@ class Kontakt extends StepAbstract
             } else {
                 $send_email_to[] = config('services.dunstan.email_test');
             }
+
+            $send_email_to = array_unique($send_email_to);
 
             foreach ($send_email_to as $email_to) {
                 Mail::to($email_to)->send(new GardsforsakingOffert(
