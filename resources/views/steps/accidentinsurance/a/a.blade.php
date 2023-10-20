@@ -4,10 +4,8 @@
         <div class="bubble bubble-type-a left">
             <div class="bubble-contents">
               <i class="bubble-help btn-sidebar" data-content="olycksfallsforsakring-a">?</i>
-                <p>
-                    <strong>Välkommen!</strong><br/>
-                    Fyll i din e-post, telefon- och personnummer nedan för att få ett prisförslag och teckna direkt!
-                </p>
+                <p><strong>Välkommen!</strong><br/>
+                  Fyll i dina uppgifter nedan för att få ett prisförslag på din olycksfallsförsäkring!</p>
             </div>
         </div>
 
