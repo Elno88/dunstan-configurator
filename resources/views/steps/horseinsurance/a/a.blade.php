@@ -4,7 +4,6 @@
             <h1>Försäkra din häst</h1>
             <ul class="frame-caption-usps">
                 <li><span style="text-decoration:underline;" class="btn-sidebar" data-content="trygghetsgaranti">Trygghetsgaranti</span></li>
-                <li>Ersättning från första kronan</li>
                 <li><span style="text-decoration:underline;" class="btn-sidebar" data-content="poang">Kunskap ger poäng</span></li>
             </ul>
         </div>
