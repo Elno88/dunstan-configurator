@@ -1137,6 +1137,10 @@ body #app-footer button:hover {
     color: var(--color-yellow);
 }
 
+body #app-footer .cookies-link {
+  display: none;
+}
+
 /* UI elements */
 
 .radio-select {
@@ -2243,8 +2247,10 @@ ul.resultat-slide-select.options-4 li:nth-child(4).selected ~ .marker {
     display: none;
 }
 
+.frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-grund tbody tr.tr-disabled,
 .frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-grund thead tr th:last-child,
 .frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-grund tbody tr td:last-child,
+.frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-special tbody tr.tr-disabled,
 .frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-special thead th:last-child,
 .frame-resultat[data-horseusage='5'] .resultat-select-caption .compare-table-special tbody tr td:last-child {
     display: none;
@@ -3406,6 +3412,20 @@ body.sammanfattning #resultat-footer .row-4 {
         color: var(--color-green-1);
         position: absolute;
         top: -45px;
+    }
+
+    body #app-footer .cookies-link {
+      display: inline-block;
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      font-size: 12px;
+      margin-left: -56px;
+      top: 11px;
+    }
+
+    button#Coi-Renew {
+      display: none!important;
     }
 
     .btn2,
