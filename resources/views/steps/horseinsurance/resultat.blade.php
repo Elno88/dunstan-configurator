@@ -43,7 +43,6 @@
 
                                 <ul class="bullet-list active" data-type="grund">
                                     <li>Trygghetsgaranti</li>
-                                    <li>Ingen fast självrisk</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -86,12 +85,6 @@
                                     <tbody>
                                     <tr>
                                         <th>Trygghetsgaranti</th>
-                                        <td><i class="icon icon-check"></i></td>
-                                        <td><i class="icon icon-check"></i></td>
-                                        <td><i class="icon icon-check active"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Ingen fast självrisk</th>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check active"></i></td>
@@ -213,7 +206,6 @@
 
                                 <ul class="bullet-list active" data-type="grund">
                                     <li>Trygghetsgaranti</li>
-                                    <li>Ingen fast självrisk</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -256,12 +248,6 @@
                                     <tbody>
                                     <tr>
                                         <th>Trygghetsgaranti</th>
-                                        <td><i class="icon icon-check"></i></td>
-                                        <td><i class="icon icon-check active"></i></td>
-                                        <td><i class="icon icon-check"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Ingen fast självrisk</th>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check active"></i></td>
                                         <td><i class="icon icon-check"></i></td>
@@ -555,7 +541,6 @@
 
                                 <ul class="bullet-list active" data-type="grund">
                                     <li>Trygghetsgaranti</li>
-                                    <li>Ingen fast självrisk</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -598,12 +583,6 @@
                                     <tbody>
                                     <tr>
                                         <th>Trygghetsgaranti</th>
-                                        <td><i class="icon icon-check active"></i></td>
-                                        <td><i class="icon icon-check"></i></td>
-                                        <td><i class="icon icon-check"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Ingen fast självrisk</th>
                                         <td><i class="icon icon-check active"></i></td>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check"></i></td>
