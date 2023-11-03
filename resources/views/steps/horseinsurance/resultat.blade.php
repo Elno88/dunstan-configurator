@@ -748,38 +748,38 @@
                         </ul>
                     </div>
 
-                    <div style="display: none!important;">
+                        <div style="display: none;">
 
-                        <div class="uppsagning-options">
 
-                            <h4>Vill du ha hjälp med att säga upp din nuvarande försäkring när den löper ut?</h4>
+                            <div class="uppsagning-options">
 
-                            <ul>
-                                <li>
-                                    <input id="uppsagning-1" type="radio" name="uppsagning" value="0" checked>
-                                    <label for="uppsagning-1">Nej, jag tar hand om det själv</label>
-                                    <div class="check"></div>
-                                </li>
-                                <li>
-                                    <input id="uppsagning-0" type="radio" name="uppsagning" value="1">
-                                    <label for="uppsagning-0">Ja, det låter bra!</label>
-                                    <div class="check"></div>
-                                </li>
-                            </ul>
+                                <h4>Vill du ha hjälp med att säga upp din nuvarande försäkring när den löper ut?</h4>
 
-                            <div class="resultat-select-caption uppsagning-caption">
-                                <p style="font-weight:500;">Hur fungerar det?</p>
-                                <p>Du får en trygg övergång med trygghetsgaranti där vi överser att allt går rätt till. Du kommer att bli kontaktad av oss inom några dagar. Vi låter dig digitalt signera en uppsägningsfullmakt som vi sedan skickar in precis innan din nya försäkring börjar gälla. Visst är det skönt när det är enkelt?</p>
+                                <ul>
+                                    <li>
+                                        <input id="uppsagning-1" type="radio" name="uppsagning" value="0" checked>
+                                        <label for="uppsagning-1">Nej, jag tar hand om det själv</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li>
+                                        <input id="uppsagning-0" type="radio" name="uppsagning" value="1">
+                                        <label for="uppsagning-0">Ja, det låter bra!</label>
+                                        <div class="check"></div>
+                                    </li>
+                                </ul>
+
+                                <div class="resultat-select-caption uppsagning-caption">
+                                    <p style="font-weight:500;">Hur fungerar det?</p>
+                                    <p>Du får en trygg övergång med trygghetsgaranti där vi överser att allt går rätt till. Du kommer att bli kontaktad av oss inom några dagar. Vi låter dig digitalt signera en uppsägningsfullmakt som vi sedan skickar in precis innan din nya försäkring börjar gälla. Visst är det skönt när det är enkelt?</p>
+                                </div>
+
                             </div>
 
-                        </div>
-
-                        @if((isset($defaults['livforsakring']) && $defaults['livforsakring'] == 38) || (isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == 38))
-                    </div><br/>
-
+                        </div><br/>
+                 
                 </div>
 
-	             <button type="button" class="btn1 btn-next btn-full-width resultat-next">Gå vidare</button>
+              <button type="button" class="btn1 btn-next btn-full-width resultat-next">Gå vidare</button>
 
             </div>
         </div>
