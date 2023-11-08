@@ -148,15 +148,35 @@
             $('.resultat-select-caption[data-type=liv]').removeClass('active');
             $('.resultat-select-caption[data-type=liv][data-content=vvl-'+value+']').addClass('active');
 
+            let currentValue = parseInt($('input[name=livvarde]').val());
+            let minValue = parseInt({{ $available['livvarde'][0] }});
+            let maxValue = parseInt({{ $available['livvarde'][1] }});
+
             if (value == 12) {
-                $('.range-slider').slider('option', 'max', 105000);
-                $('.range-slider').slider('value', {{ $available['livvarde'][0] }});
-            } else {
-                $('.range-slider').slider('option', 'max', {{ $available['livvarde'][1] + 5000 }});
-                $('.range-slider').slider('value', {{ $available['livvarde'][0] }});
+                maxValue = 100000;
             }
 
-            $('.livvarde-error').removeClass('active');
+            maxValue = maxValue + 5000;
+
+            if (currentValue <= minValue) {
+                currentValue = minValue;
+                $('.livvarde-error').removeClass('active');
+            } else if (currentValue >= maxValue) {
+                currentValue = maxValue;
+                $('.livvarde-max').text(maxValue-5000);
+                $('.livvarde-error').addClass('active');
+            } else {
+                $('.livvarde-error').removeClass('active');
+            }
+
+            if (value == 12) {
+                $('.range-slider').slider('option', 'max', maxValue);
+                $('.range-slider').slider('value', currentValue);
+            } else {
+                $('.range-slider').slider('option', 'max', maxValue);
+                $('.range-slider').slider('value', currentValue);
+            }
+
             $('.resultat-next').prop('disabled', false);
         });
 
@@ -170,13 +190,19 @@
             $('input[name="safestart"]').trigger('click');
         });
 
+        @if (!empty($defaults['livforsakring']) && $defaults['livforsakring'] == 12)
+            let maxValue = 105000;
+        @else
+            let maxValue = parseInt({{ $available['livvarde'][1] ?? 250000 }}) + 5000;
+        @endif
+
         $('.range-slider').slider( {
             @if(empty($defaults['livvarde']))
             disabled: true,
             @endif
             value: parseInt({{ $defaults['livvarde'] ?? $available['livvarde'][0] }}),
-            min: parseInt({{ $available['livvarde'][0] }}),
-            max: parseInt(105000),
+            min: parseInt({{ $available['livvarde'][0] ?? 15000 }}),
+            max: maxValue,
             step: parseInt({{ $available['livvarde_increment'] ?? 5000 }}),
             change: function(event, ui) {
                 $('.range-label').text(formatNumber(ui.value,' '));
@@ -232,6 +258,5 @@
         $("input[name='safestart-liv']").on("change", function() {
         	$(".safestart-info-inner").slideToggle(200);
         });
-
     });
 </script>
