@@ -137,8 +137,7 @@
     {!! $price['html'] ?? '' !!}
 </div>
 
-@include('steps.horseinsurance.resultat.empty_footer')
-
+@include('steps.horseinsurance.resultat.footer')
 @include('steps.horseinsurance.resultat.popup')
 
 @include('steps.horseinsurance.resultat.pris_scripts')
