@@ -7,16 +7,30 @@ use Carbon\Carbon;
 
 class InsurleyLead
 {
-    public function process(array $insurances = [])
+    /**
+     * Handles the leads.
+     *
+     * @param array $insurances
+     *
+     * @return void
+     */
+    public function handle(array $insurances = [])
     {
         foreach ($insurances as $insurance) {
             $this->saveToDatabase($insurance);
         }
     }
 
+    /**
+     * Saves to database.
+     *
+     * @param array $insurance
+     *
+     * @return \App\Models\Lead
+     */
     protected function saveToDatabase($insurance)
     {
-        Lead::create([
+        return Lead::create([
             'external_id'          => $insurance['externalId'],
             'ssn'                  => $insurance['civic_number'],
             'name'                 => $insurance['insuranceHolderName'] ?? null,

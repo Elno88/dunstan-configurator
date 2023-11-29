@@ -15,10 +15,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Schedule insurley log to be generated
+        $schedule
+            ->command('insurley:export')
+            ->environments(['production'])
+            ->dailyAt('06:00');
+
         $schedule
             ->command('insurley-log:export')
-            ->dailyAt('06:00');
+            ->environments(['production'])
+            ->dailyAt('06:15');
     }
 
     /**

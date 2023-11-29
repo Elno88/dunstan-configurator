@@ -2,9 +2,8 @@
 
 namespace App\Steps\Horseinsurance\B;
 
-use App\Http\Controllers\Controller;
+use App\Services\Lead\InsurleyLead;
 use App\Steps\StepAbstract;
-use App\Steps\StepInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Validator;
@@ -61,12 +60,19 @@ class B1 extends StepAbstract
         // Store data
         $this->store_data($input);
 
-        // Store lead
+        // @todo - Remove legacy logging
         try {
             Log::info('Insurley data.', $input['insurances'] ?? []);
         } catch (\Exception $e) {
-            Log::info('Failed to store this lead:');
+            Log::error('Failed to store (legacy) lead from Insurley:');
             Log::info($input['insurances']);
+        }
+
+        try {
+            (new InsurleyLead)->handle($input['insurances'] ?? []);
+        } catch (\Exception $e) {
+            Log::error('Failed to store lead from Insurley:');
+            Log::error($input['insurances']);
         }
 
         $next_step = 'hastforsakring-b-2';

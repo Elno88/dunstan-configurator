@@ -8,21 +8,21 @@ use App\Models\Lead;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class SendLeadsCommand extends Command
+class SendInsurleyLeadsCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'lead:export {--date= : Specific date for filtering export of leads}';
+    protected $signature = 'insurley:export {--date= : Specific date for filtering export of leads}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sends daily mail with leads';
+    protected $description = 'Sends daily mail with Insurley leads';
 
     /**
      * Create a new command instance.
@@ -64,16 +64,31 @@ class SendLeadsCommand extends Command
         return 0;
     }
 
+    /**
+     * Gets the filename.
+     *
+     * @return string
+     */
     protected function getFilename()
     {
         return  sprintf('excel/insurley-leads-%s.xlsx', $this->option('date') ?? now()->toDateString());
     }
 
+    /**
+     * Makes an excel file.
+     *
+     * @param string $filename
+     *
+     * @return \App\Exports\LeadsExport
+     */
     protected function makeExcelFile(string $filename)
     {
         return (new LeadsExport)->forDate($this->option('date'))->store($filename);
     }
 
+    /**
+     * Sets lead as the exported.
+     */
     protected function setExported()
     {
         Lead::notExported()->update([
@@ -81,11 +96,21 @@ class SendLeadsCommand extends Command
         ]);
     }
 
+    /**
+     * Determines if disabled.
+     *
+     * @return bool
+     */
     protected function isDisabled(): bool
     {
         return !config('services.insurley.email_export.enabled');
     }
 
+    /**
+     * Gets the recipients.
+     *
+     * @return array
+     */
     protected function getRecipients(): array
     {
         return explode(',', config('services.insurley.email_export.addresses'));
