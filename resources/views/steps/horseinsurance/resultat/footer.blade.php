@@ -112,7 +112,7 @@
             <a class="col col-liv @if(isset($forsakringar) && in_array(12, $forsakringar)) include @endif" href="https://dunstan.se/wp-content/uploads/villkor/website/dunstan_forefterkop-hastforsakring_2023-01-01.pdf" target="_blank" data-attributes="12">
                 <p>För- & efterköpsinformation</p>
             </a>
-            <a class="col col-liv @if(isset($forsakringar) && in_array(12, $forsakringar)) include @endif" href="https://dunstan.se/wp-content/uploads/villkor/website/dunstan_produktblad-premium-liv_2023-01-01.pdf" target="_blank" data-attributes="12">
+            <a class="col col-liv @if(isset($forsakringar) && in_array(12, $forsakringar)) include @endif" href="https://dunstan.se/wp-content/uploads/villkor/website/dunstan_produktblad-premium-liv_2022.pdf" target="_blank" data-attributes="12">
                 <p>Produktblad</p>
             </a>
 
