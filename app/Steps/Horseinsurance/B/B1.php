@@ -64,14 +64,14 @@ class B1 extends StepAbstract
         try {
             Log::info('Insurley data.', $input['insurances'] ?? []);
         } catch (\Exception $e) {
-            Log::error('Failed to store (legacy) lead from Insurley:');
+            Log::error('Failed to store (legacy) lead from Insurley:' . $e->getMessage());
             Log::info($input['insurances']);
         }
 
         try {
             (new InsurleyLead)->handle($input['insurances'] ?? []);
         } catch (\Exception $e) {
-            Log::error('Failed to store lead from Insurley:');
+            Log::error('Failed to store lead from Insurley:' . $e->getMessage());
             Log::error($input['insurances']);
         }
 
