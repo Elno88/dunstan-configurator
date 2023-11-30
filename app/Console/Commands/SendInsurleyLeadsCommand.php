@@ -56,7 +56,7 @@ class SendInsurleyLeadsCommand extends Command
         }
 
         foreach ($this->getRecipients() as $recipient) {
-            Mail::to($recipient)->send(
+            Mail::to(trim($recipient))->send(
                 new InsurleyLead($filename, $this->option('date'))
             );
         }
