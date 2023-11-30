@@ -10,12 +10,16 @@ class InsurleyLead
     /**
      * Handles the leads.
      *
-     * @param array $insurances
+     * @param mixed $insurances
      *
      * @return void
      */
-    public function handle(array $insurances = [])
+    public function handle(mixed $insurances)
     {
+        $insurances = !is_array($insurances)
+            ? json_decode($insurances, true)
+            : $insurances;
+
         foreach ($insurances as $insurance) {
             $this->saveToDatabase($insurance);
         }
