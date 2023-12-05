@@ -19,11 +19,6 @@ class Kernel extends ConsoleKernel
             ->command('insurley:export')
             ->environments(['production'])
             ->dailyAt('06:00');
-
-        $schedule
-            ->command('insurley-log:export')
-            ->environments(['production'])
-            ->dailyAt('06:15');
     }
 
     /**
