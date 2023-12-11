@@ -35,7 +35,7 @@
                 <div class="trotting-breed-content">
                     <div>
                         <label class="container">
-                            <input class="yesno-check" type="radio" name="trotting" value="1" {{ ($selected_trotting == 1) ? 'checked' : null }} />
+                            <input class="yesno-check" type="radio" name="trotting" value="1" {{ (!empty($selected_trotting) && $selected_trotting == 1) ? 'checked' : null }} />
                             <span class="check"></span>
                             Ja
                         </label>
