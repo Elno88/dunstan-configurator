@@ -680,6 +680,7 @@ class FocusApi
                 'namn' => $session_data['data']['hastforsakring-a-4']['namn'] ?? '',
                 'farg' => $session_data['data']['hastforsakring-a-4']['farg'] ?? '',
                 'breed' => $session_data['data']['hastforsakring-a-5']['breed'] ?? null,
+                'trotting' => $session_data['data']['hastforsakring-a-5']['trotting'] ?? null,
                 'folningdatum' => $session_data['data']['hastforsakring-a-6']['folningdatum'] ?? '',
                 'born' => $session_data['data']['hastforsakring-a-8']['born'] ?? '',
                 'born_risk' => $session_data['data']['hastforsakring-a-8']['risk'] ?? null,

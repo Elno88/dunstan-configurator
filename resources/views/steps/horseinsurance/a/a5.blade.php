@@ -10,7 +10,7 @@
 
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
-                <select class="bubble-select" name="breed">
+                <select class="bubble-select" name="breed" id="select-breed">
                     <option value="" selected disabled>Välj ras</option>
                     @foreach($breed_priority as $priority)
                         @if(isset($breeds[$priority]))
@@ -27,6 +27,31 @@
             </div>
         </div>
 
+        <div class="bubble bubble-type-d center" id="select-trotting" style="display:none;z-index:auto;">
+            <div class="bubble-contents bubble-trotting-breed">
+                <div class="trotting-breed-label">
+                    Tävlar din häst aktivt inom trav/galopp?
+                </div>
+                <div class="trotting-breed-content">
+                    <div>
+                        <label class="container">
+                            <input class="yesno-check" type="radio" name="trotting" value="1" {{ ($selected_trotting == 1) ? 'checked' : null }} />
+                            <span class="check"></span>
+                            Ja
+                        </label>
+                    </div>
+                    <div style="margin:0 16px;"></div>
+                    <div>
+                        <label class="container">
+                            <input class="yesno-check" type="radio" name="trotting" value="0" {{ ($selected_trotting == 0) ? 'checked' : null }} />
+                            <span class="check"></span>
+                            Nej
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button type="button" class="btn1 btn-next breed-next">Nästa</button>
 
     </div>
@@ -34,6 +59,64 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('select').selectric();
+        $('#select-breed').selectric({
+            onInit: function(element, object) {
+                let value = $(element).val();
+
+                let breeds = @json($trotting_breeds);
+
+                if ($.inArray(value, breeds) >= 0) {
+                    $('#select-trotting').show();
+
+                    if ($('input[name=trotting]:checked').length <= 0) {
+                        $('.breed-next').attr('disabled', 1);
+                    } else {
+                        $('.breed-next').removeAttr('disabled');
+                    }
+                } else {
+                    $('#select-trotting').hide();
+                    $('.breed-next').removeAttr('disabled');
+                }
+            },
+            onChange: function(element, object) {
+                let value = $(element).val();
+
+                let breeds = @json($trotting_breeds);
+
+                if ($.inArray(value, breeds) >= 0) {
+                    $('#select-trotting').show();
+                    if ($('input[name=trotting]:checked').length <= 0) {
+                        $('.breed-next').attr('disabled', 1);
+                    } else {
+                        $('.breed-next').removeAttr('disabled');
+                    }
+                } else {
+                    $('#select-trotting').hide();
+                    $('.breed-next').removeAttr('disabled');
+                }
+            },
+        });
+
+        $(document).on('change', '#select-breed', function () {
+            let value = $('#select-breed').val();
+
+            let breeds = @json($trotting_breeds);
+
+            if ($.inArray(value, breeds) >= 0) {
+                $('#select-trotting').show();
+                if ($('input[name=trotting]:checked').length <= 0) {
+                    $('.breed-next').attr('disabled', 1);
+                } else {
+                    $('.breed-next').removeAttr('disabled');
+                }
+            } else {
+                $('#select-trotting').hide();
+                $('.breed-next').removeAttr('disabled');
+            }
+        });
+
+        $(document).on('click', 'input[name=trotting]', function () {
+            $('.breed-next').removeAttr('disabled');
+        });
     });
 </script>

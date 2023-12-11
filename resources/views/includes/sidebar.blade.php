@@ -34,6 +34,10 @@
     <div class="app-sidebar-content app-sidebar-hastforsakring-a-5">
         <h3>Osäker på svaret?</h3>
         <p>Uppgifter om hästens ras hittar du i registreringsbeviset. Hästens ras kan påverka din försäkringskostnad, därför behöver vi veta den för att ge dig ett så regelrätt prisförslag som möjligt.</p>
+        <h4>Tävlingsstatus</h4>
+        <p>Beroende på din hästs tävlingsstatus kommer du att erbjudas olika försäkringsalternativ.</p>
+        <p>Om din häst tävlar aktivt kommer du att få tillgång till vår grund- och specialförsäkring.</p>
+        <p>Om din häst inte tävlar aktivt kommer du att ha tillgång till samtliga våra försäkringsalternativ.</p>
     </div>
     <div class="app-sidebar-content app-sidebar-hastforsakring-a-6">
         <h3>Är frågan svår att besvara?</h3>

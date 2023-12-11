@@ -1471,6 +1471,32 @@ ul.bubble-select li.selected label {
     padding: 6px;
 }
 
+.bubble-trotting-breed {
+
+}
+
+.bubble-trotting-breed .trotting-breed-label {
+    margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 640px) {
+    .bubble-trotting-breed .trotting-breed-label {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+}
+
+.bubble-trotting-breed .trotting-breed-content {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 640px) {
+    .bubble-trotting-breed .trotting-breed-content {
+        margin-bottom: 12px;
+    }
+}
+
 #resultat .frame-contents,
 #halsodeklaration .frame-content {
     margin: 100px 0;

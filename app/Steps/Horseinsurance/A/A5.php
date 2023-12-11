@@ -1,12 +1,12 @@
-<?php namespace App\Steps\Horseinsurance\A;
+<?php
 
-use App\Http\Controllers\Controller;
+namespace App\Steps\Horseinsurance\A;
+
 use App\Libraries\Focus\FocusApi;
-use App\Steps\StepInterface;
 use App\Steps\StepAbstract;
 use Illuminate\Http\Request;
-
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class A5 extends StepAbstract
 {
@@ -15,13 +15,13 @@ class A5 extends StepAbstract
 
     public function view(Request $request)
     {
-        $focusapi = new FocusApi();
-        $focus_response = $focusapi->get_moment(22);
+        $response = (new FocusApi)->get_moment(22);
 
         $breeds = [];
-        foreach($focus_response as $moments){
-            foreach($moments['falt'] as $field){
-                if($field['namn'] == 'Ras'){
+
+        foreach ($response as $moments) {
+            foreach ($moments['falt'] as $field) {
+                if ($field['namn'] == 'Ras') {
                     $breeds = $field['alternativ'];
                     break 2;
                 }
@@ -29,7 +29,8 @@ class A5 extends StepAbstract
         }
 
         // Fetch session data
-        $selected_breed = $this->get_data($this->name.'.breed');
+        $selected_breed = $this->get_data($this->name . '.breed');
+        $selected_trotting = $this->get_data($this->name . '.trotting');
 
         $search_array_breeds = [
             'Svenskt Varmblod (SWB)',
@@ -40,19 +41,20 @@ class A5 extends StepAbstract
         ];
 
         $breed_priority = [];
-        foreach($search_array_breeds as $search){
+        foreach ($search_array_breeds as $search) {
             $key = array_search($search, $breeds); // $key = 2;
-            if($key !== false){
+            if ($key !== false) {
                 $breed_priority[] = $key;
             }
         }
 
-        // Fetch horse name
         $horse_name = $this->get_data('hastforsakring-a-4.namn');
 
         return view('steps.horseinsurance.a.a5', [
             'breeds' => $breeds,
             'selected_breed' => $selected_breed,
+            'selected_trotting' => $selected_trotting,
+            'trotting_breeds' => $this->getTrottingBreeds(),
             'breed_priority' => $breed_priority,
             'horse_name' => $horse_name
         ]);
@@ -60,23 +62,28 @@ class A5 extends StepAbstract
 
     public function validateStep(Request $request)
     {
-
         $input = [
-            'breed' => $request->get('breed')
+            'breed' => $request->get('breed'),
+            'trotting' => $request->get('trotting') ?? null,
         ];
 
+        $is_trotting_breed = in_array(
+            $request->get('breed'),
+            $this->getTrottingBreeds()
+        );
+
         $rules = [
-            'breed'        => 'required'
+            'breed' => 'required',
+            'trotting' => Rule::requiredIf($is_trotting_breed),
         ];
 
         $validator = Validator::make($input, $rules);
 
-        if($validator->fails()){
-            $response = [
+        if ($validator->fails()) {
+            return response()->json([
                 'status' => 0,
                 'errors' => $validator->errors()->toArray()
-            ];
-            return response()->json($response);
+            ]);
         }
 
         // Store data
@@ -86,7 +93,7 @@ class A5 extends StepAbstract
 
         // Fetch session data
         $horse_usage = $this->get_data('hastforsakring-a-1.horse_usage');
-        if($horse_usage == 2){
+        if ($horse_usage == 2) {
             //$next_step = 'hastforsakring-a-6';
             $next_step = 'hastforsakring-a-ff-betackning';
         }
@@ -95,6 +102,16 @@ class A5 extends StepAbstract
             'status' => 1,
             'next_step' => $next_step
         ]);
+    }
 
+    protected function getTrottingBreeds()
+    {
+        return [
+            'Varmblodstravare',
+            'Kallblodstravare',
+            'Angloarabiskt fullblod',
+            'Engelsk Fullblod',
+            'Övriga Fullblod',
+        ];
     }
 }

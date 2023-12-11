@@ -25,9 +25,13 @@ class Resultat extends StepAbstract
 
         $horse_name = $data['namn'] ?? '';
         $startdatum = $data['startdatum'] ?? now()->format('Y-m-d');
-        $horse_usage = $data['horse_usage'] ?? '0';
+        $horse_usage = $data['horse_usage'] ?? '1';
         $horse_usage_label = $data['horse_usage_label'] ?? 'Försäkring';
         $compare_insurance = $data['compare_insurance'] ?? null;
+
+        if (!empty($data['trotting'])) {
+            $horse_usage = 5;
+        }
 
         $insurances = $this->get_insurances();
         $resultat_template = $this->reload_template();
@@ -46,6 +50,7 @@ class Resultat extends StepAbstract
         return view('steps.horseinsurance.resultat', [
             'resultat_template' => $resultat_template['html'],
             'price' => $resultat_template['price'],
+            'trotting' => $data['trotting'] ?? false,
             'defaults' => $resultat_template['defaults'],
             'available' => $resultat_template['available'],
             'insurances' => $insurances,
@@ -75,6 +80,7 @@ class Resultat extends StepAbstract
             'uppsagning'                => request()->get('uppsagning'),
             'swbmedlem'                 => request()->get('swbmedlem'),
             'stable'                    => request()->get('stable'),
+            'trotting'                  => $data['trotting'] ?? false,
         ];
 
         // Fetch horse_usage to determine insurances
@@ -83,7 +89,11 @@ class Resultat extends StepAbstract
         $defaults = [];
 
         // Set available data depending on horse_usage
-        $horse_usage = $data['horse_usage'];
+        $horse_usage = $data['horse_usage'] ?? 1;
+
+        if (!empty($data['trotting'])) {
+            $horse_usage = 5;
+        }
 
         switch ($horse_usage) {
                 // Föl och unghäst
@@ -362,7 +372,7 @@ class Resultat extends StepAbstract
         // Get moment
         $focusapi = new FocusApi();
         // get nya foster and föl moment produkt 26
-        if ($data['horse_usage'] == 2) {
+        if ($horse_usage == 2) {
             $focus_moments = collect($focusapi->get_moment(26));
         } else {
             // get moment
@@ -546,9 +556,9 @@ class Resultat extends StepAbstract
                 'utpris_formaterad' => $total_utpris_formated,
                 'points' => $points,
                 'compare_insurance' => $compare_insurance,
-                'horse_usage' => $data['horse_usage'] ?? 0
+                'horse_usage' => $data['horse_usage'] ?? 1
             ])->render(),
-                'html_boxes' => view('steps.horseinsurance.resultat.pris_boxes', [
+            'html_boxes' => view('steps.horseinsurance.resultat.pris_boxes', [
                 'data' => $data,
             ])->render(),
             'utpris' => $total_utpris,
