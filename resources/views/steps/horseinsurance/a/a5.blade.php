@@ -35,7 +35,7 @@
                 <div class="trotting-breed-content">
                     <div>
                         <label class="container">
-                            <input class="yesno-check" type="radio" name="trotting" value="1" {{ (!empty($selected_trotting) && $selected_trotting == 1) ? 'checked' : null }} />
+                            <input class="yesno-check" type="radio" name="trotting" value="1" {{ (isset($selected_trotting) && $selected_trotting == 1) ? 'checked' : null }} />
                             <span class="check"></span>
                             Ja
                         </label>
@@ -43,7 +43,7 @@
                     <div style="margin:0 16px;"></div>
                     <div>
                         <label class="container">
-                            <input class="yesno-check" type="radio" name="trotting" value="0" {{ ($selected_trotting == 0) ? 'checked' : null }} />
+                            <input class="yesno-check" type="radio" name="trotting" value="0" {{ (isset($selected_trotting) && $selected_trotting == 0) ? 'checked' : null }} />
                             <span class="check"></span>
                             Nej
                         </label>
@@ -63,7 +63,7 @@
             onInit: function(element, object) {
                 let value = $(element).val();
 
-                let breeds = @json($trotting_breeds);
+                let breeds = @json($trotting_breeds ?? []);
 
                 if ($.inArray(value, breeds) >= 0) {
                     $('#select-trotting').show();
@@ -81,7 +81,7 @@
             onChange: function(element, object) {
                 let value = $(element).val();
 
-                let breeds = @json($trotting_breeds);
+                let breeds = @json($trotting_breeds ?? []);
 
                 if ($.inArray(value, breeds) >= 0) {
                     $('#select-trotting').show();
@@ -100,7 +100,7 @@
         $(document).on('change', '#select-breed', function () {
             let value = $('#select-breed').val();
 
-            let breeds = @json($trotting_breeds);
+            let breeds = @json($trotting_breeds ?? []);
 
             if ($.inArray(value, breeds) >= 0) {
                 $('#select-trotting').show();
