@@ -6,26 +6,17 @@
             <div id="resultat-forsakring-type">{{ $horse_usage_label ?? 'Försäkring' }}</div>
             <div id="resultat-horse-name">{{ $horse_name ?? 'Hästnamn' }}</div>
         </div>
-        <div class="resultat-widget-points mobile">
-            <div>Teckna nu och få</div>
-            <div class="resultat-points"><span class="resultat-points-int">{{ $price['points'] ?? 0 }}</span> poäng</div>
-
-            @include('steps.horseinsurance.resultat.pris_jamfor')
-        </div>
-
 
         <div class="frame-resultat" data-horseusage="{{ $horse_usage ?? '0' }}">
 
             <div class="frame-resultat-inputs">
-
                 <h2>Välj och anpassa dina försäkringar</h2>
 
                 @if((isset($defaults['livforsakring']) && $defaults['livforsakring'] == 38) || (isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == 38))
                     <div style="display: none;">
                         @endif
-
                         <h4>Veterinärvårdsförsäkring <i class="bubble-help btn-sidebar" data-content="veterinarvardsforsakring">?</i></h4>
-                        <p>En veterinärvårdsförsäkring ersätter kostnader för undersökningar och behandlingar när din häst blir sjuk eller skadad.</p>
+                        <p>Ersätter kostnader för undersökningar och behandlingar om din häst blir sjuk eller skadad.</p>
                         <ul class="resultat-slide-select options-{{count($available['veterinarvardsforsakring'])}}">
                             @foreach($available['veterinarvardsforsakring'] as $key => $insurance)
                                 <li class="@if(isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == $insurance){{ 'selected' }}@endif"><input id="vvf-{{$insurance}}" type="radio" name="veterinarvardsforsakring" value="{{ $insurance }}" @if(isset($defaults['veterinarvardsforsakring']) && $defaults['veterinarvardsforsakring'] == $insurance)
@@ -42,7 +33,7 @@
                                 <p class="resultat-select-caption-title">Premium Veterinärvård</p>
 
                                 <ul class="bullet-list active" data-type="grund">
-                                    <li>Trygghetsgaranti</li>
+                                    <li>Skydd för dolda fel</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -84,7 +75,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th>Trygghetsgaranti</th>
+                                        <th>Skydd för dolda fel</th>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check active"></i></td>
@@ -205,7 +196,7 @@
                                 <p class="resultat-select-caption-title">Special Veterinärvård</p>
 
                                 <ul class="bullet-list active" data-type="grund">
-                                    <li>Trygghetsgaranti</li>
+                                    <li>Skydd för dolda fel</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -247,7 +238,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th>Trygghetsgaranti</th>
+                                        <th>Skydd för dolda fel</th>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check active"></i></td>
                                         <td><i class="icon icon-check"></i></td>
@@ -371,7 +362,7 @@
 	                	<p class="resultat-select-caption-title">Special Veterinärvård</p>
 
 		                <ul class="bullet-list active">
-		                	<li>Trygghetsgaranti</li>
+		                	<li>Skydd för dolda fel</li>
 		                	<li>Ingen fast självrisk</li>
 		                	<li>Ingen karenstid*</li>
 		                	<li>Frakturer</li>
@@ -412,7 +403,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<th>Trygghetsgaranti</th>
+									<th>Skydd för dolda fel</th>
 									<td><i class="icon icon-check"></i></td>
 									<td><i class="icon icon-check"></i></td>
 									<td><i class="icon icon-check"></i></td>
@@ -540,7 +531,7 @@
                                 <p class="resultat-select-caption-title">Grund Veterinärvård</p>
 
                                 <ul class="bullet-list active" data-type="grund">
-                                    <li>Trygghetsgaranti</li>
+                                    <li>Skydd för dolda fel</li>
                                     <li>Ingen karenstid*</li>
                                     <li>Frakturer</li>
                                     <li>Sårskador</li>
@@ -582,7 +573,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th>Trygghetsgaranti</th>
+                                        <th>Skydd för dolda fel</th>
                                         <td><i class="icon icon-check active"></i></td>
                                         <td><i class="icon icon-check"></i></td>
                                         <td><i class="icon icon-check"></i></td>
@@ -770,7 +761,7 @@
 
                                 <div class="resultat-select-caption uppsagning-caption">
                                     <p style="font-weight:500;">Hur fungerar det?</p>
-                                    <p>Du får en trygg övergång med trygghetsgaranti där vi överser att allt går rätt till. Du kommer att bli kontaktad av oss inom några dagar. Vi låter dig digitalt signera en uppsägningsfullmakt som vi sedan skickar in precis innan din nya försäkring börjar gälla. Visst är det skönt när det är enkelt?</p>
+                                    <p>Du får en trygg övergång med Skydd för dolda fel där vi överser att allt går rätt till. Du kommer att bli kontaktad av oss inom några dagar. Vi låter dig digitalt signera en uppsägningsfullmakt som vi sedan skickar in precis innan din nya försäkring börjar gälla. Visst är det skönt när det är enkelt?</p>
                                 </div>
 
                             </div>
@@ -931,6 +922,13 @@
             $('input[name=veterinarvardsforsakring]:checked').trigger('click');
         }, 500);
 
+        @foreach ($available['veterinarvardsforsakring'] as $key)
+            $('.app-sidebar-veterinarvardsforsakring div[data-insurance="{{ $key }}"]').show();
+        @endforeach
+
+        @foreach ($available['livforsakring']['all'] as $key)
+            $('.app-sidebar-livforsakring div[data-insurance="{{ $key }}"]').show();
+        @endforeach
     });
 
 </script>

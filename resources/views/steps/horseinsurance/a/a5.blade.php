@@ -1,24 +1,24 @@
 <div class="frame">
     <div class="frame-contents">
         <div class="bubble bubble-type-a left">
-            <div class="bubble-contents">
-            	<i class="bubble-help btn-sidebar" data-content="hastforsakring-a-5">?</i>
-                <p><span style="font-weight:600;">Vilken ras är {{ $horse_name ?? 'hästen' }}?</span><br/>
-                Förresten, du vet väl om att du får <span style="text-decoration:underline;" class="btn-sidebar" data-content="trygghetsgaranti">Trygghetsgaranti</span> när du blir ny kund hos oss?</p>
+            <div class="bubble-contents bubble-hide-mobile">
+                <i class="bubble-help btn-sidebar" data-content="hastforsakring-a-5">?</i>
+                <p class="font-heading-mobile mb-md-1">
+                    Vilken ras är {{ $horse_name ?? 'hästen' }}?
+                </p>
             </div>
         </div>
-
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
                 <select class="bubble-select" name="breed" id="select-breed">
                     <option value="" selected disabled>Välj ras</option>
-                    @foreach($breed_priority as $priority)
-                        @if(isset($breeds[$priority]))
+                    @foreach ($breed_priority as $priority)
+                        @if (isset($breeds[$priority]))
                             <option value="{{ $breeds[$priority] }}" @if(isset($selected_breed) && $selected_breed == $breeds[$priority]) selected @endif>{{ $breeds[$priority] }}</option>
                         @endif
                     @endforeach
-                    @foreach($breeds as $key => $breed)
-                        @if(in_array($key, $breed_priority))
+                    @foreach ($breeds as $key => $breed)
+                        @if (in_array($key, $breed_priority))
                             @continue
                         @endif
                         <option value="{{ $breed }}" @if(isset($selected_breed) && $selected_breed == $breed) selected @endif>{{ $breed }}</option>
@@ -26,7 +26,6 @@
                 </select>
             </div>
         </div>
-
         <div class="bubble bubble-type-d center" id="select-trotting" style="display:none;z-index:auto;">
             <div class="bubble-contents bubble-trotting-breed">
                 <div class="trotting-breed-label">
@@ -51,9 +50,7 @@
                 </div>
             </div>
         </div>
-
         <button type="button" class="btn1 btn-next breed-next">Nästa</button>
-
     </div>
 </div>
 
@@ -62,7 +59,6 @@
         $('#select-breed').selectric({
             onInit: function(element, object) {
                 let value = $(element).val();
-
                 let breeds = @json($trotting_breeds ?? []);
 
                 if ($.inArray(value, breeds) >= 0) {
@@ -80,7 +76,6 @@
             },
             onChange: function(element, object) {
                 let value = $(element).val();
-
                 let breeds = @json($trotting_breeds ?? []);
 
                 if ($.inArray(value, breeds) >= 0) {
@@ -99,7 +94,6 @@
 
         $(document).on('change', '#select-breed', function () {
             let value = $('#select-breed').val();
-
             let breeds = @json($trotting_breeds ?? []);
 
             if ($.inArray(value, breeds) >= 0) {

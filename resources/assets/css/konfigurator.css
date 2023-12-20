@@ -96,7 +96,7 @@ input[type="email"], input[type="number"], input[type="tel"], input[type="text"]
 
 @media only screen and (max-width: 640px) {
     .hidden-mobile {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -623,6 +623,12 @@ body.sidebar-open #app-sidebar {
     overflow-y: scroll;
     height: 85vh;
     line-height: 1.6;
+}
+
+@media only screen and (max-width: 1024px) {
+    #app-sidebar .app-sidebar-content {
+        padding: 0 40px 240px;
+    }
 }
 
 #app-sidebar .app-sidebar-x {
@@ -1242,6 +1248,7 @@ body #app-footer .cookies-link {
     background-color: #fff;
     padding: 22px;
     color: var(--color-green-1);
+    overflow: hidden;
 }
 
 .bubble .bubble-help {
@@ -1260,6 +1267,25 @@ body #app-footer .cookies-link {
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+    .bubble .bubble-no-help {
+        padding: 20px 20px 14px 20px !important;
+    }
+}
+
+.bubble .bubble-sub-heading {
+    display: inline;
+    font-size: inherit;
+}
+
+@media only screen and (max-width: 1024px) {
+    .bubble .bubble-sub-heading {
+        display: block;
+        font-size: 14px;
+        font-weight: normal !important;
+    }
 }
 
 .bubble .bubble-help:hover {
@@ -1410,6 +1436,26 @@ ul.bubble-select {
     text-align: center;
 }
 
+@media only screen and (max-width: 640px) {
+    .input-radio {
+        display: inline-block;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    ul.bubble-select {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: space-evenly;
+        justify-content: center;
+        gap: 12px;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
 .input-radio ul li,
 ul.bubble-select li {
     transition: all 200ms ease;
@@ -1436,11 +1482,15 @@ ul.bubble-select li label {
 @media only screen and (max-width: 640px) {
     .input-radio ul li,
     ul.bubble-select li {
-        width: 100%;
+        display: inline-block;
+        width: calc(50% - 6px);
+        margin: 0 !important;
+        margin-bottom: 8px !important;
     }
 
     .input-radio ul li label,
     ul.bubble-select li label {
+        display: block;
         width: 100%;
     }
 }
@@ -2937,7 +2987,7 @@ body.sammanfattning #resultat-footer .row-4 {
 
     body {
         font-size: 14px;
-        background: #fff;
+        background: #eff7eb;
     }
 
     h1 {
@@ -3619,6 +3669,10 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.font-bold {
+    font-weight: 600 !important;
+}
+
 .text-center {
     text-align: center;
 }
@@ -3627,6 +3681,90 @@ input::-webkit-inner-spin-button {
     padding: 0 !important;
 }
 
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+@media only screen and (min-width: 1025px) {
+    .mb-md-0 {
+        margin-bottom: 0 !important;
+    }
+}
+
+.mb-1 {
+    margin-bottom: 6px !important;
+}
+
+@media only screen and (min-width: 1025px) {
+    .mb-md-1 {
+        margin-bottom: 6px !important;
+    }
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+    .font-heading-mobile {
+        font-size: 22px;
+    }
+    .btn1 {
+        font-size: 14px;
+    }
+}
+
+.terms-agree-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .hastforsakring-a-4 .selectric .label {
     font-size: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .bubble .bubble-hide-mobile {
+        background: transparent;
+        width: 100%;
+        padding: 0 !important;
+        box-shadow: none !important;
+        text-align: right;
+        border-radius: 0;
+    }
+
+    .bubble .bubble-hide-mobile::before {
+        display: none !important;
+    }
+
+    .bubble .bubble-hide-mobile .bubble-help {
+        display: block !important;
+        position: relative !important;
+        top: auto;
+        right: 0;
+        margin-right: 0;
+        margin-left: auto;
+        margin-bottom: 1rem;
+    }
+
+    .bubble .bubble-hide-mobile p {
+        text-align: center;
+        font-weight: 600 !important;
+    }
+
+    .bubble .bubble-contents input,
+    .bubble .bubble-contents .selectric-wrapper {
+        height: 59.59px;
+        min-height: 59.59px;
+        max-height: 59.59px;
+        background-color: transparent;
+        margin-top: -1px;
+        margin-bottom: -1px;
+    }
+
 }

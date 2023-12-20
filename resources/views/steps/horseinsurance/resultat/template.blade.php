@@ -10,7 +10,10 @@
 @endphp
 
 <h4>Välj självrisk <i class="bubble-help btn-sidebar" data-content="sjalvrisk">?</i></h4>
-<p>För skador upp till 5 000 SEK är självrisken 50%, därefter gäller din valda självrisk. <span style="text-decoration: underline;" class="btn-sidebar" data-content="sjalvrisk">Läs mer om självrisken här</span>.</p>
+<p>
+    För skador upp till 5 000 SEK är självrisken 50%, därefter gäller din valda självrisk.
+    <span style="text-decoration: underline;" class="btn-sidebar" data-content="sjalvrisk">Se ett räkneexempel här</span>.
+</p>
 <ul class="resultat-slide-select options-{{ count($sjalvrisk_options) }}">
     @foreach($sjalvrisk_options as $key => $sjalvrisk)
         <li class="@if(!isset($defaults['sjalvrisk_options']) || is_null($defaults['sjalvrisk_options']) || !in_array($sjalvrisk, $defaults['sjalvrisk_options'])) disabled @endif @if(isset($defaults['sjalvrisk']) && $defaults['sjalvrisk'] == $sjalvrisk) selected @endif"><input id="sjalvrisk-{{ $key }}" class="filter" type="radio" name="sjalvrisk" value="{{ $sjalvrisk }}" @if(!isset($defaults['sjalvrisk_options']) || is_null($defaults['sjalvrisk_options']) || !in_array($sjalvrisk, $defaults['sjalvrisk_options'])) disabled @endif @if(isset($defaults['sjalvrisk']) && $defaults['sjalvrisk'] == $sjalvrisk) checked @endif ><label for="sjalvrisk-{{ $key }}">{{ $sjalvrisk }} %</label></li>
@@ -19,7 +22,9 @@
 </ul>
 
 <h4>Veterinärvårdsbelopp <i class="bubble-help btn-sidebar" data-content="veterinarvardsbelopp">?</i></h4>
-<p>Veterinärvårdsbelopp är det högsta belopp du kan få ut i ersättning för behandlingskostnader hos en veterinär under ett försäkringsår.</p>
+<p>
+    Det högsta belopp du kan få ut i ersättning för behandlingskostnader hos en veterinär under ett försäkringsår.
+</p>
 <ul class="resultat-slide-select options-{{ count($available['veterinarvardsbelopp']) }}">
     @foreach($available['veterinarvardsbelopp'] as $key => $range)
         <li class="@if(!isset($defaults['veterinarvardsbelopp']) || is_null($defaults['veterinarvardsbelopp'])) disabled @endif @if(isset($defaults['veterinarvardsbelopp']) && $defaults['veterinarvardsbelopp'] == $range){{ 'selected' }}@endif"><input id="vvb-{{ $key }}" type="radio" name="veterinarvardsbelopp" value="{{ $range }}" @if(!isset($defaults['veterinarvardsbelopp']) || is_null($defaults['veterinarvardsbelopp'])) disabled @endif @if(isset($defaults['veterinarvardsbelopp']) && $defaults['veterinarvardsbelopp'] == $range) checked @endif><label for="vvb-{{ $key }}">{{ number_format($range, 0, ',',' ') }} kr</label></li>

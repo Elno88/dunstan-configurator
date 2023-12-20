@@ -1,9 +1,11 @@
 <div class="frame">
     <div class="frame-contents">
         <div class="bubble bubble-type-a left">
-            <div class="bubble-contents">
+            <div class="bubble-contents bubble-hide-mobile">
             	<i class="bubble-help btn-sidebar" data-content="hastforsakring-a-4">?</i>
-                <p>Vad heter @if(isset($horse_usage) && $horse_usage == 2){{ 'stoet' }}@else{{ 'hästen' }}@endif, förresten?</p>
+                <p class="font-heading-mobile mb-md-1">
+                    Vad heter @if(isset($horse_usage) && $horse_usage == 2){{ 'stoet' }}@else{{ 'hästen' }}@endif, förresten?
+                </p>
             </div>
         </div>
         <div class="bubble bubble-type-d center">
@@ -12,7 +14,7 @@
             </div>
         </div>
         <div class="bubble bubble-type-d center">
-            <div class="bubble-contents" style="padding:12px;">
+            <div class="bubble-contents" style="max-height:84px;">
                 <select class="bubble-select" name="farg" style="font-size:20px;">
                     <option disabled selected>Välj färg</option>
                     @foreach ($colors as $color)

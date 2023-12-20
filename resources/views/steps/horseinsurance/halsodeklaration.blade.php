@@ -9,17 +9,7 @@
         <div class="frame-resultat">
 
             <div class="frame-resultat-yesno">
-
                 <h2 style="text-align: center;">Nästan färdig!</h2>
-
-                <p>Du behöver svara på några snabba frågor för att vi ska kunna göra en bedömning av hur hästens hälsa påverkar försäkringens omfattning.</p>
-
-                <div class="box-trygghetsgaranti">
-                	<img class="badge-trygghetsgaranti" src="{{ asset('img/trygghetsgaranti-badge.png') }}" alt="Dunstan Trygghetsgaranti">
-                	<h4>Vad innebär Dunstans trygghetsgaranti?</h4>
-                	<p>Dunstan erbjuder trygghetsgaranti vid flytt från annat försäkringsbolag.<br>Det betyder att om din häst tidigare omfattats av ett dolda fel-skydd övertar vi det skyddet.<br>För att trygghetsgarantin ska gälla ska Dunstan fått tagit del av tidigare försäkringsomfattning, skadehistorik samt en hälsodeklaration. Alla som tecknar Dunstan Foster & Föl samt försäkrade föl i Dunstan omfattas av trygghetsgarantin och dolda fel-skydd.</p>
-                </div>
-
 	            <div class="boxed" style="padding-bottom: 40px">
 
 	                @if(isset($document_type) && $document_type == 'foal')
@@ -91,7 +81,7 @@
 	                                    <input type="text" id="" name="questions[{{ $question['id'] }}]" value="{{ $answers['questions'][$question['id']] ?? '' }}" />
 	                                    @break
 	                                @case('date')
-	                                    <input class="datepicker" type="text" id="" name="questions[{{ $question['id'] }}]" value="{{ $answers['questions'][$question['id']] ?? '' }}" />
+	                                    <input class="datepicker" type="text" id="" autocomplete="off" placeholder="åååå-mm-dd" name="questions[{{ $question['id'] }}]" value="{{ $answers['questions'][$question['id']] ?? '' }}" />
 	                                    @break
 	                            @endswitch
 
@@ -109,16 +99,15 @@
 	                    @endforeach
 
 	                </div>
-
-                    <h3 style="font-size:14px;margin-bottom:0;">Bra att veta!</h3>
-<!--                   <p style="font-size:12px;font-style: italic;">Tänk på att uppge alla tidigare skador eller sjukdomar som din häst har haft vid införsäkran. 						Vi har då möjlighet att ge rådet att du ska stanna kvar i ditt nuvarande bolag (om sådant finns) om vi anser att skadorna är så allvarliga 							att en reservation kommer att påföras.</p>
- -->
-                    <p style="font-size:12px;font-style: italic;">Inkommer uppgifter om skador och sjukdomar som funnits innan införsäkringen, som inte informerats om vid tecknade hos Dunstan, kan det innebära att ersättning inte utgår och att en reservation påförs.</p>
-
             </div>
 
             <div class="resultat-acceptance-checkbox">
-                <label><input id="" type="checkbox" name="term" value="1">Jag lovar på heder och samvete att uppgifterna är fullständiga och sanningsenliga.</label>
+                <label class="terms-agree-wrapper">
+                    <input id="" type="checkbox" name="term" value="1" style="min-width:16px;">
+                    <span class="text-left">
+                        Jag lovar på heder och samvete att uppgifterna är fullständiga och sanningsenliga.
+                    </span>
+                </label>
             </div>
 
             <br/>

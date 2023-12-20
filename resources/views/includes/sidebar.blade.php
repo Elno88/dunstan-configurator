@@ -70,41 +70,63 @@
         <h4>Veterinärvårdsförsäkring</h4>
         <p>En veterinärvårdsförsäkring ersätter kostnader om en veterinär behöver undersöka eller behandla din häst på grund av sjukdom eller skada. Vi har olika veterinärvårdsförsäkringar för att du ska kunna skräddarsy en lösning som passar just dig och din häst.</p>
         <br/>
-        <h4>Premium</h4>
-        <p>Premium Veterinärvård är för dig som vill teckna vår mest omfattande försäkring för veterinärvård. Försäkringen kan ge ersättning om hästen behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar.</p>
-        <h4>Special</h4>
-        <p>Special veterinärvård är för dig som vill teckna en försäkring för trav- och galopphästar men även för andra kategorier av hästar som vill ha ett bra skydd. Försäkringen täcker drygt 60 specificerade diagnoser.</p>
-        <h4>Breeding</h4>
-        <p>Special Veterinärvård är för dig som vill teckna en försäkring för avelshästar som vill ha ett bra skydd. Försäkringen täcker drygt 60 specificerade diagnoser.</p>
-        <h4>Grund</h4>
-        <p>Grund Veterinärvård är för dig som vill teckna en försäkring med en bra omfattning. Försäkringen kan ge ersättning vid traumatiska frakturer/fissurer, akuta sårskador samt akut kolik.</p>
-        <h4>Katastrof</h4>
-        <p>Katastrof är för dig som vill teckna ett enklare liv och veterinärvårdsförsäkring. Försäkringen kan ge ersättning om hästen skadas så allvarligt att den behöver veterinärvård eller måste avlivas vid en direkt följd av till exempel brand eller trafikolycka.</p>
-        <h4>Foster & Föl</h4>
-        <p>Foster & Föl är för dig som vill teckna en omfattande försäkring för ditt tilltänkta föl samt veterinärvård och liv för fölet. Försäkringen kan ge ersättning vid resorption och kastning samt om fölet behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar de första 30 levnadsdagarna eller blivit enskilt försäkrad.</p>
+        <div data-insurance="4" class="hidden">
+            <h4>Premium</h4>
+            <p>Premium Veterinärvård är för dig som vill teckna vår mest omfattande försäkring för veterinärvård. Försäkringen kan ge ersättning om hästen behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar.</p>
+        </div>
+        <div data-insurance="6" class="hidden">
+            <h4>Special</h4>
+            <p>Special veterinärvård är för dig som vill teckna en försäkring för trav- och galopphästar men även för andra kategorier av hästar som vill ha ett bra skydd. Försäkringen täcker drygt 60 specificerade diagnoser.</p>
+        </div>
+        <div data-insurance="7" class="hidden">
+            <h4>Breeding</h4>
+            <p>Special Veterinärvård är för dig som vill teckna en försäkring för avelshästar som vill ha ett bra skydd. Försäkringen täcker drygt 60 specificerade diagnoser.</p>
+        </div>
+        <div data-insurance="8" class="hidden">
+            <h4>Grund</h4>
+            <p>Grund Veterinärvård är för dig som vill teckna en försäkring med en bra omfattning. Försäkringen kan ge ersättning vid traumatiska frakturer/fissurer, akuta sårskador samt akut kolik.</p>
+        </div>
+        <div data-insurance="14" class="hidden">
+            <h4>Katastrof</h4>
+            <p>Katastrof är för dig som vill teckna ett enklare liv och veterinärvårdsförsäkring. Försäkringen kan ge ersättning om hästen skadas så allvarligt att den behöver veterinärvård eller måste avlivas vid en direkt följd av till exempel brand eller trafikolycka.</p>
+        </div>
+        <div data-insurance="38" class="hidden">
+            <h4>Foster & Föl</h4>
+            <p>Foster & Föl är för dig som vill teckna en omfattande försäkring för ditt tilltänkta föl samt veterinärvård och liv för fölet. Försäkringen kan ge ersättning vid resorption och kastning samt om fölet behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar de första 30 levnadsdagarna eller blivit enskilt försäkrad.</p>
+        </div>
     </div>
     <div class="app-sidebar-content app-sidebar-livforsakring">
         <h3>Livförsäkring</h3>
         <p>Livförsäkring kan tecknas upp till det belopp du köpt din häst för. Livvärdet kan också höjas efter till exempel ålder och tävlingsmeriter. En livförsäkring kan ersätta om din häst blir så svårt sjuk eller skadad att den måste avlivas, eller att hästen på grund av sjukdom eller skada varaktigt förlorar sin användbarhet. Omfattningen på livförsäkringen beror på vilken livförsäkring du väljer.</p>
         <br/>
-        <h4>Premium Liv</h4>
-        <p>Premium Liv är för dig som önska teckna vår mest omfattande liv & användbarhetsförsäkring. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
-        <h4>Special Liv</h4>
-        <p>Special Liv är för dig som önska teckna en omfattande liv & användbarhetsförsäkring för trav- och galopphästar men även för andra kategorier av hästar som vill ha ett bra skydd. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
-        <h4>Breeding Liv</h4>
-        <p>Breeding Liv är för dig som önska teckna en omfattande liv & användbarhetsförsäkring för avelshästar som vill ha ett bra skydd med användbarhetsförsäkring för sto och hingst. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
-        <h4>Grund Liv</h4>
-        <p>Grund Veterinärvård är för dig som vill teckna en livförsäkring med en bra omfattning. Försäkringen kan ge ersättning vid traumatiska frakturer/fissurer, akuta sårskador, akut kolik eller vid försvunnen eller stulen häst.</p>
-        <h4>Katastrof</h4>
-        <p>Katastrof är för dig som vill teckna ett enklare liv och veterinärvårdsförsäkring. Försäkringen kan ge ersättning om hästen skadas så allvarligt att den behöver veterinärvård eller måste avlivas vid en direkt följd av till exempel brand eller trafikolycka.</p>
-        <h4>Foster & Föl</h4>
-        <p>Foster & Föl är för dig som vill teckna en omfattande försäkring för ditt tilltänkta föl samt veterinärvård och liv för fölet. Försäkringen kan ge ersättning vid resorption och kastning samt om fölet behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar de första 30 levnadsdagarna eller blivit enskilt försäkrad.</p>
+        <div data-insurance="12" class="hidden">
+            <h4>Premium Liv</h4>
+            <p>Premium Liv är för dig som önska teckna vår mest omfattande liv & användbarhetsförsäkring. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
+        </div>
+        <div data-insurance="13" class="hidden">
+            <h4>Special Liv</h4>
+            <p>Special Liv är för dig som önska teckna en omfattande liv & användbarhetsförsäkring för trav- och galopphästar men även för andra kategorier av hästar som vill ha ett bra skydd. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
+        </div>
+        <div data-insurance="16" class="hidden">
+            <h4>Breeding Liv</h4>
+            <p>Breeding Liv är för dig som önska teckna en omfattande liv & användbarhetsförsäkring för avelshästar som vill ha ett bra skydd med användbarhetsförsäkring för sto och hingst. Försäkringen kan ge ersättning om hästen dör, insjuknar eller skadas så svårt att den måste avlivas eller helt eller delvis förlorar sin användbarhet.</p>
+        </div>
+        <div data-insurance="17" class="hidden">
+            <h4>Grund Liv</h4>
+            <p>Grund Veterinärvård är för dig som vill teckna en livförsäkring med en bra omfattning. Försäkringen kan ge ersättning vid traumatiska frakturer/fissurer, akuta sårskador, akut kolik eller vid försvunnen eller stulen häst.</p>
+        </div>
+        <div data-insurance="14" class="hidden">
+            <h4>Katastrof</h4>
+            <p>Katastrof är för dig som vill teckna ett enklare liv och veterinärvårdsförsäkring. Försäkringen kan ge ersättning om hästen skadas så allvarligt att den behöver veterinärvård eller måste avlivas vid en direkt följd av till exempel brand eller trafikolycka.</p>
+        </div>
+        <div data-insurance="38" class="hidden">
+            <h4>Foster & Föl</h4>
+            <p>Foster & Föl är för dig som vill teckna en omfattande försäkring för ditt tilltänkta föl samt veterinärvård och liv för fölet. Försäkringen kan ge ersättning vid resorption och kastning samt om fölet behöver undersökas, behandlas och vårdas av veterinär vid de flesta skador och sjukdomar de första 30 levnadsdagarna eller blivit enskilt försäkrad.</p>
+        </div>
     </div>
     <div class="app-sidebar-content app-sidebar-veterinarvardsbelopp">
         <h3>Veterinärvårdsbelopp</h3>
-        <p>Om du väljer en veterinärvårdsförsäkring med ett försäkringsbelopp på 50 000 kr betyder det att du kan få ersättning med upp till 50 000 kr per försäkringsår för veterinärvårdskostnader som omfattas av din försäkring.</p>
-        <p>Om du väljer en veterinärvårdsförsäkring med ett försäkringsbelopp på 100 000 kr betyder det att du kan få ersättning med upp till 100 000 kr per försäkringsår för veterinärvårdskostnader som omfattas av din försäkring.</p>
-        <p>Om du väljer en veterinärvårdsförsäkring med ett försäkringsbelopp på 150 000 kr betyder det att du kan få ersättning med upp till 150 000 kr per försäkringsår för veterinärvårdskostnader som omfattas av din försäkring.</p>
+        <p>Baserat på vad du väljer för veterinärvårdsbelopp så kan du antingen få ersättning på 50 000 kr, 100 000 kr eller 150 000 kr per försäkringsår för veterinärvårdskostnader som omfattas av din försäkring.</p>
     </div>
     <div class="app-sidebar-content app-sidebar-sjalvrisk">
         <h3>Självrisk</h3>

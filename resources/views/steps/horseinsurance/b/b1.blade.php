@@ -17,13 +17,12 @@
                 <div class="insurley-results-wrapper"></div>
             </div>
         </div>
-        {{-- button his hidden, it's still needed for the javascript trigger trigger --}}
         <button style="display: none;" type="button" class="btn1 btn-next">Nästa</button>
     </div>
 </div>
 <script>
     window.addEventListener('message', ({data}) => {
-        // Empty the wrapper
+
         if (data.name === 'PAGE_VIEW' && data.value === "SELECT_COMPANIES") {
             $('.insurley-results-wrapper').html('');
         }
@@ -59,9 +58,7 @@
         }
     });
 </script>
-
 <script type="text/javascript" src="https://blocks.insurely.com/assets/bootstrap.js" onload="setupClient()"></script>
-
 <script async>
     window.insurely = {
         config: {

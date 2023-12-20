@@ -1,21 +1,19 @@
 <div class="frame">
     <div class="frame-contents">
-
         <div class="bubble bubble-type-a left">
-            <div class="bubble-contents">
-            	<i class="bubble-help btn-sidebar" data-content="hastforsakring-a-2">?</i>
-                <p><span style="font-weight:600;">Toppen!</span> När är din häst född?</p>
+            <div class="bubble-contents bubble-hide-mobile">
+                <i class="bubble-help btn-sidebar" data-content="hastforsakring-a-2">?</i>
+                <p class="font-heading-mobile mb-md-0">
+                    <span class="font-bold">Toppen!</span> När är din häst född?
+                </p>
             </div>
         </div>
-
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
                 <input type="text" class="datepicker" name="fodelsedatum" autocomplete="off" placeholder="åååå-mm-dd" value="{{ $birthdate ?? '' }}">
             </div>
         </div>
-
         <button type="button" class="btn1 btn-next">Nästa</button>
-
     </div>
 </div>
 

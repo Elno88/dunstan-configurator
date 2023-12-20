@@ -7,86 +7,13 @@
         </div>
 
         <div class="frame-resultat">
-
             <div class="sammanfattning">
-
-                <h3>Dina val</h3>
-
+                <h3>Om {{ !empty($data['hasten']['namn']) ? $data['hasten']['namn'] : 'hästen' }}</h3>
                 <div class="boxed">
-
-                    <table class="table-resultat">
-
-                        @if(!empty($data['sammanfattning']['veterinarvardsforsakring']))
-                            <tr>
-                                <th>Försäkring</th>
-                                <td>{{ $data['sammanfattning']['veterinarvardsforsakring'] ?? '' }}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Veterinärvård</th>
-                                <td>
-                                    @if(isset($data['sammanfattning']['veterinarvardsbelopp']) && !empty($data['sammanfattning']['veterinarvardsbelopp']))
-                                        {{ number_format($data['sammanfattning']['veterinarvardsbelopp'] ?? '', 0, ',', ' ') }} kr
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>Självrisk</th>
-                                <td>
-                                    @if(isset($data['sammanfattning']['sjalvrisk']) && !empty($data['sammanfattning']['sjalvrisk']))
-                                        {{ $data['sammanfattning']['sjalvrisk'] ?? '' }}%
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                            </tr>
-                        @endif
-                        @if(!empty($data['sammanfattning']['livforsakring']))
-                            <tr class="row-padding">
-                                <th>Livförsäkring</th>
-                                <td>
-                                    @if(isset($data['sammanfattning']['livforsakring']) && !empty($data['sammanfattning']['livforsakring']))
-                                        {{ $data['sammanfattning']['livforsakring'] ?? '' }}
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>Livvärde</th>
-                                <td>
-                                    @if(isset($data['sammanfattning']['livvarde']) && !empty($data['sammanfattning']['livvarde']))
-                                        {{ number_format($data['sammanfattning']['livvarde'] ?? '', 0, ',', ' ') }} kr
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                            </tr>
-                        @endif
-
-                        <tr class="row-padding">
-                            <th>Startdatum</th>
-                            <td><div class="editinplace">
-                                    <input type="text" class="edit" value="{{ $data['sammanfattning']['startdatum'] ?? '' }}" name="startdatum" placeholder="0000-00-00">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-
-                </div>
-
-                <h3>Om hästen</h3>
-
-                <div class="boxed">
-
                     <table class="table-resultat">
                         <tr>
                             <th>
-                                @if($horse_usage == 2)
+                                @if ($horse_usage == 2)
                                     Stoet
                                 @else
                                     Hästen
@@ -94,13 +21,13 @@
                             </th>
                             <td>{{ $data['hasten']['namn'] ?? '' }}</td>
                         </tr>
-                        @if($horse_usage != 2)
+                        @if ($horse_usage != 2)
                             <tr>
                                 <th>Födelsedatum</th>
                                 <td>{{ $data['hasten']['fodelsedatum'] ?? '' }}</td>
                             </tr>
                         @endif
-                        <tr>
+                        <tr class="{{ empty($data['hasten']['chipnummer']) ? 'row-error' : '' }}">
                             <th>Chip- eller Id-nummer</th>
                             <td>
                                 <div class="editinplace">
@@ -109,10 +36,70 @@
                             </td>
                         </tr>
                     </table>
-
                 </div>
 
-                <h3>Försäkringstagare</h3>
+                <h3>Din försäkring</h3>
+                <div class="boxed">
+                    <table class="table-resultat">
+                        @if (!empty($data['sammanfattning']['veterinarvardsforsakring']))
+                            <tr>
+                                <th>Försäkring</th>
+                                <td>{{ $data['sammanfattning']['veterinarvardsforsakring'] ?? '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Veterinärvård</th>
+                                <td>
+                                    @if (isset($data['sammanfattning']['veterinarvardsbelopp']) && !empty($data['sammanfattning']['veterinarvardsbelopp']))
+                                        {{ number_format($data['sammanfattning']['veterinarvardsbelopp'] ?? '', 0, ',', ' ') }} kr
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Självrisk</th>
+                                <td>
+                                    @if (isset($data['sammanfattning']['sjalvrisk']) && !empty($data['sammanfattning']['sjalvrisk']))
+                                        {{ $data['sammanfattning']['sjalvrisk'] ?? '' }}%
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                        @if (!empty($data['sammanfattning']['livforsakring']))
+                            <tr class="row-padding">
+                                <th>Livförsäkring</th>
+                                <td>
+                                    @if (isset($data['sammanfattning']['livforsakring']) && !empty($data['sammanfattning']['livforsakring']))
+                                        {{ $data['sammanfattning']['livforsakring'] ?? '' }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Livvärde</th>
+                                <td>
+                                    @if (isset($data['sammanfattning']['livvarde']) && !empty($data['sammanfattning']['livvarde']))
+                                        {{ number_format($data['sammanfattning']['livvarde'] ?? '', 0, ',', ' ') }} kr
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                        <tr class="row-padding">
+                            <th>Startdatum</th>
+                            <td><div class="editinplace">
+                                    <input type="text" class="edit" value="{{ $data['sammanfattning']['startdatum'] ?? '' }}" name="startdatum" placeholder="0000-00-00">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Dina uppgiter</h3>
 
                 <div class="boxed">
 
@@ -157,10 +144,10 @@
                             <p style="font-size:16px;">Betalningssätt</p>
                             <ul class="resultat-slide-select options-2" style="margin-bottom:0;">
                                 @foreach(['faktura' => 'Faktura', 'autogiro' => 'Autogiro'] as $key => $payment)
-                                    @if($horse_usage == 2 && $key == 'autogiro')
+                                    @if ($horse_usage == 2 && $key == 'autogiro')
                                         @continue
                                     @endif
-                                    <li @if($loop->first || $horse_usage == 2) class="selected" @endif><input @if($loop->first || $horse_usage == 2) checked @endif id="radio-{{ $key }}" type="radio" name="betalningsmetod" value="{{ $key }}"><label for="radio-{{ $key }}">{{ $payment }}</label></li>
+                                    <li @if ($loop->first || $horse_usage == 2) class="selected" @endif><input @if ($loop->first || $horse_usage == 2) checked @endif id="radio-{{ $key }}" type="radio" name="betalningsmetod" value="{{ $key }}"><label for="radio-{{ $key }}">{{ $payment }}</label></li>
                                 @endforeach
                                 <div class="marker"></div>
                             </ul>
@@ -184,11 +171,11 @@
                             <p style="font-size:16px;">Betalningstermin</p>
                             <ul class="resultat-slide-select options-3" style="margin-bottom:0;">
                                 @foreach([1 => 'Månad', 3 => 'Kvartal', 12 => 'År'] as $key => $termin)
-                                    @if($horse_usage == 2 && $key != 12)
+                                    @if ($horse_usage == 2 && $key != 12)
                                         @continue
                                     @endif
 
-                                    <li @if($loop->first || $horse_usage == 2) class="selected" @endif><input @if($loop->first || $horse_usage == 2) checked @endif id="radio-{{ $key }}" type="radio" name="betalningstermin" value="{{ $key }}"><label for="radio-{{ $key }}">{{ $termin }}</label></li>
+                                    <li @if ($loop->first || $horse_usage == 2) class="selected" @endif><input @if ($loop->first || $horse_usage == 2) checked @endif id="radio-{{ $key }}" type="radio" name="betalningstermin" value="{{ $key }}"><label for="radio-{{ $key }}">{{ $termin }}</label></li>
                                 @endforeach
                                 <div class="marker"></div>
                             </ul>
@@ -321,8 +308,11 @@
                                     .closest('tr')
                                     .addClass('row-error');
                             }
-
                         });
+
+                        $('html, body').animate({
+                            scrollTop: $('.row-error:visible:first').offset().top - 160
+                        }, 300);
 
                         if (show_custom_message) {
                             $('.validation-error-message').hide();
@@ -336,6 +326,7 @@
                         let timer_index = Math.floor(Math.random() * 100);
 
                         $('.error-message-wrapper').attr('data-timer-index', timer_index).slideDown(300);
+
                         setTimeout(function () {
                             $('.error-message-wrapper[data-timer-index=' + timer_index + ']').slideUp(300);
                         }, 10000);
@@ -372,17 +363,17 @@
                 force_retries
             },
             success: function (data) {
-                if(data.status == 1){
+                if (data.status == 1){
                     $button.prop('disabled', false);
                     $button.removeClass('disabled');
                     $button.html(buttonOriginalText);
 
-                    if(data.next_step){
+                    if (data.next_step){
                         window.konfigurator.changeurl(data.next_step, '#'+data.next_step);
                         window.konfigurator.hash();
                     }
-                } else if(data.status == 0) {
-                    if(force_retries > 0) {
+                } else if (data.status == 0) {
+                    if (force_retries > 0) {
                         force_retries--;
 
                         let attempt     = parseInt('{{ config('services.focus.bankid_status_force_retries') }}') - force_retries;
@@ -428,8 +419,8 @@
             dataType: 'json',
             data: data,
             success: function (data) {
-                if(data.status == 1){
-                    if(data.orderRef){
+                if (data.status == 1){
+                    if (data.orderRef){
                         let force_retries = parseInt('{{ config('services.focus.bankid_status_force_retries') }}');
                         bankid_status(data.orderRef, $button, buttonOriginalText, force_retries);
                     }
@@ -461,9 +452,9 @@
 
         $('select').selectric();
 
-        $('input[name=betalningsmetod]').on('change', function(){
+        $('input[name=betalningsmetod]').on('change', function() {
             let value = $(this).val();
-            if(value === 'autogiro'){
+            if (value === 'autogiro'){
                 $('.autogiro-wrapper').css('display', 'table-row');
             } else {
                 $('.autogiro-wrapper').css('display', 'none');
@@ -471,15 +462,21 @@
         });
 
         // Remove error
-        $('select').on('change', function(){
+        $('select').on('change', function() {
             $(this).closest('tr').removeClass('row-error');
         });
 
-        $('input[name=term]').on('change', function(){
+        $('input').on('change keyup', function() {
+            if ($(this).val() > '') {
+                $(this).closest('tr').removeClass('row-error');
+            }
+        });
+
+        $('input[name=term]').on('change', function() {
             $(this).closest('.resultat-acceptance-checkbox').removeClass('error');
         });
 
-        $('input[name=betalningstermin]').on('change', function(){
+        $('input[name=betalningstermin]').on('change', function() {
 
             let selected = $('input[name=betalningstermin]:checked').val();
 
@@ -489,12 +486,10 @@
             let price;
             let count;
 
-            console.log(trimmed);
-
-            if(selected == 3) {
+            if (selected == 3) {
                 count = Math.ceil(trimmed * 3 * 0.99);
                 price = addSeprators(count)+' kr/kvartal';
-            } else if(selected == 12) {
+            } else if (selected == 12) {
                 count = Math.ceil(trimmed * 12 * 0.97);
                 price = addSeprators(count)+' kr/år';
             } else {

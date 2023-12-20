@@ -1,12 +1,11 @@
 <div class="frame">
     <div class="frame-contents">
         <div class="bubble bubble-type-a left">
-            <div class="bubble-contents">
-            	<i class="bubble-help btn-sidebar" data-content="hastforsakring-b-2">?</i>
-                <p>Klicka på den häst du vill försäkra.</p>
+            <div class="bubble-contents bubble-hide-mobile">
+                <i class="bubble-help btn-sidebar" data-content="hastforsakring-b-2">?</i>
+                <p class="mb-md-01">Klicka på den häst du vill försäkra.</p>
             </div>
         </div>
-
         <div class="bubble bubble-type-d input-radio center">
             <ul class="bubble-select bubble-select-type-b">
                 @foreach($insurances as $key => $insurance)
@@ -20,10 +19,8 @@
                 @endforeach
             </ul>
         </div>
-
         <div style="display: none;">
             <button type="button" class="btn1 btn-next">Nästa</button>
         </div>
-
     </div>
 </div>

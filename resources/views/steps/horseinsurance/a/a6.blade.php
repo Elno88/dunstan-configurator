@@ -1,21 +1,19 @@
 <div class="frame">
     <div class="frame-contents">
-
         <div class="bubble bubble-type-a left">
-            <div class="bubble-contents">
-            	<i class="bubble-help btn-sidebar" data-content="hastforsakring-a-6">?</i>
-                <p>När är beräknat datum för fölning?</p>
+            <div class="bubble-contents bubble-hide-mobil">
+                <i class="bubble-help btn-sidebar" data-content="hastforsakring-a-6">?</i>
+                <p class="font-heading-mobile mb-md-1">
+                    När är beräknat datum för fölning?
+                </p>
             </div>
         </div>
-
         <div class="bubble bubble-type-d center">
             <div class="bubble-contents">
                 <input type="text" class="datepicker" name="folningdatum" autocomplete="off" placeholder="åååå-mm-dd" value="{{ $folningdatum ?? '' }}">
             </div>
         </div>
-
         <button type="button" class="btn1 btn-next">Nästa</button>
-
     </div>
 </div>
 
@@ -30,6 +28,7 @@
             minYear: {{ now()->format('Y') }},
             daySuffixes: false
         });
+
         $('select').selectric();
     });
 </script>
