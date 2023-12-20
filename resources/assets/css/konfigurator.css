@@ -1248,7 +1248,6 @@ body #app-footer .cookies-link {
     background-color: #fff;
     padding: 22px;
     color: var(--color-green-1);
-    overflow: hidden;
 }
 
 .bubble .bubble-help {
