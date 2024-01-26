@@ -1038,7 +1038,7 @@ class FocusApi
                         // 99 => 'Rasgrupp', // Rasgrupp
                         134 => $data['farg'], // Färg
                         556 => $data['stable'], // Uppstallning
-                        577 => $data['state'] ?? 'Skåne', // Län
+                        577 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[133] = $data['chip_number'];
@@ -1082,8 +1082,9 @@ class FocusApi
                         460 => $data['seminstation'], // Seminstation
                         447 => $data['livvarde'], // Försäkringsbelopp
                         462 => $data['veterinarvardsbelopp'], // Veterinärvård
-                        455 => $data['insurance_type'] // Stoets försäkring
+                        455 => $data['insurance_type'], // Stoets försäkring
                         // 463 => $data['sjalvrisk'].' %' // Självrisk veterinärvård
+                        584 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[450] = $data['chip_number'];
@@ -1134,6 +1135,7 @@ class FocusApi
                         525 => $data['seminstation'], // seminstation
                         515 => $data['livvarde'], // försäkringsbelopp
                         520 => $data['insurance_type'], // stoet försäkrad
+                        585 => $data['state'] ?? 'Okänt', // Län
                     ];
                     if (!empty($data['chip_number'])) {
                         $new_fields[517] = $data['chip_number'];
